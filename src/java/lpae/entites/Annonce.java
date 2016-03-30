@@ -1,0 +1,159 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lpae.entites;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+
+/**
+ *
+ * @author michel
+ */
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name="TYPE_ENTITE", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("ANNONCE")
+public class Annonce implements Serializable {
+    @ManyToOne
+    private Utilisateur utilisateur;
+    @ManyToOne
+    private Categorie categorie;
+    @ManyToOne
+    private TypeAnnonce typeAnnonce;
+
+    public Annonce() {
+    }
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+    
+    private String titre;
+    
+    private String description;
+    
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateCreation;
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Collection<PhotoAnnonce> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Collection<PhotoAnnonce> photos) {
+        this.photos = photos;
+    }
+    
+    @OneToMany(mappedBy = "annonce")
+    private Collection<PhotoAnnonce> photos = new ArrayList<>();
+
+    public TypeAnnonce getTypeAnnonce() {
+        return typeAnnonce;
+    }
+
+    public void setTypeAnnonce(TypeAnnonce typeAnnonce) {
+        this.typeAnnonce = typeAnnonce;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getCout() {
+        return cout;
+    }
+
+    public void setCout(double cout) {
+        this.cout = cout;
+    }
+    
+    private double cout;
+   
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (int) id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Annonce)) {
+            return false;
+        }
+        Annonce other = (Annonce) object;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "lpae.entites.Annonce[ id=" + id + " ]";
+    }
+    
+}
