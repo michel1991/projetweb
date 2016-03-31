@@ -146,6 +146,41 @@
                 position: absolute; /* allows proper formatting if hint is two lines */
                 display: none;
             }
+            
+            /* All Progress Bars */
+            progress {
+                /* Reset the default appearance */
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+
+            /* Determinate */
+            progress[value] {
+                /* Reset the default appearance */
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+
+            /* Indeterminate */
+            progress:not([value]) {
+                /* Reset the default appearance */
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+            
+            progress::-webkit-progress-bar {
+                background: #EEE;
+                box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+                border-radius: 3px;
+            }
+
+            progress::-webkit-progress-value {
+                background-color: green; // #CC0000
+                border-radius: 3px;
+            }
         </style>
     </head>
     <body>
@@ -214,12 +249,12 @@
             <fieldset>
                 <legend>Identifiant de connection</legend>
                 <label for="login" class="formLabel">Login:</label>
-                <input type="text" id="login" required class="managerWidth"/><br>
-               <label for="mdp" class="formLabel">Pr&eacute;nom:</label>
-               <input type="password" id="mdp" required class="managerWidth"/><br>
+                <input type="text" id="login" required class="managerWidth" pattern="\w{5,}"/><br>
+               <label for="mdp" class="formLabel">Mot de passe:</label>
+               <input type="password" id="mdp" required class="managerWidth" oninput="verificationMotDePasse();" /><br>
                
                <label for="cmdp" class="formLabel">Confirmation:</label>
-               <input type="password" id="cmdp" required class="managerWidth"/><br>
+               <input type="password" id="cmdp" required class="managerWidth" oninput="verificationMotDePasse();" /><br>
             </fieldset>
             
             <fieldset>
@@ -243,6 +278,7 @@
             <fieldset>
                 <legend>Enregistrement</legend>
                 <input type="submit" value="Valider" class="submit"/>
+                Traitement...  <progress id="pr" value=100  max=1000></progress> 
             </fieldset>
         </form>
     <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
