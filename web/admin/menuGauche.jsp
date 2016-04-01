@@ -34,8 +34,7 @@
                     <li><a href="${pageContext.servletContext.contextPath}/ControllerCentralCategorie?action=accueil"><i class="fa fa-table"></i> Cat&eacute;gorie</a></li>
                     <li><a href="${pageContext.servletContext.contextPath}/ControllerCentralTypeAnnonce?action=accueil"><i class="fa fa-table"></i> Type Annonce</a></li>
                     <li><a href="${pageContext.servletContext.contextPath}/ControllerCentralEcole?action=accueil"><i class="fa fa-edit"></i> Ecole</a></li>
-                    <li><a href="ServletUsers?action=creerUtilisateursDeTest"><i class="fa fa-font"></i> Créer 4 utilisateurs de test</a></li>
-                    <li><a href="ServletUsers?action=listerLesUtilisateurs&flatM=MU"><i class="fa fa-font"></i> Modifier un utilisateur</a></li>
+                    <li><a href="${pageContext.servletContext.contextPath}/ControllerUtilisateur?action=accueil"><i class="fa fa-users"></i> Utilisateur</a></li>
                     <li><a href="ServletUsers?action=listerLesUtilisateurs&flatM=SU"><i class="fa fa-times"></i> Supprimer un utilisateur</a></li>
                 </ul>
 

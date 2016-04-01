@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/src/java/lpae/servlet/mdle/annonce/ControllerCentralTypeAnnonce.java</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/web/admin/menuGauche.jsp</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/src/java/lpae/servlet/mdle/ecole/ControllerCentralEcole.java</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/web/resources/js/typeAnnonce.js</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/web/resources/js/ecole.js</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/web/admin/ecole/contenuEcole.jsp</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/src/java/lpae/ecole/gestionnaire/GreEcole.java</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/LPAE2/web/admin/annonce/contenuTypeAnnonce.jsp</file>
+            <file>file:/C:/Users/michel/git/projetweb/web/admin/compteUtilisateur/contenuUtilisateur.jsp</file>
+            <file>file:/C:/Users/michel/git/projetweb/web/admin/menuGauche.jsp</file>
         </group>
     </open-files>
 </project-private>
