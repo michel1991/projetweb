@@ -29,6 +29,14 @@ public class Ecole implements Serializable {
     private String nom;
     
     private String latitude;
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
     @ManyToOne
     private Departement departement;
 
@@ -117,13 +125,17 @@ public class Ecole implements Serializable {
         return adresse;
     }
 
+    public Ecole(String nom) {
+        this.nom = nom;
+    }
+
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
     @Override
     public String toString() {
-        return "lpae.entites.Ecole[ id=" + id + " ]";
+        return "lpae.entites.Ecole[ id=" + id + " nom " + nom+" ]";
     }
     
 }

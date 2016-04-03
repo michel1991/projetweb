@@ -35,6 +35,19 @@ public class GreEcole {
         return ec;
     }
     
+    public Ecole getEcoleById(int id)
+    {
+        Ecole ecole = null;
+      try{
+          ecole = em.find(Ecole.class,id);
+      }catch(IllegalArgumentException illegal)
+        {
+            ecole = null;
+            System.out.println("Obtenir Ecole par id IllegalException: Gestionnaire Ecole " + illegal.getMessage());
+        }
+      return ecole;
+    }
+    
     public Ecole miseAjourTypeCategorie(Ecole ec)
     {
          Ecole ecu = null;
@@ -69,16 +82,16 @@ public class GreEcole {
         }catch(IllegalArgumentException illegal)
         {
             resultat=1;
-            System.out.println("Suppression TypeAnnonce IllegalException: Gestionnaire Ecole " + illegal.getMessage());
+            System.out.println("Suppression Ecoles IllegalException: Gestionnaire Ecole " + illegal.getMessage());
         }catch(TransactionRequiredException transaction)
         {
             resultat=1;
-            System.out.println("Suppression TypeCategorie Transaction : Gestionnaire Ecole " + transaction.getMessage());
+            System.out.println("Suppression Ecoles Transaction : Gestionnaire Ecole " + transaction.getMessage());
         }catch(EntityNotFoundException except)
         {
             
             resultat=1;
-            System.out.println("Suppression TypeCategorie EntiteNotFound Gestionnaire Ecole : " + except.getMessage());
+            System.out.println("Suppression Ecoles EntiteNotFound Gestionnaire Ecole : " + except.getMessage());
         }
         return resultat;
     }

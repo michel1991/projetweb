@@ -8,6 +8,7 @@ package lpae.entites;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,8 +33,12 @@ public class Departement implements Serializable {
     
     @OneToMany(mappedBy = "departement")
     private Collection<Ville> villes = new ArrayList<>();
+
+    public Departement(String nom) {
+        this.nom = nom;
+    }
     
-    @OneToMany(mappedBy = "departement")
+    @OneToMany(mappedBy = "departement", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private Collection<Ecole> ecoles = new ArrayList<>();
 
     public Collection<Ecole> getEcoles() {
@@ -84,6 +89,24 @@ public class Departement implements Serializable {
     public int getId() {
         return id;
     }
+    
+    public void addEcole(Ecole ecole)
+    {
+        if(ecole!=null)
+        {
+            ecole.setDepartement(this);
+            this.ecoles.add(ecole);
+        }
+    }
+    
+    public void removeEcole(Ecole ecole)
+    {
+        if(ecole!=null)
+        {
+            this.ecoles.remove(ecole);
+        }
+        
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -111,7 +134,7 @@ public class Departement implements Serializable {
 
     @Override
     public String toString() {
-        return "lpae.entites.Departement[ id=" + id + " ]";
+        return "lpae.entites.Departement[ id=" + id + " nom " + this.nom +" ]";
     }
     
 }

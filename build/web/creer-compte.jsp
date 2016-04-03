@@ -29,152 +29,134 @@
         <!-- ///// CONTENT CREER COMPTE ///// -->
         <section class="content_wrapper">
             <div class="container">
-                <div class="row">  
+                <div class="row">
+                    
                     <div class="col-md-12 col-sm-12 col-xs-12">
 
                         <div class="divbAide">
                             <div class="center ctCAnnonce">
                                 <p><strong>Création de compte</strong><br/>
                             </div>
-                            <form class="form-horizontal center daN">
+                            <form class="form-horizontal center daN" onsubmit="return addCompteUtilisateurFrontEnd();">
                                 <!-- Les coordonnées -->
                                 <div class="bColoraN">
 
                                     <p class="btn88 btn-primary88 btn-lg88 gradient88">Vos coordonnées</p>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="buttondropdown">Civilité: </label>
+                                        <label class="col-md-4 control-label" for="civilite" required>Civilit&eacute;: </label>
                                         <div class="col-md-4">          
-                                            <select id="country" class="selectpicker">
-                                                <option value="0">&laquo; Choisissez la civilit&eacute; &raquo;</option>
-                                                <option value="1">Mr</option>
-                                                <option value="2">Mme</option>
-                                                <option value="3">Mlle</option>
+                                            <select id="civilite" class="selectpicker form-control">
+                                                <option value="defaut">&laquo; Choisissez la civilit&eacute; &raquo;</option>
+                                                <option value="Mr">Mr</option>
+                                                <option value="Mme">Mme</option>
+                                                <option value="Mlle">Mlle</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Nom*:</label>  
+                                        <label class="col-md-4 control-label" for="nom">Nom*:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="Nom" class="form-control input-md" type="text">  
+                                            <input id="nom" required name="nom" placeholder="Nom" class="form-control input-md" type="text">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Prénom*:</label>  
+                                        <label class="col-md-4 control-label" for="prenom">Prénom*:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="Prénom" class="form-control input-md" type="text">  
+                                            <input id="prenom" required name="prenom" placeholder="Prénom" class="form-control input-md" type="text">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Pseudonyme*:</label>  
+                                        <label class="col-md-4 control-label" for="login">Pseudonyme*:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="Votre pseudo" class="form-control input-md" type="text">  
+                                            <input id="login" required name="login" placeholder="Votre pseudo" class="form-control input-md" type="text">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="buttondropdown">Catégorie Socioprofessionnelle: </label>
+                                        <label class="col-md-4 control-label" for="prof">Catégorie Socio-professionnelle: </label>
                                         <div class="col-md-4">          
-                                            <select id="country" class="selectpicker">
-                                                <option value="0">&laquo; Choisissez la cat&eacute;gorie &raquo;</option>
-                                                <option value="1">Cadre / Dirigeant</option>
-                                                <option value="2">Profession lib&eacute;rale</option>
-                                                <option value="3">Ind&eacute;pendant</option>
-                                                <option value="4">Technicien/Agent de ma&icirc;trise</option>
-                                                <option value="5">Professeur/Enseignant</option>
-                                                <option value="6">Artisan</option>
-                                                <option value="7">Employ&eacute; de bureau ou administratif</option>
-                                                <option value="8">Service aux particuliers</option>
-                                                <option value="9">Commer&ccedil;ant</option>
-                                                <option value="10">Ouvrier</option>
-                                                <option value="11">Retrait&eacute;</option>
-                                                <option value="12">Etudiant</option>
-                                                <option value="13">Femme/Homme au foyer</option>
-                                                <option value="14">Militaire</option>
-                                                <option value="15">Sans emploi</option>
+                                            <select id="prof" class="selectpicker form-control" required onchange="choisirProfession();">
+                                                <option value="defaut">&laquo; Choisissez la cat&eacute;gorie &raquo;</option>
+                                                <option value="etu">
+                                                    &Eacutetudiant
+                                                </option>
+                                                <option value="en">
+                                                    Enseignant/Professeur
+                                                </option>
+
+                                                <option value="autre">
+                                                    Autre
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
+                                    
+                                    <div class="form-group hidden autreProfession">
+                                        <label class="col-md-4 control-label" for="descF">Pr&eacute;cision:</label>  
+                                        <div class="col-md-4">
+                                            <input id="preciP" name="preciP" placeholder="ex: Secretaire " class="form-control input-md" type="text">  
+                                        </div>
+                                    </div>
 
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="buttondropdown">Région*: </label>
+                                        <label class="col-md-4 control-label" for="region">Région: </label>
                                         <div class="col-md-4">          
-                                            <select id="country" class="selectpicker">
-                                                <option value="0">&laquo; Choisissez la r&eacute;gion &raquo;</option>
-                                                <option value="1">Alsace</option>
-                                                <option value="2">Aquitaine</option>
-                                                <option value="3">Auvergne</option>
-                                                <option value="4">Basse-Normandie</option>
-                                                <option value="5">Bourgogne</option>
-                                                <option value="6">Bretagne</option>
-                                                <option value="7">Centre</option>
-                                                <option value="8">Champagne-Ardenne</option>
-                                                <option value="9">Corse</option>
-                                                <option value="10">Franche-Comté</option>
-                                                <option value="11">Haute-Normandie</option>
-                                                <option value="12">Ile-de-France</option>
-                                                <option value="13">Languedoc-Roussillon</option>
-                                                <option value="14">Limousin</option>
-                                                <option value="15">Lorraine</option>
-                                                <option value="16">Midi-Pyrénées</option>
-                                                <option value="17">Nord-Pas-de-Calais</option>
-                                                <option value="18">Pays de la Loire</option>
-                                                <option value="19">Picardie</option>
-                                                <option value="20">Poitou-Charentes</option>
-                                                <option value="21">Provence-Alpes-Côte d'Azur</option>
-                                                <option value="22">Rhône-Alpes</option>
-                                                <option value="23">Guadeloupe</option>
-                                                <option value="24">Martinique</option>
-                                                <option value="25">Guyane</option>
-                                                <option value="26">Réunion</option>
+                                            <select id="region" class="selectpicker form-control">
+                                                <option value="defaut">&laquo; Choisissez la r&eacute;gion &raquo;</option>
+                                                <c:forEach var="region" items="${requestScope['regions']}">
+                                                    <option value="${region.id}">
+                                                        ${region.nomRe}
+                                                    </option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Adresse*:</label>  
+                                        <label class="col-md-4 control-label" for="adresse">Adresse*:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="text">  
+                                            <input id="adresse" name="adresse" required placeholder="" class="form-control input-md" type="text">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Code Postal*:</label>  
+                                        <label class="col-md-4 control-label" for="cp">Code Postal*:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="text">  
+                                            <input id="cp" name="cp" placeholder="" class="form-control input-md" type="text" required>  
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Ville*:</label>  
                                         <div class="col-md-4">
                                             <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="text">  
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Téléphone*:</label>  
+                                        <label class="col-md-4 control-label" for="myPhone">Téléphone*:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="text">  
+                                            <input id="myPhone" name="myPhone" pattern="([0-9]{2}){5}" placeholder="e.x. 0617588925" class="form-control input-md" type="text" required>  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="birthday" class="col-md-4 control-label">Birthday: </label>
+                                        <label for="dateN" class="col-md-4 control-label">Date de naissance: </label>
                                         <div class=" ">
                                             <div class=" ">
-                                                <div class="form-group col-sm-2">
-                                                    <input type="text" class="form-control" placeholder="Jour"/>
+                                                <div class="form-group col-sm-4"><!-- avant deux -->
+                                                    <input type="date" id="dateN" class="form-control" placeholder="" required/>
                                                 </div>
-                                                <div class="form-group col-sm-2">
+                                                <!--<div class="form-group col-sm-2">
                                                     <input type="text" class="form-control" placeholder="Mois"/>
                                                 </div>
                                                 <div class="form-group col-sm-2">
                                                     <input type="text" class="form-control" placeholder="Année"/>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                     </div>
@@ -188,9 +170,30 @@
                                     <p class="btn88 btn-primary88 btn-lg88 gradient88">Votre adresse e-mail</p>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">E-mail*:</label>  
+                                        <label class="col-md-4 control-label" for="email">E-mail*:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="mail" class="form-control input-md" type="text">  
+                                            <input id="email" name="email" placeholder="mail" class="form-control input-md" type="email" required>  
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bColoraN">
+                                    <p class="btn88 btn-primary88 btn-lg88 gradient88">Formation/<br/>Enseignement</p>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="ecole">Ecole*:</label>  
+                                        <div class="col-md-4">
+                                            <select id="ecole" class="selectpicker form-control" required>
+                                                <option value="defaut">&laquo; Choisissez une &eacute;cole</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group infosComplementaireEtu hidden">
+                                        <label class="col-md-4 control-label" for="descF">Information compl&eacute;mentaire:</label>  
+                                        <div class="col-md-4">
+                                            <input id="descF" name="descF" placeholder="" class="form-control input-md" type="text">  
                                         </div>
                                     </div>
                                 </div>
@@ -200,16 +203,16 @@
                                     <p class="btn88 btn-primary88 btn-lg88 gradient88">Votre mot de passe</p>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Mot de passe:</label>  
-                                        <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="text">  
+                                        <label class="col-md-4 control-label" for="mdp">Mot de passe:</label>  
+                                        <div class="col-md-4"><!-- afficher un message pour le minimum -->
+                                            <input id="mdp" name="mdp" placeholder="" class="form-control input-md" type="password" required maxlength="5">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Confirmez le mot de passe:</label>  
                                         <div class="col-md-4">
-                                            <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="text">  
+                                            <input id="cmdp" name="cmdp" placeholder="" class="form-control input-md" type="password" maxlength="5">  
                                         </div>
                                     </div>
                                 </div>
@@ -219,13 +222,13 @@
                                     <div class="col-md-4">
                                         <div class="checkbox">
                                             <label for="checkboxes-0">
-                                                <input name="checkboxes" id="checkboxes-0" value="1" type="checkbox">
+                                                <input name="checkboxes" id="checkboxes0" value="1" type="checkbox">
                                                 Je souhaite recevoir des offres des partenaires du site leboncoin.fr susceptibles de m'intéresser.
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                             <label for="checkboxes-1">
-                                                <input name="checkboxes" id="checkboxes-1" value="2" type="checkbox">
+                                                <input name="checkboxes" id="checkboxes1" value="2" type="checkbox">
                                                 « J'accepte les Conditions Générales de Vente ».
                                             </label>
                                         </div>
@@ -234,7 +237,8 @@
 
 
                                 <div class="form-group center">	
-                                    <button type="button" class="btn btn-warning"> VALIDER </button> 
+                                    <button type="submit" class="btn btn-warning" disabled id="validerF"> VALIDER </button> 
+                                    <button type="reset" class="btn btn-warning"> ANNULER </button> 
                                 </div>
                         </div>
                         </form>
@@ -249,7 +253,11 @@
     </footer>
 
     <jsp:include page="links-js.jsp"/> 
-
+    <script src="${pageContext.servletContext.contextPath}/resources/js/frontEndCompteUtilisateur.js" type="text/javascript"></script>
+    <script>
+    //var path = 'http://localhost:8080/LPAE';//context de l'application
+        var path = '${pageContext.servletContext.contextPath}';//context de l'application
+    </script>
 </body>
 
 </html>

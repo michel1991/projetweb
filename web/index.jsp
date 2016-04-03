@@ -23,9 +23,10 @@
         </footer>
 
         <jsp:include page="links-js.jsp"/> 
+        
 
     </body>
-
+    <script src="${pageContext.servletContext.contextPath}/resources/js/connectionUtilisateurFE.js" type="text/javascript"></script>
 </html>
 
 </html>

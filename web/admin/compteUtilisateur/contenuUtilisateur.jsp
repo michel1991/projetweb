@@ -20,7 +20,8 @@
             }
             
             
-            .submit {margin-left:450px;}
+            /*.submit {margin-left:450px;}*/
+            .action {margin-left:450px;}
             
             /* Button Style */
             input.submit {
@@ -63,6 +64,9 @@
 
             }
             
+            #resetForm{ /*enlever la couleur plus tard*/
+                
+            }
             .contact_form input:focus, .contact_form textarea:focus {
                 padding-right:70px;
             }
@@ -181,109 +185,176 @@
                 background-color: green; // #CC0000
                 border-radius: 3px;
             }
+            
+            .wrapper {
+                background: white;
+                padding: 1em;
+                width: 100%;
+                
+            }
+            h1 {
+              text-align: left;
+              /*margin-bottom: 50px;*/
+            }
+            ul.tabs {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+            }
+        ul.tabs li {
+          border: gray solid 1px;
+          border-bottom: none;
+          float: left;
+          margin: 0 .25em 0 0;
+          padding: .25em .5em;
+        }
+        ul.tabs li a {
+          color: gray;
+          font-weight: bold;
+          text-decoration: none;
+        }
+        ul.tabs li.active {
+          background: gray;
+        }
+        ul.tabs li.active a {
+          color: white;
+        }
+        .clr {
+          clear: both;
+        }
+        article {
+          border-top: gray solid 1px;
+          padding: 0 1em;
+        }
         </style>
+        <link href="${pageContext.servletContext.contextPath}/resources/css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
     </head>
+    
     <body>
+        <section class="wrapper">
+            <h1 class="hidden">Gestion des utilisateurs</h1>
+            <ul class="tabs">
+              <li><a href="#tab1">Utilisateurs</a></li>
+              <li><a href="#tab2">Cr&eacute;ation/Modification</a></li>
+            </ul>
+            <div class="clr"></div>
+            <section class="block">
+              <article id="tab1">
+
+              </article>
+              <article id="tab2">
+                  <form class="contact_form" onsubmit="return addCompteUtilisateur();" id="formCompteUtilisateur">
+                    <fieldset>
+                        <label for="idUserCompte" class="formLabel hidden">idUser:</label>
+                        <input type="hidden" id="idUserCompte" class="managerWidth hidden cleanData"/><br>
+                       
+                        <legend>Coordonn&eacute;es</legend>
+                        <label for="civilite" class="formLabel">Civilit&eacute;:</label>
+                        <select id="civilite" class="managerWidth cleanData" required >
+                            <option value="defaut">
+                                Choisir votre civilit&eacute;
+                            </option>
+                            <option value="Mlle">
+                                Mlle
+                            </option>
+                            <option value="Mr">
+                                Mr
+                            </option>
+                            <option value="Mme">
+                                Mme
+                            </option>  
+                        </select><br/>
+
+                        <label for="prof" class="formLabel" >Profession:</label>
+                        <select id="prof" required class="managerWidth cleanData" onchange="choisirProfession();">
+                            <option value="defaut">
+                                Choisir votre profession
+                            </option>
+                            <option value="etu">
+                                &Eacutetudiant
+                            </option>
+                            <option value="en">
+                                Enseignant/Professeur
+                            </option>
+
+                            <option value="autre">
+                                Autre
+                            </option>
+                        </select><br/>
+
+                        <label for="preciP" class="formLabel labelHideProf hidden">Pr&eacute;cision profesion:</label>
+                        <input type="text" id="preciP" class="managerWidth labelHideProf hidden cleanData"/><br>
+
+                       <label for="nom" class="formLabel">Nom:</label>
+                       <input type="text" id="nom" required class="managerWidth cleanData"/><br>
+
+                       <label for="prenom" class="formLabel">Pr&eacute;nom:</label>
+                       <input type="text" id="prenom" required class="managerWidth cleanData"/><br>
+
+                       <label for="adresse" class="formLabel">Adresse:</label>
+                       <input type="adresse" id="adresse" required class="managerWidth cleanData"/><br>
+
+                       <label for="cp" class="formLabel">Code postal:</label>
+                       <input type="cp" id="cp" required class="managerWidth cleanData" pattern="[0-9]{5}" /><br>
+
+                       <label for="myPhone" class="formLabel">Phone number:</label>
+                       <input type="tel" id="myPhone"
+                              pattern="([0-9]{2}-?){5}" placeholder="" required class="managerWidth cleanData"/>
+                       <span class="form_hint">Mod&egrave;le "e.g. 06-17-58-89-25-78"</span>
+                       <br>
+
+                       <label for="dateN" class="formLabel">Date de naissance:</label>
+                       <input type="date" id="dateN" required style="" class="managerWidth cleanData"/><br><!--width: 250px;-->
+                       
+                       <label for="email" class="formLabel">Email:</label>
+                       <input type="email" id="email" required class="managerWidth cleanData"/><br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Identifiant de connection</legend>
+                        <label for="login" class="formLabel">Login:</label>
+                        <input type="text" id="login" required class="managerWidth cleanData" pattern="\w{5,}"/><br>
+                       <label for="mdp" class="formLabel">Mot de passe:</label>
+                       <input oninput="verificationMotDePasse();" type="password" id="mdp" required class="managerWidth cleanData" oninput="verificationMotDePasse();" /><br>
+
+                       <label for="cmdp" class="formLabel">Confirmation:</label>
+                       <input type="password" oninput="verificationMotDePasse();" id="cmdp" required class="managerWidth cleanData" oninput="verificationMotDePasse();" /><br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Formation/Tutelle</legend>
+                        <label for="ecole" class="formLabel">&Eacute;cole/Universit&eacute;:</label>
+                        <select id="ecole" class="managerWidth cleanData"><!--managerWidth-->
+                            <option value="defaut">
+                                Ecole actuel
+                            </option> 
+                        </select><br/>
+                        <label for="niveau" class="formLabel labelHide hidden">Niveau:</label>
+                        <input type="text" id="niveau" class="managerWidth labelHide hidden cleanData" pattern="[1-9]"/><br>
+
+                        <label for="descF" class="formLabel labelHide hidden">Description:</label>
+                        <input type="text" id="descF" class="managerWidth labelHide hidden cleanData"/><br>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Enregistrement</legend>
+                        <section class="action">
+                              <input type="submit" value="Valider" class="submit"/>
+                              <input type="reset" value="Effacer" class="submit" id="resetForm"/>
+                                Traitement...  <progress id="pr" value=100  max=1000></progress> 
+                        </section>
+                        
+                    </fieldset>
+                </form>
+              </article>
+
+            </section>
+        </section>
         
-        <form class="contact_form">
-            <fieldset>
-                <legend>Vos Coordonn&eacute;es</legend>
-                <label for="civilite" class="formLabel">Civilit&eacute;:</label>
-                <select id="civilite" class="managerWidth" required>
-                    <option>
-                        Choisir votre civilit&eacute;
-                    </option>
-                    <option value="Mlle">
-                        Mlle
-                    </option>
-                    <option value="Mr">
-                        Mme
-                    </option>
-                    <option value="Mme">
-                        Mme
-                    </option>  
-                </select><br/>
-               
-                <label for="prof" class="formLabel" >Profession:</label>
-                <select id="prof" required class="managerWidth">
-                    <option>
-                        Choisir votre profession
-                    </option>
-                    <option value="etu">
-                        &Eacute;tudiant
-                    </option>
-                    <option value="en">
-                        Enseignant/Professeur
-                    </option>
-                    
-                    <option value="autre">
-                        Autre
-                    </option>
-                </select><br/>
-                
-                <label for="preciP" class="formLabel">Pr&eacute;cision profesion:</label>
-                <input type="text" id="preciP" class="managerWidth"/><br>
-                
-               <label for="nom" class="formLabel">Nom:</label>
-               <input type="text" id="nom" required class="managerWidth"/><br>
-               
-               <label for="prenom" class="formLabel">Pr&eacute;nom:</label>
-               <input type="text" id="prenom" required class="managerWidth"/><br>
-               
-               <label for="adresse" class="formLabel">Adresse:</label>
-               <input type="adresse" id="prenom" required class="managerWidth"/><br>
-               
-               <label for="cp" class="formLabel">Code postal:</label>
-               <input type="cp" id="prenom" required class="managerWidth"/><br>
-               
-               <label for="myPhone" class="formLabel">Phone number:</label>
-               <input type="tel" id="myPhone"
-                      pattern="([0-9]{2}-?){6}" placeholder="" required class="managerWidth"/>
-               <span class="form_hint">Mod&egrave;le "e.g. 06-17-58-89-25-78"</span>
-               <br>
-               
-               <label for="dateN" class="formLabel">Date de naissance:</label>
-               <input type="date" id="dateN" required style="" class="managerWidth"/><br><!--width: 250px;-->
-            </fieldset>
-            
-            <fieldset>
-                <legend>Identifiant de connection</legend>
-                <label for="login" class="formLabel">Login:</label>
-                <input type="text" id="login" required class="managerWidth" pattern="\w{5,}"/><br>
-               <label for="mdp" class="formLabel">Mot de passe:</label>
-               <input type="password" id="mdp" required class="managerWidth" oninput="verificationMotDePasse();" /><br>
-               
-               <label for="cmdp" class="formLabel">Confirmation:</label>
-               <input type="password" id="cmdp" required class="managerWidth" oninput="verificationMotDePasse();" /><br>
-            </fieldset>
-            
-            <fieldset>
-                <legend>Formation</legend>
-                <label for="ecole" class="formLabel">&Eacute;cole/Universit&eacute;:</label>
-                <select id="ecole" class="managerWidth">
-                    <option>
-                        Cursus actuel
-                    </option>
-                    <option value="skema">
-                        Skema
-                    </option>
-                </select><br/>
-                <label for="niveau" class="formLabel">Niveau:</label>
-                <input type="number" id="niveau" class="managerWidth"/><br>
-                
-                <label for="descF" class="formLabel">Description:</label>
-                <input type="text" id="descF" required class="managerWidth"/><br>
-            </fieldset>
-            
-            <fieldset>
-                <legend>Enregistrement</legend>
-                <input type="submit" value="Valider" class="submit"/>
-                Traitement...  <progress id="pr" value=100  max=1000></progress> 
-            </fieldset>
-        </form>
     <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="${pageContext.servletContext.contextPath}/resources/js/polyfiller.js" type="text/javascript"></script>
     <script src="${pageContext.servletContext.contextPath}/resources/js/compteUtilisateur.js" type="text/javascript"></script>
+    <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-ui.min.js" type="text/javascript"></script>
     <script>
         
     </script>

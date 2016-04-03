@@ -4,6 +4,7 @@
     Author     : mel
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -24,31 +25,76 @@
                     <ul>
                         </li>
                         <li>
-                        <li class="active"><a href="creer-compte.jsp">Créer un compte</a></li>
+                        <li class="active"><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Créer un compte</a></li><!--creer-compte.jsp-->
                         <li><a href="">|</a></li> 
                         <li class="dropdown">
-                            <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Se connecter <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- si l'utilisateur vient de creer son compte ou s'est connecter -->
+                                <c:choose>
+                                    <c:when test="${sessionScope.idUserFrontEnd!=null}">
+                                        <i class="fa fa-user"></i> Mon compte <b class="caret"></b>
+                                    </c:when>
+                                    <c:otherwise>
+                                        Se connecter <b class="caret"></b>
+                                    </c:otherwise>
+                                </c:choose>
+                            </a>
                             <ul class="dropdown-menu dropMn">
                                 <li>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputEmail2">Adresse mail</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Adresse mail" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputPassword2">Mot de passe</label>
-                                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Mot de passe" required>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">Se souvenir de moi
-                                                    </label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-success btn-block">Se connecter</button>
-                                                </div>
+                                            <form class="form" role="form" method="post" action="ServletConnectionFE" accept-charset="UTF-8" id="login-nav">
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.idUserFrontEnd==null}">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="emailConnection">Adresse mail</label><!--exampleInputEmail2-->
+                                                            <input type="email" value="${requestScope.emailEchecConnectionFE}" class="form-control" name="emailCFE" id="emailConnection" placeholder="Adresse mail" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="mdpConnection">Mot de passe</label><!--exampleInputPassword2-->
+                                                            <input type="password" name="mdpCFE" class="form-control" id="mdpConnection" placeholder="Mot de passe" required>
+                                                        </div>
+                                                        
+                                                        <div class="checkbox"><!--cookies se souvenir de moi-->
+                                                            <label>
+                                                                <input type="checkbox" id="rememberMe" value="0" name="rememberCFE">Se souvenir de moi
+                                                            </label>
+                                                        </div>
+                                                        
+                                                        <!-- pour savoir s'il veut se connecter utiliser dans les controles au niveau de la servlet -->
+                                                        <div class="form-group hidden">
+                                                            <label class="sr-only" for="">Indicatif</label><!--exampleInputPassword2-->
+                                                            <input type="hidden" class="form-control" name="indice" value="connect">
+                                                        </div>
+                                                        
+                                                        <c:if test="${requestScope.messageEchecConnection!=null}">
+                                                            <div class="form-group"><!-- message indicatif en cas de paramètre de connection incorrecte-->
+                                                                <div class="alert alert-danger" role="alert">
+                                                                    <a href="#" class="alert-link"> Param&egrave;tres incorrects</a>
+                                                                </div>
+                                                            </div>
+                                                        </c:if>
+                                                        
+                                                        
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-success btn-block">Se connecter</button>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <!-- pour savoir s'il veut se déconnecter utiliser dans les controles au niveau de la servlet -->
+                                                        <div class="form-group hidden">
+                                                            <label class="sr-only" for="">Indicatif</label><!--exampleInputPassword2-->
+                                                            <input type="hidden" class="form-control" name="indice" value="deconnect">
+                                                        </div>
+                                                        
+                                                        <div class="form-group ">
+                                                            <button type="submit" class="btn btn-success btn-block">Se D&eacute;connecter</button>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                
+                                                
+                                                
                                             </form>
                                         </div>
                                     </div>
@@ -77,7 +123,10 @@
                     <nav class="mainmenu">
                         <ul>
                             <li><a href="index.jsp">Accueil</a></li>
-                            <li><a href="deposer-annonce.jsp">Déposer une annonce</a></li>
+                                <c:if test="${sessionScope.idUserFrontEnd!=null}">
+                                    <li><a href="deposer-annonce.jsp">Déposer une annonce</a></li>
+                                </c:if>
+                            
                             <li><a href="offres.jsp">Offres</a></li>
                             <li><a href="demandes.jsp">Demandes</a></li>
                             <li><a href="mes-annonces.jsp">Mes annonces</a></li>
@@ -162,9 +211,13 @@
                                     <li class='has-sub'>
                                         <a href='index.html'><span>Accueil</span></a>
                                     </li>
-                                    <li>
-                                        <a href='#'><span>Déposer une annonce</span></a>
-                                    </li>
+                                    
+                                    <c:if test="${sessionScope.idUserFrontEnd!=null}">
+                                       <li>
+                                            <a href='#'><span>Déposer une annonce</span></a>
+                                        </li>
+                                    </c:if>
+                                    
                                     <li>
                                         <a href='#'><span>Offres</span></a>
                                     </li>

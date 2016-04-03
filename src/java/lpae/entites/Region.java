@@ -41,7 +41,7 @@ public class Region implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCreatRegion;
     
-    @OneToMany(mappedBy = "region", cascade = {CascadeType.REMOVE})
+    @OneToMany(mappedBy = "region", cascade = {CascadeType.REMOVE, CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<Departement> departements= new ArrayList<>();
     
     public int getId() {
@@ -65,6 +65,23 @@ public class Region implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public void addDepartement(Departement departement)
+    {
+        if(departement!=null)
+        {
+            departement.setRegion(this);
+            this.departements.add(departement);
+        }
+    }
+    
+    public void removeDepartement(Departement departement)
+    {
+        if(departement!=null)
+        {
+            this.departements.remove(departement);
+        }
     }
 
     @Override

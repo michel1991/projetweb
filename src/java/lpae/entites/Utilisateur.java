@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -63,10 +64,62 @@ public class Utilisateur implements Serializable {
     private String login;
     
     private String mdp;
+    
+    private String emailEncode;
+    
+      public String getEmailEncode() {
+        return emailEncode;
+    }
+
+    public void setEmailEncode(String emailEncode) {
+        this.emailEncode = emailEncode;
+    }
+
+  
+    public boolean isRecevoirOffre() {
+        return recevoirOffre;
+    }
+
+    public void setRecevoirOffre(boolean recevoirOffre) {
+        this.recevoirOffre = recevoirOffre;
+    }
+
+    public boolean isAcceptCondi() {
+        return acceptCondi;
+    }
+
+    public void setAcceptCondi(boolean acceptCondi) {
+        this.acceptCondi = acceptCondi;
+    }
+    
+    private boolean recevoirOffre;
+    
+    private boolean acceptCondi;
+
+    public String getDetailProf() {
+        return detailProf;
+    }
+
+    public void setDetailProf(String detailProf) {
+        this.detailProf = detailProf;
+    }
 
     private String shaV;
     
-    @OneToMany(mappedBy = "utilisateur")
+    private int niveau;
+    
+    private String detailProf;
+
+    public int getNiveau() {
+        return niveau;
+    }
+
+
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
+    }
+    
+    @OneToMany(mappedBy = "utilisateur", cascade ={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE} )
     private Collection<EcoleUtilisateur> ecoleUtilisateurs=new ArrayList<>();
 
     public Collection<EcoleUtilisateur> getEcoleUtilisateurs() {
@@ -90,6 +143,17 @@ public class Utilisateur implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCreation;
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateNaissance;
    
 
     public String getShaV() {
@@ -224,6 +288,24 @@ public class Utilisateur implements Serializable {
         int hash = 0;
         hash += (int) id;
         return hash;
+    }
+    
+    public void addEcoleUtilisateur(EcoleUtilisateur ecoleUser)
+    {
+        if(ecoleUser!=null)
+        {
+            ecoleUser.setUtilisateur(this);
+             this.ecoleUtilisateurs.add(ecoleUser);
+        }
+       
+    }
+    
+    public void removeEcoleUtilisateur(EcoleUtilisateur ecoleUser)
+    {
+        if(ecoleUser!=null)
+        {
+            this.ecoleUtilisateurs.remove(ecoleUser);
+        }
     }
 
     @Override

@@ -15,6 +15,7 @@
     <body>
        <c:import context="${pageContext.servletContext.contextPath}" url="/admin/index.jsp">
          <c:param name="url" value="admin/compteUtilisateur/contenuUtilisateur.jsp"/>
+         <c:param name="ecoles" value="${requestScope['ecolesM']}"/>
         </c:import>
     </body>
 </html>

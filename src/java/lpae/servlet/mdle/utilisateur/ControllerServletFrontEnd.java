@@ -20,14 +20,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lpae.ecole.gestionnaire.GreEcole;
-import lpae.entites.Categorie;
 import lpae.entites.Ecole;
 import lpae.entites.EcoleUtilisateur;
+import lpae.entites.Region;
 import lpae.entites.Utilisateur;
 import lpae.mdle.utilitaire.GestionnaireSecurite;
 import lpae.mdle.utilitaire.HelpClass;
-import lpae.servlet.mdle.annonce.ControllerCentralTypeAnnonce;
+import lpae.region.gestionnaire.GestRegion;
 import lpae.utilisateurs.gestionnaire.GreUtilisateur;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.json.simple.JSONArray;
@@ -39,19 +40,22 @@ import org.json.simple.parser.ParseException;
  *
  * @author michel
  */
-@WebServlet(name = "ControllerUtilisateur", urlPatterns = {"/ControllerUtilisateur"})
-public class ControllerUtilisateur extends HttpServlet {
-    @EJB
-    private GreUtilisateur greUtilisateur;
+@WebServlet(name = "ControllerServletFrontEnd", urlPatterns = {"/ControllerServletFrontEnd"})
+public class ControllerServletFrontEnd extends HttpServlet {
 
-    private final String PAGE_ACCUIEL_PRESENTATION="/admin/compteUtilisateur/accueilUtilisateur.jsp";
-    
     @EJB
     private GestionnaireSecurite gestionnaireSecurite;
     
      @EJB
     private GreEcole greEcole;
-    
+     
+     @EJB
+    private GreUtilisateur greUtilisateur;
+     
+     @EJB
+     private GestRegion greRegion;
+     
+    public static final String PAGE_ACCUIEL_PRESENTATION="creer-compte.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -66,38 +70,29 @@ public class ControllerUtilisateur extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            //System.out.println("utilisateur requete");
-            gestionnaireSecurite.verificationAccesUtilisateurAdmin("redirection", request, response);
-            try{
-                String action = request.getParameter("action");
+            
+            //gestionnaireSecurite.verificationAccesUtilisateurAdmin("redirection", request, response); // apres ce module je passe à la connection
+            
+            String action = request.getParameter("action");
                 //System.out.println("action voulu par l'utilisateur " + action);
                 ObjectMapper mapper = new ObjectMapper();
                 if(action!=null)
                 {
-                    request.setAttribute("informationSurAction", "Utilisateur");
                     switch (action)
                     {
                         case "accueil": {
-                            Collection<Ecole> ecoles = greEcole.obtenirToutesLesEcoles();
-                            //System.out.println("taille ecoles " + ecoles.size());
-                            /*for (Iterator<Ecole> iterator = ecoles.iterator(); iterator.hasNext();) {
-                                Ecole next = iterator.next();
-                                System.out.println("ecole " + next);
-                            }*/
-                            request.setAttribute("ecolesM", ecoles);
+                            Collection<Region> regions = greRegion.obtenirToutesLesRegions();
+                            request.setAttribute("regions", regions);
                             request.getRequestDispatcher(PAGE_ACCUIEL_PRESENTATION).forward(request, response);
                             break;
                             
                         }
                         default:
-                            request.getRequestDispatcher(ControllerCentralTypeAnnonce.PAGE_ACCUIEL_ADMIN).forward(request, response);
+                            request.getRequestDispatcher(HelpClass.PAGE_ACCUEIL_FRONT_END).forward(request, response);
 
                     }
                     
                 }
-            }catch(IllegalStateException illegal){
-                System.out.println("cannot forward " + illegal.getMessage());
-            }
         }
     }
 
@@ -127,7 +122,7 @@ public class ControllerUtilisateur extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
+         String action = request.getParameter("action");
             //System.out.println("action post " + action);
             JSONParser parser = new JSONParser();
             BufferedReader br=null;
@@ -143,10 +138,10 @@ public class ControllerUtilisateur extends HttpServlet {
             String login =null;
             String mdp = null;
             String ecole = null;
-            String niveau;
             String descF = null;
             String email = null;
-            String id = null;
+            String recevoirOffre = null;
+            String acceptationCondition = null;
             try
             {
                 if(action!=null)
@@ -178,66 +173,68 @@ public class ControllerUtilisateur extends HttpServlet {
                             mdp = (String) jsonUtilisateur.get("mdp");
                             
                             ecole= (String) jsonUtilisateur.get("ecole");
-                            niveau = (String) jsonUtilisateur.get("niveau");
                             descF = (String) jsonUtilisateur.get("descF");
-                            
                             email = (String) jsonUtilisateur.get("email");
                             StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-                            id=(String) jsonUtilisateur.get("id");
+                            recevoirOffre=(String) jsonUtilisateur.get("recevoirOffre");
+                            acceptationCondition=(String) jsonUtilisateur.get("acceptCondi");
                             
                             if(ecole!=null && ecole.length()>0)
                             {
                                 try{
                                       int idEcole = Integer.parseInt(ecole);
-                                      int idNiveau = 0;
-                                      try{
-                                          idNiveau = Integer.parseInt(niveau);
-                                          
-                                           Ecole ecoleEntity = greEcole.getEcoleById(idEcole);
-                                            if(ecoleEntity!=null)
-                                            {
-                                                Utilisateur utilisateur = new Utilisateur();
-                                                utilisateur.setSexe(civilte);
-                                                utilisateur.setProfession(profession);
-                                                utilisateur.setDetailProf(detailProf);
-                                                utilisateur.setNom(nom);
-                                                utilisateur.setPrenom(prenom);
-                                                utilisateur.setAdresse(adresse);
-                                                utilisateur.setCp(cp);
-                                                utilisateur.setTel(tel);
-                                                if(dateN!=null && dateN.length()>0)
-                                                {
-                                                    utilisateur.setDateNaissance(HelpClass.getDateByString(dateN));
-                                                }
-                                                
-                                                utilisateur.setLogin(login);
-                                                mdp = passwordEncryptor.encryptPassword(mdp);
-                                                utilisateur.setMdp(mdp);
-                                                EcoleUtilisateur ecoleUtilisateur = new EcoleUtilisateur();
-                                                ecoleUtilisateur.setUtilisateur(utilisateur);
-                                                ecoleUtilisateur.setEcole(ecoleEntity);
-                                                utilisateur.addEcoleUtilisateur(ecoleUtilisateur);
-                                                utilisateur.setNiveau(idNiveau);
-                                                utilisateur.setDetailCursus(descF);
-                                                utilisateur.setEmail(email);
-                                                
-                                                if(id!=null && id.length()==0)
-                                                {
-                                                    utilisateur.setDateCreation(HelpClass.getCurrentDate());
-                                                    utilisateur = greUtilisateur.persist(utilisateur);
-                                                    jsonUtilisateur.put("op", "add");
-                                                    
-                                                    jsonUtilisateur.put("id", utilisateur.getId());
-                                                }else{
-                                                    //il s'agit d'une mise à jour
-                                                    jsonUtilisateur.put("op", "upd");
-                                                }
-                                                out.println(jsonUtilisateur);
-                                            }
-                                      }catch(NumberFormatException numberFormatException)
+                                      Ecole ecoleEntity = greEcole.getEcoleById(idEcole);
+                                        if(ecoleEntity!=null)
                                         {
-                                          System.out.println("Erreur au niveau du casting du niveau controller Gestion Utilisateur: " + niveau+ " info "+ numberFormatException.getMessage());
+                                            Utilisateur utilisateur = new Utilisateur();
+                                            utilisateur.setSexe(civilte);
+                                            utilisateur.setProfession(profession);
+                                            utilisateur.setDetailProf(detailProf);
+                                            utilisateur.setNom(nom);
+                                            utilisateur.setPrenom(prenom);
+                                            utilisateur.setAdresse(adresse);
+                                            utilisateur.setCp(cp);
+                                            utilisateur.setTel(tel);
+                                            if(dateN!=null && dateN.length()>0)
+                                            {
+                                                utilisateur.setDateNaissance(HelpClass.getDateByString(dateN));
+                                            }
+
+                                            utilisateur.setLogin(login);
+                                            mdp = passwordEncryptor.encryptPassword(mdp);
+                                            utilisateur.setMdp(mdp);
+                                            EcoleUtilisateur ecoleUtilisateur = new EcoleUtilisateur();
+                                            ecoleUtilisateur.setUtilisateur(utilisateur);
+                                            ecoleUtilisateur.setEcole(ecoleEntity);
+                                            utilisateur.addEcoleUtilisateur(ecoleUtilisateur);
+                                            utilisateur.setDetailCursus(descF);
+                                            utilisateur.setEmail(email);
+                                            
+                                            if(recevoirOffre!=null && recevoirOffre.equals("1"))
+                                            {
+                                                 utilisateur.setRecevoirOffre(true);
+                                            }else{
+                                                utilisateur.setRecevoirOffre(false);
+                                            }
+                                            
+                                            if(acceptationCondition!=null && acceptationCondition.equals("1"))
+                                            {
+                                                 utilisateur.setAcceptCondi(true);
+                                            }else{
+                                                utilisateur.setAcceptCondi(false);
+                                            }
+
+                                            utilisateur.setDateCreation(HelpClass.getCurrentDate());
+                                            utilisateur = greUtilisateur.persist(utilisateur);
+                                            HttpSession session = request.getSession();
+                                            session.setAttribute("idUserFrontEnd", utilisateur.getId());
+                                            session.setAttribute("loginUserFrontEnd", utilisateur.getLogin());
+                                            
+                                            jsonUtilisateur.put("result", "success");
+                                            jsonUtilisateur.put("id", utilisateur.getId());
+                                            
                                         }
+                                        out.println(jsonUtilisateur);
                                       
                                       
                                 }catch(NumberFormatException numberFormatException)
@@ -272,7 +269,6 @@ public class ControllerUtilisateur extends HttpServlet {
             }catch(ParseException ex){
                 Logger.getLogger(ControllerUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
     }
 
     /**
