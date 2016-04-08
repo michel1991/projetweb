@@ -7,6 +7,7 @@ package lpae.servlet.mdle.annonce;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.ejb.EJB;
@@ -66,7 +67,8 @@ public class ControllerCentralDescriptionAn extends HttpServlet {
                         if (annonce == null) {
                             annonce = new Annonce();
                         } else {
-                            Collection<Annonce> annonceAEnvoyer = greAnnonce.obtenirTouteAnnoncePage(0, annonce.getTypeAnnonce(), false);
+                            Collection<Annonce> annonceAEnvoyer = new ArrayList<>();
+                            annonceAEnvoyer.add(annonce);
                             List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
                             Utilisateur utilisateur = annonce.getUtilisateur();
                             //request.setAttribute("annonces", annonceAEnvoyer);

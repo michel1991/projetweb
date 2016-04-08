@@ -38,15 +38,16 @@ function getDataCategories()
     xhr.onloadend = function () 
     {
         var datas =  JSON.parse(this.response);
-        //console.log("reponse " +JSON.stringify(datas));
+        console.log("reponse " +JSON.stringify(datas));
         if(typeof datas !='undefined')
         {
             for(var i =0; i<datas.length; i++)
             {
 
-                $('#categorieAnnonce').append($('<option>', {
-                        value:"",// datas[i].idTypeCat
-                        text: datas[i].nomTypeCat
+                $('#categorieAnnonce').append($('<optgroup>', {
+                        //value:"",// datas[i].idTypeCat
+                        label: datas[i].nomTypeCat,
+                        id:datas[i].idTypeCat
                 }));
                 
                 var dataCategories = datas[i].categories;
@@ -54,7 +55,7 @@ function getDataCategories()
                 {
                     for(var j =0; j<dataCategories.length; j++)
                     {
-                        $('#categorieAnnonce').append($('<option>', {
+                        $('#'+datas[i].idTypeCat).append($('<option>', {
                             value: dataCategories[j].idCat,
                             text: dataCategories[j].nomCat
                         }));

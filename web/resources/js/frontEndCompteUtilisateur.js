@@ -81,27 +81,7 @@ function addCompteUtilisateurFrontEnd()
     var profession = document.getElementById('prof');
     var ecole = document.getElementById('ecole');
 
-    if (civilite.value=="defaut") {
-     civilite.setCustomValidity('Choisir votre civilite');
-     return false;
-    } else {
-     civilite.setCustomValidity('');
-    }
-
-    if (profession.value=="defaut") {
-     profession.setCustomValidity('Choisir votre profession');
-     return false;
-    } else {
-     profession.setCustomValidity('');
-    }
-
-    if (ecole.value=="") {
-     ecole.setCustomValidity('Choisir une ecole');
-     return false;
-    } else {
-     ecole.setCustomValidity('');
-    }
-
+   
     utilisateur.civilite =$('#civilite').val();
     utilisateur.profession =$('#prof').val();
 

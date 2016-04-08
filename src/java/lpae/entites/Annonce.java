@@ -45,6 +45,17 @@ public class Annonce implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateFin;
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
 
     public boolean isEtat() {
         return etat;

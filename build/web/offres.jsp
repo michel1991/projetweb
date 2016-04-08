@@ -280,8 +280,9 @@
                                                             
                                                                 <c:if test="${requestScope['annonces']!=null && requestScope.pagination>0}">
                                                                <ul class="pagination">
-                                                                    <c:forEach var="compte"  begin="1" end="${requestScope.pagination}">
-                                                                        <li><a href="ControllerCentralAnnonce?action=take&key=${compte}">${compte}</a></li>
+                                                                    <c:forEach var="compte"  begin="0" end="${requestScope.pagination-1}">
+                                                                        <%--<li><a href="ControllerCentralAnnonce?action=take&key=${compte}&about=Offres">${compte+1}</a></li>--%>
+                                                                        <li><a href="ControllerCentralAnnonce?action=Offres&key=${compte}">${compte+1}</a></li>
                                                                     </c:forEach>
 
                                                                 </ul> 

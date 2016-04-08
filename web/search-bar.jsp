@@ -18,16 +18,16 @@
                 </div>
 
                 <div class="catEtButton">
-                    <select id="country" class="selectpicker">
-                        <option value="0">-- Toutes catégories --</option> 
-                        <option style="background-color:#dcdcc3;" value="0">-- EMPLOI --</option> 
+                    <select id="categorieAnnonce" class="selectpicker form-control"><!--id="country"-->
+                        <option value="">-- Toutes catégories --</option> 
+                        <!--<option style="background-color:#dcdcc3;" value="0">-- EMPLOI --</option> 
                         <option value="4">Offres d'emploi</option>
                         <option style="background-color:#dcdcc3;" value="0">-- VEHICULES --</option> 
                         <option value="1">Voitures</option>
                         <option value="2" >Motos</option>
                         <option value="3" >Caravaning</option>
                         <option value="3" >Equipement Auto</option>
-                        <option value="3" >Equipement Moto</option>
+                        <option value="3" >Equipement Moto</option>-->
                     </select>
                 </div>
                 <div class="catEtButtonR">

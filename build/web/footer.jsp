@@ -177,4 +177,5 @@
         </div>
     </div>
 </footer>
+<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-3.1.1.min.js" type="text/javascript"></script>
 <!--==| footer bottom End |==-->

@@ -40,5 +40,28 @@
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
     
     <!-- ///// CSS ZOOM SMOOTHPRODUCTS ///// -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/smoothproducts.css">   
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/smoothproducts.css">
+    <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
+    <%--<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-3.1.1.min.js" type="text/javascript"></script>--%>
   </head>
+  <body>
+      <script src="${pageContext.servletContext.contextPath}/resources/js/feutilitaire.js" type="text/javascript"></script>
+      <script>
+          // ne pas enlever ceci c'est pour utiliser bootstra js dans toutes les pages
+          // si on met le lien directement et ben le menu de connection ne s'affiche plus dans certaine page
+          var path = '${pageContext.servletContext.contextPath}';
+          $(function(){
+               $(document.body).append($('<script>', {
+                        src: 'resources/js/bootstrap-3.1.1.min.js'
+                        
+                }));
+                
+                /*$(document.body).append($('<script>', {
+                        src: 'resources/jquery-1.10.2.js'
+                        
+                }));*/
+               getDataCategories();
+          });
+     
+      </script>
+  </body>

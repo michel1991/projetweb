@@ -47,40 +47,95 @@ public class ControllerCentralAnnonces extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
             //System.out.println("action " + action);
+            
+             String page = request.getParameter("key");
+             int pageInt = 0;
+             boolean flatParsing = true;
+             if(page==null)
+             {
+                 page="0";
+             }
+             
+             try{
+                   pageInt = Integer.parseInt(page);
+             }catch(NumberFormatException formatException)
+             {
+                 flatParsing=false;
+                 System.out.println("Impossible de caster la page : controller central Annonce valeur page " + page);
+             }
             if((action!=null && action.equals("Offres")) || (action!=null && action.equals("Recherches")))
             {
-                TypeAnnonce typeAnnonce = greAnnonce.rechercheTypeAnnonceParLibelle(action);//"Offres"
-                if(typeAnnonce!=null)
+                if(flatParsing)
                 {
-                    Collection<Annonce> annonces= greAnnonce.obtenirToutesLesAnnonces(typeAnnonce, false);
-                    
-                    if(annonces!=null && annonces.size()>0)
+                    TypeAnnonce typeAnnonce = greAnnonce.rechercheTypeAnnonceParLibelle(action);//"Offres"
+                    if(typeAnnonce!=null)
                     {
-                        //int nombreDePage = (int) Math.ceil(annonces.size()/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
-                        int nombreDePage = HelpClass.calculPagination(annonces.size());
-                        //request.setAttribute("pagination", nombreDePage);
-                        request.setAttribute("pagination", nombreDePage);
-                        request.setAttribute("nbreAnnonce", annonces.size());
-                        System.out.println("nombre de page " + nombreDePage);
-                        
-                        
-                        Collection<Annonce> annonceAEnvoyer= greAnnonce.obtenirTouteAnnoncePage(0, typeAnnonce, false);
-                        List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
-                        request.setAttribute("annonces", annonceAEnvoyer);
-                        request.setAttribute("photos", photosAnnonces);
-                        request.setAttribute("action", action);
-                        
-                        System.out.println("nombre annonces " + annonceAEnvoyer.size() + " photos " +photosAnnonces.size());
+                        Collection<Annonce> annonces= greAnnonce.obtenirToutesLesAnnonces(typeAnnonce, false);
+
+                        if(annonces!=null && annonces.size()>0)
+                        {
+                            //int nombreDePage = (int) Math.ceil(annonces.size()/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+                            int nombreDePage = HelpClass.calculPagination(annonces.size());
+                            //request.setAttribute("pagination", nombreDePage);
+                            request.setAttribute("pagination", nombreDePage);
+                            request.setAttribute("nbreAnnonce", annonces.size());
+                            System.out.println("nombre de page " + nombreDePage);
+
+
+                            Collection<Annonce> annonceAEnvoyer= greAnnonce.obtenirTouteAnnoncePage(pageInt, typeAnnonce, false);
+                            List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
+                            request.setAttribute("annonces", annonceAEnvoyer);
+                            request.setAttribute("photos", photosAnnonces);
+                            request.setAttribute("action", action);
+
+                            System.out.println("nombre annonces " + annonceAEnvoyer.size() + " photos " +photosAnnonces.size());
+                        }else{
+                            request.setAttribute("nbreAnnonce", 0);
+                        }
+                        //request.getRequestDispatcher("offres.jsp").forward(request, response);
+
                     }else{
                         request.setAttribute("nbreAnnonce", 0);
                     }
-                    //request.getRequestDispatcher("offres.jsp").forward(request, response);
-                    
-                }else{
-                    request.setAttribute("nbreAnnonce", 0);
                 }
+                
                 request.getRequestDispatcher("offres.jsp").forward(request, response);
             }
+            /*else if((action!=null && action.equals("take")))
+            {
+                String page = request.getParameter("key");
+                String typeAnnonce = request.getParameter("about");
+                try{
+                    int pageInt = Integer.parseInt(page);
+                    
+                    if(typeAnnonce!=null)
+                    {
+                        TypeAnnonce typeAnnonceEntity = greAnnonce.rechercheTypeAnnonceParLibelle(typeAnnonce);
+                        Collection<Annonce> annonces= greAnnonce.obtenirToutesLesAnnonces(typeAnnonceEntity, false);
+                        
+                        if(annonces!=null && annonces.size()>0)
+                        {
+                            int nombreDePage = HelpClass.calculPagination(annonces.size());
+                            request.setAttribute("pagination", nombreDePage);
+                            request.setAttribute("nbreAnnonce", annonces.size());
+                            System.out.println("nombre de page " + nombreDePage);
+                            
+                            Collection<Annonce> annonceAEnvoyer= greAnnonce.obtenirTouteAnnoncePage(pageInt, typeAnnonceEntity, false);
+                            List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
+                            request.setAttribute("annonces", annonceAEnvoyer);
+                            request.setAttribute("photos", photosAnnonces);
+                            request.setAttribute("action", typeAnnonce);
+                            System.out.println("nombre annonces " + annonceAEnvoyer.size() + " photos " +photosAnnonces.size());
+                        }
+                    }
+                    
+                }catch(NumberFormatException formatException)
+                {
+                    
+                }
+                
+                request.getRequestDispatcher("offres.jsp").forward(request, response);
+            }*/
         }
     }
 

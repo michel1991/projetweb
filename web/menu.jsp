@@ -127,8 +127,10 @@
                                     <li><a href="ControllerCentralDepotAnnoceFE">Déposer une annonce</a></li>
                             </c:if>
                             <!--<li><a href="deposer-annonce.jsp">Déposer une annonce</a></li>-->
-                            <li><a href="ControllerCentralAnnonce?action=Offres">Offres</a></li><!--offres.jsp-->
-                            <li><a href="demandes.jsp">Demandes</a></li>
+                            <li><a href="ControllerCentralAnnonce?action=Offres">Offres</a></li><!--offres.jsp NB Laissr le lien ainsi utilisation Offres pour la requete-->
+                            <!--<li><a href="demandes.jsp">Demandes</a></li>-->
+                            
+                            <li><a href="ControllerCentralAnnonce?action=Recherches">Demandes</a></li><!-- NB:pareil que pour Offres -->
                             <li><a href="mes-annonces.jsp">Mes annonces</a></li>
                             <li><a href="contact.jsp">Contact</a></li>
                         </ul>

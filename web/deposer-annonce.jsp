@@ -76,13 +76,13 @@
                                     <label class="col-md-4 control-label" for="typeAnnonce">Type d'annonce:</label>
                                     <div class="col-md-4"> 
                                         <label class="radio-inline" for="radios-0">
-                                            <input name="radios" id="radios-0" value="Offres" checked="checked" type="radio">
-                                            Offres<!-- ne change pas le nom -->
+                                            <input name="radios" id="radios-0" value="Offres" checked="checked" type="radio"><!-- NB:ne change pas la valeur de l'attibut value -->
+                                            Offres
                                         </label> 
                                         <label class="radio-inline" for="radios-1">
                                             <input name="radios" id="radios-1" value="Recherches" type="radio">
                                             <!--Demandes-->
-                                            Recherches
+                                            Recherches<!-- NB:ne change pas la valeur de l'attibut value -->
                                         </label>
                                     </div>
                                 </div>
@@ -331,9 +331,10 @@
         </div>
     </div>--%>
     
-    <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
-    <script src="${pageContext.servletContext.contextPath}/resources/js/feutilitaire.js" type="text/javascript"></script>
+        <%--
+<script src="${pageContext.servletContext.contextPath}/resources/js/feutilitaire.js" type="text/javascript"></script>--%>
     <script src="${pageContext.servletContext.contextPath}/resources/js/deposerAnnoceTask.js" type="text/javascript"></script>
+    
     <script>
              var path = '${pageContext.servletContext.contextPath}';//context de l'application
     </script>

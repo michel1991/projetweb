@@ -45,8 +45,8 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="civilite" required>Civilit&eacute;: </label>
                                         <div class="col-md-4">          
-                                            <select id="civilite" class="selectpicker form-control">
-                                                <option value="defaut">&laquo; Choisissez la civilit&eacute; &raquo;</option>
+                                            <select id="civilite" class="selectpicker form-control" required>
+                                                <option value="">&laquo; Choisissez la civilit&eacute; &raquo;</option>
                                                 <option value="Mr">Mr</option>
                                                 <option value="Mme">Mme</option>
                                                 <option value="Mlle">Mlle</option>
@@ -78,8 +78,8 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="prof">Catégorie Socio-professionnelle: </label>
                                         <div class="col-md-4">          
-                                            <select id="prof" class="selectpicker form-control" required onchange="choisirProfession();">
-                                                <option value="defaut">&laquo; Choisissez la cat&eacute;gorie &raquo;</option>
+                                            <select id="prof" class="selectpicker form-control" required >
+                                                <option value="">&laquo; Choisissez la cat&eacute;gorie &raquo;</option>
                                                 <option value="etu">
                                                     &Eacutetudiant
                                                 </option>
