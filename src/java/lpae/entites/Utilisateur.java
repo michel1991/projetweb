@@ -67,6 +67,8 @@ public class Utilisateur implements Serializable {
     
     private String emailEncode;
     
+    
+    
       public String getEmailEncode() {
         return emailEncode;
     }

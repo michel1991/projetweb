@@ -32,6 +32,16 @@ public class PhotoAnnonce implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    private String nomPropre;
+
+    public String getNomPropre() {
+        return nomPropre;
+    }
+
+    public void setNomPropre(String nomPropre) {
+        this.nomPropre = nomPropre;
+    }
 
     public String getNomLocalisation() {
         return nomLocalisation;

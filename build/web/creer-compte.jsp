@@ -184,7 +184,7 @@
                                         <label class="col-md-4 control-label" for="ecole">Ecole*:</label>  
                                         <div class="col-md-4">
                                             <select id="ecole" class="selectpicker form-control" required>
-                                                <option value="defaut">&laquo; Choisissez une &eacute;cole</option>
+                                                <option value="">&laquo; Choisissez une &eacute;cole</option>
                                                 
                                             </select>
                                         </div>
@@ -205,14 +205,14 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="mdp">Mot de passe:</label>  
                                         <div class="col-md-4"><!-- afficher un message pour le minimum -->
-                                            <input id="mdp" name="mdp" placeholder="" class="form-control input-md" type="password" required maxlength="5">  
+                                            <input id="mdp" name="mdp" placeholder="" class="form-control input-md" type="password" required oninput="verificationMotDePasse();">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Confirmez le mot de passe:</label>  
                                         <div class="col-md-4">
-                                            <input id="cmdp" name="cmdp" placeholder="" class="form-control input-md" type="password" maxlength="5">  
+                                            <input id="cmdp" name="cmdp" placeholder="" class="form-control input-md" type="password" oninput="verificationMotDePasse();">  
                                         </div>
                                     </div>
                                 </div>

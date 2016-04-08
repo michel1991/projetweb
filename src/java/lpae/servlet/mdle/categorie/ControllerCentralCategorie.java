@@ -80,7 +80,7 @@ public class ControllerCentralCategorie extends HttpServlet {
                     }
                 }
             }catch(IllegalStateException illegal){
-                System.out.println("cannot forward " + illegal.getMessage());
+                System.out.println("cannot forward controller central categorie" + illegal.getMessage());
             }
             
             

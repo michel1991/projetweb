@@ -5,6 +5,10 @@
  */
 package lpae.mdle.utilitaire;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -61,10 +65,43 @@ public class GestionnaireSecuriteFE {
             {
                 Utilisateur utilisateur = greUtilisateur.rechercheUtilisateurPourCookie(emailEncrypted, mdpEncrypted);
                 HttpSession session = request.getSession();
-                session.setAttribute("idUserFrontEnd", utilisateur.getId());
-                session.setAttribute("loginUserFrontEnd", utilisateur.getLogin());
+                if(utilisateur!=null)
+                {
+                     session.setAttribute("idUserFrontEnd", utilisateur.getId());
+                    session.setAttribute("loginUserFrontEnd", utilisateur.getLogin());
+                }
+               
             }
          }
+    }
+    
+    /**
+     * 
+     * @param request
+     * @return id de l'utilisateur dans la session
+     */
+    public Object getIdUtilisateurSession(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idUserFrontEnd")!=null)
+        {
+            return  session.getAttribute("idUserFrontEnd");
+        }else{
+            return null;
+        }
+    }
+    
+    public void verificationAccesUtilisateurFE(String typeRequete, HttpServletRequest request, HttpServletResponse response) throws ServletException
+    {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idUser")==null )
+        {
+            try {
+                request.getRequestDispatcher(HelpClass.PAGE_ACCUEIL_FRONT_END).forward(request, response);
+            } catch (IOException ex) {
+                Logger.getLogger(GestionnaireSecuriteFE.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
 }

@@ -24,7 +24,7 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
  */
 @Stateless
 public class GreUtilisateur {
-    @PersistenceContext(unitName = "LPAE2PU")
+    @PersistenceContext//(unitName = "LPAE2PU")
     private EntityManager em;
 
     public Utilisateur persist(Utilisateur utilisateur) {
@@ -107,6 +107,11 @@ public class GreUtilisateur {
         return user;
     }
     
+    /**
+     * 
+     * @param idUtilisateur
+     * @return 
+     */
     public Utilisateur rechercherUtilisateurParId(int idUtilisateur)
     {
         Utilisateur user =null;

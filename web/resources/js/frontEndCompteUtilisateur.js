@@ -57,7 +57,7 @@ function getDataEcole()
     xhr.onloadend = function () 
     {
         var datas =  JSON.parse(this.response);
-        console.log("reponse " +JSON.stringify(datas));
+        //console.log("reponse " +JSON.stringify(datas));
         if(typeof datas !='undefined')
         {
             for(var i =0; i<datas.length; i++)
@@ -95,7 +95,7 @@ function addCompteUtilisateurFrontEnd()
      profession.setCustomValidity('');
     }
 
-    if (ecole.value=="defaut") {
+    if (ecole.value=="") {
      ecole.setCustomValidity('Choisir une ecole');
      return false;
     } else {

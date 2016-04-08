@@ -5,7 +5,7 @@
  */
 package lpae.mdle.utilitaire;
 
-import static lpae.entites.Utilisateur_.mdp;
+
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 /**

@@ -5,6 +5,7 @@
  */
 package lpae.categorie.gestionnaire;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,6 +15,7 @@ import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
 import lpae.entites.Categorie;
 import lpae.entites.TypeCategorie;
+import lpae.entites.Utilisateur;
 import lpae.mdle.utilitaire.HelpClass;
 
 /**
@@ -51,6 +53,43 @@ public class GreCategorie {
     {
         Query query =em.createQuery("SELECT tc FROM TypeCategorie tc ORDER BY tc.nomTyp");
         return query.getResultList();
+    }
+    /**
+     * 
+     * @param idTypeCategorie
+     * @return 
+     */
+    public TypeCategorie rechercherTypeCategorieParId(int idTypeCategorie)
+    {
+        TypeCategorie typeCat =null;
+        try{
+             typeCat = em.find(TypeCategorie.class, idTypeCategorie);
+             
+        }catch(IllegalArgumentException illegal)
+        {
+            typeCat = null;
+            System.out.println("illegal exception recherche typeCategorie par id : gestionnaire categorie " +illegal.getMessage());
+        }
+        return typeCat;
+    }
+    
+    /**
+     * 
+     * @param idTypeCategorie
+     */
+    public Collection<Categorie> obtenirToutesLesCategorieParIdTypeCategorie(int idTypeCategorie)
+    {
+        TypeCategorie typeCat = this.rechercherTypeCategorieParId(idTypeCategorie);
+        Collection<Categorie> listeCategories = new ArrayList<Categorie>();
+        if(typeCat!=null)
+        {
+            Query query =em.createQuery("SELECT c FROM Categorie c WHERE c.typeCategorie=:idTypeCategorie ORDER BY c.libelle");
+            query.setParameter("idTypeCategorie", typeCat);
+            listeCategories =query.getResultList();
+        }
+        
+        
+        return listeCategories;
     }
     
     /**
@@ -166,6 +205,25 @@ public class GreCategorie {
             System.out.println("Suppression Categorie EntiteNotFound Gestionnaire categorie: " + except.getMessage());
         }
         return resultat;
+    }
+    
+   /**
+    * 
+    * @param idCategorie
+    * @return 
+    */
+    public Categorie rechercherCategorieParId(int idCategorie)
+    {
+        Categorie cat =null;
+        try{
+             cat = em.find(Categorie.class, idCategorie);
+             
+        }catch(IllegalArgumentException illegal)
+        {
+            cat = null;
+            System.out.println("illegal exception recherche Categorie par id : gestionnaire categorie " +illegal.getMessage());
+        }
+        return cat;
     }
     
     

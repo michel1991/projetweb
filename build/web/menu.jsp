@@ -123,11 +123,11 @@
                     <nav class="mainmenu">
                         <ul>
                             <li><a href="index.jsp">Accueil</a></li>
-                                <c:if test="${sessionScope.idUserFrontEnd!=null}">
-                                    <li><a href="deposer-annonce.jsp">Déposer une annonce</a></li>
-                                </c:if>
-                            
-                            <li><a href="offres.jsp">Offres</a></li>
+                            <c:if test="${sessionScope.idUserFrontEnd!=null}">
+                                    <li><a href="ControllerCentralDepotAnnoceFE">Déposer une annonce</a></li>
+                            </c:if>
+                            <!--<li><a href="deposer-annonce.jsp">Déposer une annonce</a></li>-->
+                            <li><a href="ControllerCentralAnnonce?action=Offres">Offres</a></li><!--offres.jsp-->
                             <li><a href="demandes.jsp">Demandes</a></li>
                             <li><a href="mes-annonces.jsp">Mes annonces</a></li>
                             <li><a href="contact.jsp">Contact</a></li>

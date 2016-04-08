@@ -78,6 +78,24 @@ public class TypeCategorie implements Serializable {
         return hash;
     }
 
+    public void addCategorie(Categorie categorie)
+    {
+        if(categorie!=null)
+        {
+           categorie.setTypeCategorie(this);
+           this.categories.add(categorie);
+        }
+    }
+    
+    public void removeCategorie(Categorie categorie)
+    {
+        if(categorie!=null)
+        {
+           //categorie.setTypeCategorie(this);
+           this.categories.remove(categorie);
+        }
+    }
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -91,29 +109,7 @@ public class TypeCategorie implements Serializable {
         return true;
     }
 
-    /**
-     * Ajouter une categorie
-     * @param categorie 
-     */
-    public void addCategorie(Categorie categorie)
-    {
-        if(categorie!=null && !this.categories.contains(categorie))
-        {
-            this.categories.add(categorie);
-        }
-    }
     
-    /**
-     * supprimer une categorie
-     * @param categorie 
-     */
-    public void removeCategorie(Categorie categorie)
-    {
-        if(categorie!=null)
-        {
-            this.categories.remove(categorie);
-        }
-    }
     
     
     @Override

@@ -5,14 +5,21 @@
  */
 package lpae.annonce.gestionnaire;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
+import lpae.entites.Annonce;
+import lpae.entites.PhotoAnnonce;
 import lpae.entites.TypeAnnonce;
+import lpae.mdle.utilitaire.HelpClass;
 
 /**
  *
@@ -35,6 +42,17 @@ public class GreAnnonce {
         em.persist(ta);
         em.flush();
         return ta;
+    }
+    
+    /**
+     * 
+     * @param a
+     * @return 
+     */
+    public Annonce persist(Annonce annonce) {
+        em.persist(annonce);
+        em.flush();
+        return annonce;
     }
     
     public TypeAnnonce miseAjourTypeCategorie(TypeAnnonce ta)
@@ -69,4 +87,150 @@ public class GreAnnonce {
         }
         return resultat;
     }
+    
+    /**
+     * 
+     * @param libelle
+     * @return 
+     */
+    public TypeAnnonce rechercheTypeAnnonceParLibelle(String libelle)
+    {
+        Query query =em.createQuery("SELECT ta FROM TypeAnnonce ta WHERE ta.libelle=:libelle");
+        query.setParameter("libelle", libelle);
+        List<TypeAnnonce> typeAnnonces = query.getResultList();
+        if(typeAnnonces!=null && typeAnnonces.size()>0)
+        {
+            return typeAnnonces.get(0);
+        }else{
+            return null;
+        }
+    }
+    
+    /**
+     * obtenir toutes les annonces 
+     * @return 
+     */
+    public Collection<Annonce> obtenirToutesLesAnnonces(TypeAnnonce typeAnnonce, boolean etat) {
+        Query q = em.createQuery("select a from Annonce a WHERE a.typeAnnonce=:typeAnnonce AND a.etat=:etat ORDER BY a.dateCreation, a.titre");
+        //ORDER BY u.lastname ASC
+        q.setParameter("typeAnnonce", typeAnnonce);
+        q.setParameter("etat", etat);
+        
+        return q.getResultList();
+    }
+    
+    
+    
+    /**
+     * 
+     * @param start pointeur du curseur vers une page de début
+     * @return 
+     */
+    public  Collection<Annonce> obtenirTouteAnnoncePage(int start, TypeAnnonce typeAnnonce, boolean etat) 
+    {
+        Query q = em.createQuery("select a from Annonce a WHERE a.typeAnnonce=:typeAnnonce AND a.etat=:etat ORDER BY a.dateCreation, a.titre");//ORDER BY u.lastname ASC
+        q.setFirstResult(start*HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        q.setParameter("typeAnnonce", typeAnnonce);
+        q.setParameter("etat", etat);
+        q.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        return q.getResultList();
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public Collection<Annonce> obtenirToutesLesAnnoncesEtudiant(TypeAnnonce typeAnnonce, boolean etat) {
+        Query q = em.createQuery("select a from Annonce a JOIN a.utilisateur u WHERE a.typeAnnonce=:typeAnnonce AND a.etat=:etat ORDER BY a.dateCreation, a.titre");//ORDER BY u.lastname ASC
+        q.setParameter("typeAnnonce", typeAnnonce);
+        q.setParameter("etat", etat);
+        return q.getResultList();
+    }
+    
+    /**
+     * obtenir toutes les annonces etudiants par page
+     * @param startPage
+     * @return 
+     */
+    public Collection<Annonce> obtenirLesAnnoncesEtudiantParPage(int startPage, TypeAnnonce typeAnnonce, boolean etat)
+    {
+        Query q = em.createQuery("select a from Annonce a JOIN a.utilisateur u WHERE a.typeAnnonce=:typeAnnonce AND etat=:etat ORDER BY a.dateCreation, a.titre");
+        q.setFirstResult(startPage*HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+         q.setParameter("typeAnnonce", typeAnnonce);
+          q.setParameter("etat", etat);
+        q.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        return q.getResultList();
+    }
+    
+   
+   /**
+    * 
+    * @param annonceAEnvoyer annonces à passer à la servlet
+    * @return 
+    */ 
+    public List<PhotoAnnonce> obtenirTableauDeToutesLesPhotos(Collection<Annonce> annonceAEnvoyer)
+    {
+        List<PhotoAnnonce> listesAnnonces = new ArrayList<>();
+        //Map<String, PhotoAnnonce> maps = new HashMap<>();
+        
+        if(annonceAEnvoyer!=null)
+        {
+             for (Annonce annonce : annonceAEnvoyer) 
+            {
+                List<PhotoAnnonce> photos = this.getPhotoAnnonces(annonce.getId());
+                boolean trouve = false;
+                for (PhotoAnnonce photo : photos) {
+                    if(photo!=null && photo.getNomLocalisation()!=null)
+                    {
+                        listesAnnonces.add(photo);
+                        trouve=true;
+                        System.out.println("trouver " + photo.getNomLocalisation());
+                        break;
+                    }
+                }
+                if(trouve==false)
+                {
+                    PhotoAnnonce photo = new PhotoAnnonce();
+                    photo.setNomLocalisation("/images/test.jpg");
+                    listesAnnonces.add(photo);
+                }
+            }
+        }
+       
+        return listesAnnonces;
+        
+    }
+    
+    public List<PhotoAnnonce> getPhotoAnnonces(int idAnnonce)
+    {
+        List<PhotoAnnonce> photosAnnonce = new ArrayList<>();
+        Query query =em.createQuery("SELECT pa FROM PhotoAnnonce pa WHERE pa.annonce=:annonce");
+        Annonce annonce = this.rechercherAnnonceParId(idAnnonce);
+        if(annonce!=null)
+        {
+            query.setParameter("annonce", annonce);
+            photosAnnonce=query.getResultList();
+        }
+        return photosAnnonce;
+    }
+    
+    /**
+     * 
+     * @param idAnnonce
+     * @return 
+     */
+    public Annonce rechercherAnnonceParId(int idAnnonce)
+    {
+        Annonce annonce =null;
+        try{
+             annonce = em.find( Annonce.class, idAnnonce);
+        }catch(IllegalArgumentException illegal)
+        {
+            annonce = null;
+            System.out.println("illegal exception recherche Annonce par id : gestionnaire Annonce " +illegal.getMessage());
+        }
+        return annonce;
+    }
+    
+   
 }

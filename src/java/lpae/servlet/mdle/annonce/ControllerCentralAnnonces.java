@@ -3,29 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lpae.servlet.aiguilleur;
+package lpae.servlet.mdle.annonce;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lpae.mdle.utilitaire.GestionnaireSecuriteFE;
+import lpae.annonce.gestionnaire.GreAnnonce;
+import lpae.entites.Annonce;
+import lpae.entites.PhotoAnnonce;
+import lpae.entites.TypeAnnonce;
 import lpae.mdle.utilitaire.HelpClass;
 
 /**
  *
  * @author michel
  */
-@WebServlet(name = "ServletControllerIndex", urlPatterns = {"/ServletControllerIndex"})
-public class ServletControllerIndex extends HttpServlet {
+@WebServlet(name = "ControllerCentralAnnonce", urlPatterns = {"/ControllerCentralAnnonce"})
+public class ControllerCentralAnnonces extends HttpServlet {
 
-    @EJB
-    private GestionnaireSecuriteFE greSecuriteFrondEnd;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,48 +38,49 @@ public class ServletControllerIndex extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @EJB
+    private GreAnnonce greAnnonce;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-            // recherche des cookies
-            greSecuriteFrondEnd.verificationCookies(request, response);
-            /*String contextRealPath = getServletContext().getRealPath("/");
-            String locationFichier = contextRealPath + HelpClass.REPERTOIRE_PHOTOS_ANNONCE;
-            String remplace = "build"+File.separator;
-            System.out.println("remplace " +locationFichier.replace(remplace, ""));*/
-            
             String action = request.getParameter("action");
-            if(action!=null && action.equals("connectionSuccess"))
+            //System.out.println("action " + action);
+            if((action!=null && action.equals("Offres")) || (action!=null && action.equals("Recherches")))
             {
-                
-            }else if(action!=null && action.equals("connectionEchec"))
-            {
-                String email = request.getParameter("email");
-                if(email!=null)
+                TypeAnnonce typeAnnonce = greAnnonce.rechercheTypeAnnonceParLibelle(action);//"Offres"
+                if(typeAnnonce!=null)
                 {
-                    request.setAttribute("emailEchecConnectionFE", email);
+                    Collection<Annonce> annonces= greAnnonce.obtenirToutesLesAnnonces(typeAnnonce, false);
+                    
+                    if(annonces!=null && annonces.size()>0)
+                    {
+                        //int nombreDePage = (int) Math.ceil(annonces.size()/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+                        int nombreDePage = HelpClass.calculPagination(annonces.size());
+                        //request.setAttribute("pagination", nombreDePage);
+                        request.setAttribute("pagination", nombreDePage);
+                        request.setAttribute("nbreAnnonce", annonces.size());
+                        System.out.println("nombre de page " + nombreDePage);
+                        
+                        
+                        Collection<Annonce> annonceAEnvoyer= greAnnonce.obtenirTouteAnnoncePage(0, typeAnnonce, false);
+                        List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
+                        request.setAttribute("annonces", annonceAEnvoyer);
+                        request.setAttribute("photos", photosAnnonces);
+                        request.setAttribute("action", action);
+                        
+                        System.out.println("nombre annonces " + annonceAEnvoyer.size() + " photos " +photosAnnonces.size());
+                    }else{
+                        request.setAttribute("nbreAnnonce", 0);
+                    }
+                    //request.getRequestDispatcher("offres.jsp").forward(request, response);
+                    
+                }else{
+                    request.setAttribute("nbreAnnonce", 0);
                 }
-                request.setAttribute("messageEchecConnection", "Parametres incorrects"); // a changer
+                request.getRequestDispatcher("offres.jsp").forward(request, response);
             }
-            /**
-             * success de depot d'une annonce
-             */
-            else if(action!=null && action.equals(HelpClass.MESSAGE_SUCCES_DEPOT_ANNONCE_ACTION))
-            {
-                // faudrait rediriger l'utilisateur vers la page des annonces ou son compte pour voir ses annonces et pourquoi pas la même page
-                request.setAttribute(HelpClass.MESSAGE_RESULTAT_ACTION, HelpClass.MESSAGE_UTILISATEUR_SUCCES_DEPOT_ANNONCE);
-            }else if(action!=null && action.equals(HelpClass.MESSAGE_ECHEC_DEPOT_ANNONCE_ACTION))
-            {
-                request.setAttribute(HelpClass.MESSAGE_RESULTAT_ACTION, HelpClass.MESSAGE_UTILISATEUR_ECHEC_DEPOT_ANNONCE);
-            }
-            else{
-                //request.getRequestDispatcher(HelpClass.PAGE_ACCUEIL_FRONT_END).forward(request, response);
-            }
-            
-            request.getRequestDispatcher(HelpClass.PAGE_ACCUEIL_FRONT_END).forward(request, response);
         }
     }
 
@@ -118,5 +122,5 @@ public class ServletControllerIndex extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+   
 }

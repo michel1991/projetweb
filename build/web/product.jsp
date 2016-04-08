@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,10 +27,13 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="bredcumb">
                             <ul>
-                                <li><a href="index.jsp">Accueil</a> / </li>
+                                <!--<li><a href="index.jsp">Accueil</a> / </li>
                                 <li><a href="index.jsp">Alpes-Maritimes</a> / </li>
                                 <li><a href="index.jsp">Chaussures</a> / </li>
-                                <li class="active"><a href="index.jsp">Converses montantes (neuves)</a></li>
+                                <li class="active"><a href="index.jsp">Converses montantes (neuves)</a></li>-->
+                                <li><a href="#">${requestScope.annonce.typeAnnonce.libelle}</a> / </li>
+                                <li><a href="#">${requestScope.annonce.categorie.libelle}</a> / </li>
+                                <li><a href="#">${requestScope.annonce.titre}</a> / </li>
                             </ul>
                         </div>
                     </div>
@@ -53,39 +57,45 @@
                                     <div class="center margBtt05">
                                         <div class="page divPageproduct">
                                             <div class="sp-loading">
-                                                <img src="images/sp-loading.gif" alt=""> 
+                                                <!--<img src="images/sp-loading.gif" alt=""> -->
                                             </div>
                                             <div class="sp-wrap">
-                                                <a href="images/image-offre1.jpg"><img src="images/image-offre1.jpg" alt=""></a>
+                                                <!--<a href="images/image-offre1.jpg"><img src="images/image-offre1.jpg" alt=""></a>
                                                 <a href="images/image-offre2.jpg"><img src="images/image-offre2.jpg" alt=""></a>
-                                                <a href="images/image-offre3.jpg"><img src="images/image-offre3.jpg" alt=""></a> 
+                                                <a href="images/image-offre3.jpg"><img src="images/image-offre3.jpg" alt=""></a>--> 
+                                                
+                                                <c:forEach var="photo" items="${requestScope['photos']}"  varStatus="vs">
+                                                    <a href="resources/imagesAnnonces/${photo.nomLocalisation}"><img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt="" class="imgOffer"/></a>
+                                                </c:forEach>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- INFORMATIONS SUPP -->
                                     <div class="center margBtt05">
-                                        <div class="publPdct"><span>Publiée par <a href=""><i class="fa fa-user"></i>MelGD11</a></span></div>
+                                        <div class="publPdct"><span>Publiée par <a href=""><i class="fa fa-user"></i>
+                                                    ${requestScope.annonce.utilisateur.login}<!--MelGD11-->
+                                             </a></span></div>
 
                                         <div class="modal_icon divMdIcon">
                                             <span class="shareShop"><i class="fa fa-eur"></i> Prix</span>
                                         </div>
                                         <div class="modal_icon tabModalI">
-                                            <span class="shareShop"> 65 €</span>
+                                            <span class="shareShop"> ${requestScope.annonce.cout} €</span>
                                         </div><br/>		   
 
                                         <div class="modal_icon divMdIcon">
-                                            <span class="shareShop"><i class="fa fa-map-marker"></i> Ville</span>
+                                            <span class="shareShop"><i class="fa fa-map-marker"></i> &Eacute;cole</span><!--Ville-->
                                         </div>
                                         <div class="modal_icon tabModalI">
-                                            <span class="shareShop">Cagnes-sur-Mer 06800</span>
+                                            <span class="shareShop">${requestScope.ecole.nom}</span><!--Cagnes-sur-Mer 06800-->
                                         </div><br/>
 
                                         <div class="modal_icon divMdIcon">
                                             <span class="shareShop"><i class="fa fa-info-circle"></i> Publication</span>
                                         </div>
                                         <div class="modal_icon tabModalI">
-                                            <span class="shareShop">Mise en ligne le 22 mars à 20:05</span>
+                                            <span class="shareShop">Mise en ligne le <fmt:formatDate value="${annonce.dateCreation}" pattern="dd/MM/yyyy à HH:mm:ss"/></span>
                                         </div><br/>
                                     </div>
 
@@ -94,19 +104,24 @@
 
                                 <div class="col-md-6 col-sm-6 col-xs-12 inlineBk">
                                     <div class="nod_text">
-                                        <h1><a href="">Converses montantes (neuves)</a></h1>
-                                        <span>65 €</span>
-                                        <p>bonjour, je vends mes CONVERSES "Chuck Taylor all star Canvas", motif imprimé drapeau des USA, taille 44, elles sont neuves donc en parfait état et 100% authentique puisse que je les ai acheté chez converse.com. Vente car probleme de taille. Elles sont à venir chercher ou envoi par la poste (frais de port à rajouter). PRIX 65 euros, PS: les converses vous seront remise avec sa boite original.</p>	
-                                        <p>bonjour, je vends mes CONVERSES "Chuck Taylor all star Canvas", motif imprimé drapeau des USA, taille 44, elles sont neuves donc en parfait état et 100% authentique puisse que je les ai acheté chez converse.com. Vente car probleme de taille. Elles sont à venir chercher ou envoi par la poste (frais de port à rajouter). PRIX 65 euros, PS: les converses vous seront remise avec sa boite original.</p>	
+                                        <h1><a href="">${requestScope.annonce.titre}</a></h1><!--Converses montantes (neuves)-->
+                                        <span>${requestScope.annonce.cout} €</span>
+                                        <p>
+                                            ${requestScope.annonce.description}
+                                        </p>	
+                                        <!--<p>bonjour, je vends mes CONVERSES "Chuck Taylor all star Canvas", motif imprimé drapeau des USA, taille 44, elles sont neuves donc en parfait état et 100% authentique puisse que je les ai acheté chez converse.com. Vente car probleme de taille. Elles sont à venir chercher ou envoi par la poste (frais de port à rajouter). PRIX 65 euros, PS: les converses vous seront remise avec sa boite original.</p>-->	
 
                                         <div class="center margBtt05">
+                                            <c:if test="${annonce.marquerPhoneAnnce==true}">
+                                                 <div class="divaddCartsl inlineBk">
+                                                    <a href="#" class="bgdCBlues addCartsl"><i class="fa fa-phone"></i> Voir le numéro</a>
+                                                    <input type="hidden" value="${annonce.id}"/>
+                                                </div>
+                                            </c:if>
+                                           
 
                                             <div class="divaddCartsl inlineBk">
-                                                <a href="" class="bgdCBlues addCartsl"><i class="fa fa-phone"></i> Voir le numéro</a>
-                                            </div>
-
-                                            <div class="divaddCartsl inlineBk">
-                                                <a href="" class="bgdCGrays addCartsl"><i class="fa fa-envelope-o"></i> Envoyer un mail</a>
+                                                <a href="" class="bgdCGrays addCartsl"><i class="fa fa-envelope-o"></i>${annonce.marquerPhoneAnnce} Envoyer un mail </a>
                                             </div>
                                         </div>
 

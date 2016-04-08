@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -66,7 +67,7 @@
                                                     <p><a href="product-left-sidebar.html" class="ColorBlues">Restez connecté sur TrocStudents.com</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
-                                                    <a href="product.html">Voir ici</a>
+                                                    <a href="product.jsp">Voir ici</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +106,7 @@
                                                     <p><a href="product-left-sidebar.html" class="ColorBlues">Sauvegarde tes annonces favorites.</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
-                                                    <a href="product.html">Voir ici</a>
+                                                    <a href="product.jsp">Voir ici</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,7 +213,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="common_heading">
-                                        <h2>Annonces</h2>
+                                        <h2>Annonces:${requestScope.action}</h2>
                                     </div>
                                     <div class="row">
                                         <div class="featered_products">
@@ -221,11 +222,11 @@
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs"   role="tablist">
 
-                                                    <li role="presentation" class="active"><a href="#homeft" role="tab" data-toggle="tab">TOUTES (1 471)</a></li>
+                                                    <li role="presentation" class="active"><a href="#homeft" role="tab" data-toggle="tab">TOUTES (${requestScope.nbreAnnonce})</a></li>
 
-                                                    <li role="presentation"><a href="#profileft" role="tab" data-toggle="tab">Etudiants (568)</a></li>
+                                                    <!--<li role="presentation"><a href="#profileft" role="tab" data-toggle="tab">Etudiants (568)</a></li>
 
-                                                    <li role="presentation"><a href="#messagesft" role="tab" data-toggle="tab">Profesionnels (327)</a></li>
+                                                    <li role="presentation"><a href="#messagesft" role="tab" data-toggle="tab">Profesionnels (327)</a></li>-->
 
                                                 </ul>
 
@@ -233,79 +234,64 @@
                                                 <div class="tab-content">
 
                                                     <div role="tabpanel" class="tab-pane active" id="homeft">
-
+                                                        <c:set var="photosTab" value="${requestScope['photos']}" scope="page"/>
                                                         <div id=" " class="cc_one1">
+                                                            <c:forEach var="annonce" items="${requestScope['annonces']}"  varStatus="vs">
+                                                                <div class="weekly_featured888"><!-- debut d'une ligne-->
+                                                                    <div class="single_weekly_featured">
+                                                                        <div class="row">
 
-                                                            <div class="weekly_featured888">
-                                                                <div class="single_weekly_featured">
-                                                                    <div class="row">
-                                                                        <div class="col-md-5 col-sm-5 col-xs-5">
-                                                                            <div class="weekly_hover">
-                                                                                <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal09"></a>
-                                                                            </div>
-                                                                            <div class="image_weekly_change">
-                                                                                <div class="single_weekly_img">
-                                                                                    <div class="weekly_overlay"></div>
-                                                                                    <img src="images/feature4.jpg" alt="" class="imgOffer"/>
+                                                                            <div class="col-md-5 col-sm-5 col-xs-5"><!-- pour l'image-->
+                                                                                <div class="weekly_hover">
+                                                                                    <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal09"></a>
                                                                                 </div>
-                                                                                <div class="single_weekly_img_hover">
-                                                                                    <div class="weekly_overlay"></div>
-                                                                                    <img src="images/feature4.jpg" alt="" class="imgOffer"/>
+                                                                                <div class="image_weekly_change">
+                                                                                    <div class="single_weekly_img">
+                                                                                        <div class="weekly_overlay"></div>
+                                                                                        <c:set var="photo" value="${photosTab[vs.index]}" />
+                                                                                        <img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt="" class="imgOffer"/><!--images/feature4.jpg-->
+                                                                                        <%--<c:forEach var="photo" items="${requestScope['photos']}"  varStatus="vs">
+                                                                                            <img src="${photo.nomLocalisation}" alt="" class="imgOffer"/>
+                                                                                          
+                                                                                        </c:forEach>--%>
+                                                                                    </div>
+                                                                                    <div class="single_weekly_img_hover">
+                                                                                        <div class="weekly_overlay"></div>
+                                                                                        <!--<img src="images/feature4.jpg" alt="" class="imgOffer"/>-->
+                                                                                        <img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt="" class="imgOffer"/>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
-                                                                            <div class="featured_info">
-                                                                                <a href="product-left-sidebar.html">Mercedes e 220 diesel bon etat </a>
-                                                                                <p>Orange / Vaucluse</p>
-                                                                                <span class="amount">204 €</span>
-                                                                            </div>
-                                                                            <div class="sidebar_cart">
-                                                                                <a href="product.html">Voir ici</a>
+
+                                                                            <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
+                                                                                <div class="featured_info">
+                                                                                    <a href="#">${annonce.titre} </a>
+                                                                                    <p>Publier le <fmt:formatDate value="${annonce.dateCreation}" pattern="dd/MM/yyyy HH:mm:ss"/></p>
+                                                                                        <span class="amount">${annonce.cout}&euro;</span><!-- €-->
+                                                                                </div>
+                                                                                <div class="sidebar_cart">
+                                                                                    <a href="ControllerCentralDescriptionAn?action=desc&flatI=${annonce.id}">Voir ici</a>  <!--product.jsp-->
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
+                                                                </div><!-- fin d'une ligne -->
+                                                            </c:forEach>
+                                                            
+                                                                <c:if test="${requestScope['annonces']!=null && requestScope.pagination>0}">
+                                                               <ul class="pagination">
+                                                                    <c:forEach var="compte"  begin="1" end="${requestScope.pagination}">
+                                                                        <li><a href="ControllerCentralAnnonce?action=take&key=${compte}">${compte}</a></li>
+                                                                    </c:forEach>
 
-                                                            <div class="weekly_featured888">
-                                                                <div class="single_weekly_featured">
-                                                                    <div class="row">
-                                                                        <div class="col-md-5 col-sm-5 col-xs-5">
-                                                                            <div class="weekly_hover">
-                                                                                <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal10"></a>
-                                                                            </div>
-                                                                            <div class="image_weekly_change">
-                                                                                <div class="single_weekly_img">
-                                                                                    <div class="weekly_overlay"></div>
-                                                                                    <img src="images/feature2.jpg" alt="" class="imgOffer"/>
-                                                                                </div>
-                                                                                <div class="single_weekly_img_hover">
-                                                                                    <div class="weekly_overlay"></div>
-                                                                                    <img src="images/feature2.jpg" alt="" class="imgOffer"/>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
-                                                                            <div class="featured_info">
-                                                                                <a href="product-left-sidebar.html">Appareil photo argentique Ricoh XR7</a>
-                                                                                <p>Orange / Vaucluse</p>
-                                                                                <span class="amount">278 €</span>
-                                                                            </div>
-                                                                            <div class="sidebar_cart">
-                                                                                <a href="product.html">Voir ici</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
+                                                                </ul> 
+                                                            </c:if>
                                                         </div>
 
                                                     </div>
 
 
-                                                    <div role="tabpanel" class="tab-pane" id="profileft">
+                                                    <!--<div role="tabpanel" class="tab-pane" id="profileft">
 
                                                         <div id="" class="cc_one1">
 
@@ -375,11 +361,11 @@
 
                                                         </div>
 
-                                                    </div>
+                                                    </div> END-->
 
 
 
-                                                    <div role="tabpanel" class="tab-pane" id="messagesft">
+                                                    <!--<div role="tabpanel" class="tab-pane" id="messagesft">
 
                                                         <div id="" class="cc_one1">
 
@@ -449,7 +435,7 @@
 
                                                         </div>
 
-                                                    </div>
+                                                    </div>END -->
 
 
 

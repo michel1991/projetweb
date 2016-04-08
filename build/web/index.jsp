@@ -24,9 +24,17 @@
 
         <jsp:include page="links-js.jsp"/> 
         
-
+        <!-- a styler -->
+        <c:if test="${requestScope.messageResultatAction!=null}">
+                                    
+        </c:if>
+          
+        <!-- /.modal -->
+        <%--<script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
+        <script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap3.js"></script>--%>
+        <script src="${pageContext.servletContext.contextPath}/resources/js/connectionUtilisateurFE.js" type="text/javascript"></script>
+        <script src="${pageContext.servletContext.contextPath}/resources/js/pourLaPageIndex.js" type="text/javascript"></script>
     </body>
-    <script src="${pageContext.servletContext.contextPath}/resources/js/connectionUtilisateurFE.js" type="text/javascript"></script>
+    
 </html>
 
-</html>

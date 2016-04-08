@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mel/Desktop/projets/wbPjt/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/mel/Desktop/projets/wbPjt/setup/glassfish-resources.xml</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/web/offres.jsp</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/servlet/mdle/annonce/ControllerCentralAnnonces.java</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/servlet/mdle/annonce/ControllerCentralDescriptionAn.java</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/entites/Utilisateur.java</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/entites/Annonce.java</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/servlet/mdle/annonce/ControllerCentralDepotAnnoceFE.java</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/annonce/gestionnaire/GreAnnonce.java</file>
+            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/web/product.jsp</file>
         </group>
     </open-files>
 </project-private>

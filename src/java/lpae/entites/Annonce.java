@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
@@ -45,6 +46,36 @@ public class Annonce implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
+    }
+    
+    private boolean etat ;
+    
+    private boolean marquerPhoneAnnce;
+
+    public boolean isMarquerPhoneAnnce() {
+        return marquerPhoneAnnce;
+    }
+
+    public void setMarquerPhoneAnnce(boolean marquerPhoneAnnce) {
+        this.marquerPhoneAnnce = marquerPhoneAnnce;
+    }
+
+    public boolean isAnncePart() {
+        return anncePart;
+    }
+
+    public void setAnncePart(boolean anncePart) {
+        this.anncePart = anncePart;
+    }
+    
+    private boolean anncePart;
+
     public Categorie getCategorie() {
         return categorie;
     }
@@ -77,7 +108,7 @@ public class Annonce implements Serializable {
         this.photos = photos;
     }
     
-    @OneToMany(mappedBy = "annonce")
+    @OneToMany(mappedBy = "annonce", cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<PhotoAnnonce> photos = new ArrayList<>();
 
     public TypeAnnonce getTypeAnnonce() {
@@ -131,6 +162,21 @@ public class Annonce implements Serializable {
         this.id = id;
     }
 
+    public void addPhoto(PhotoAnnonce photo)
+    {
+        if(photo!=null){
+            photo.setAnnonce(this);
+            this.photos.add(photo);
+        }
+    }
+    
+     public void removePhoto(PhotoAnnonce photo)
+    {
+        if(photo!=null){
+            this.photos.remove(photo);
+        }
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -153,7 +199,11 @@ public class Annonce implements Serializable {
 
     @Override
     public String toString() {
-        return "lpae.entites.Annonce[ id=" + id + " ]";
+        return "lpae.entites.Annonce[ id=" + id 
+                + " titre " + this.titre+ ""
+                + " description "+this.description+ " "+
+                "]";
     }
+    
     
 }
