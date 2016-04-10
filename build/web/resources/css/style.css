@@ -6,6 +6,9 @@
 html {
     min-width: 300px;
 }
+
+
+
 /* ///////////////////////////////// CSS PAGE OFFRES ///////////////////////////////// */
 
 .classWhite {height:30px;background-color:#fff; }
@@ -75,6 +78,15 @@ html {
 
 .bColoraN { background-color:#eeeeee;margin:0.5em;padding:1em; }
 
+input.managerWidth:focus:required:invalid { 
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535;
+}
+input.managerWidth:required:valid { 
+    background: #fff url(../../images/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}
 /* ///////////////////////////////// CSS PAGE INFOS LEGALES ///////////////////////////////// */
 
 .ulcIL { width:85%;padding-top:1em;padding-bottom:1em; }

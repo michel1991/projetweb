@@ -37,7 +37,7 @@
                             <div class="center ctCAnnonce">
                                 <p><strong>Création de compte</strong><br/>
                             </div>
-                            <form class="form-horizontal center daN" onsubmit="return addCompteUtilisateurFrontEnd();">
+                            <form class="form-horizontal center daN" id="loginForm" onsubmit="return addCompteUtilisateurFrontEnd();">
                                 <!-- Les coordonnées -->
                                 <div class="bColoraN">
 
@@ -57,21 +57,21 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="nom">Nom*:</label>  
                                         <div class="col-md-4">
-                                            <input id="nom" required name="nom" placeholder="Nom" class="form-control input-md" type="text">  
+                                            <input id="nom" required name="nom" placeholder="Nom" class="managerWidth form-control input-md" type="text">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="prenom">Prénom*:</label>  
                                         <div class="col-md-4">
-                                            <input id="prenom" required name="prenom" placeholder="Prénom" class="form-control input-md" type="text">  
+                                            <input id="prenom" required name="prenom" placeholder="Prénom" class="managerWidth form-control input-md" type="text">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="login">Pseudonyme*:</label>  
                                         <div class="col-md-4">
-                                            <input id="login" required name="login" placeholder="Votre pseudo" class="form-control input-md" type="text">  
+                                            <input id="login" required name="login" placeholder="Votre pseudo" class="managerWidth form-control input-md" type="text">  
                                         </div>
                                     </div>
 
@@ -97,7 +97,7 @@
                                     <div class="form-group hidden autreProfession">
                                         <label class="col-md-4 control-label" for="descF">Pr&eacute;cision:</label>  
                                         <div class="col-md-4">
-                                            <input id="preciP" name="preciP" placeholder="ex: Secretaire " class="form-control input-md" type="text">  
+                                            <input id="preciP" name="preciP" placeholder="ex: Secretaire " class="managerWidth form-control input-md" type="text">  
                                         </div>
                                     </div>
 
@@ -119,14 +119,14 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="adresse">Adresse*:</label>  
                                         <div class="col-md-4">
-                                            <input id="adresse" name="adresse" required placeholder="" class="form-control input-md" type="text">  
+                                            <input id="adresse" name="adresse" required placeholder="" class="managerWidth form-control input-md" type="text">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="cp">Code Postal*:</label>  
                                         <div class="col-md-4">
-                                            <input id="cp" name="cp" placeholder="" class="form-control input-md" type="text" required>  
+                                            <input id="cp" name="cp" placeholder="" class="managerWidth form-control input-md" type="text" required>  
                                         </div>
                                     </div>
 
@@ -140,7 +140,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="myPhone">Téléphone*:</label>  
                                         <div class="col-md-4">
-                                            <input id="myPhone" name="myPhone" pattern="([0-9]{2}){5}" placeholder="e.x. 0617588925" class="form-control input-md" type="text" required>  
+                                            <input id="myPhone" name="myPhone" pattern="([0-9]{2}){5}" placeholder="e.x. 0617588925" class="managerWidth form-control input-md" type="text" required>  
                                         </div>
                                     </div>
 
@@ -149,7 +149,7 @@
                                         <div class=" ">
                                             <div class=" ">
                                                 <div class="form-group col-sm-4"><!-- avant deux -->
-                                                    <input type="date" id="dateN" class="form-control" placeholder="" required/>
+                                                    <input type="date" id="dateN" class="managerWidth form-control" placeholder="" required/>
                                                 </div>
                                                 <!--<div class="form-group col-sm-2">
                                                     <input type="text" class="form-control" placeholder="Mois"/>
@@ -172,7 +172,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="email">E-mail*:</label>  
                                         <div class="col-md-4">
-                                            <input id="email" name="email" placeholder="mail" class="form-control input-md" type="email" required>  
+                                            <input id="email" name="email" placeholder="mail" class="managerWidth form-control input-md" type="email" required>  
                                         </div>
                                     </div>
                                 </div>
@@ -205,14 +205,14 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="mdp">Mot de passe:</label>  
                                         <div class="col-md-4"><!-- afficher un message pour le minimum -->
-                                            <input id="mdp" name="mdp" placeholder="" class="form-control input-md" type="password" required oninput="verificationMotDePasse();">  
+                                            <input id="mdp" name="mdp" placeholder="" class="managerWidth form-control input-md" type="password" required oninput="verificationMotDePasse();">  
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Confirmez le mot de passe:</label>  
                                         <div class="col-md-4">
-                                            <input id="cmdp" name="cmdp" placeholder="" class="form-control input-md" type="password" oninput="verificationMotDePasse();">  
+                                            <input id="cmdp" name="cmdp" placeholder="" class="managerWidth form-control input-md" type="password" oninput="verificationMotDePasse();">  
                                         </div>
                                     </div>
                                 </div>
@@ -258,6 +258,7 @@
     //var path = 'http://localhost:8080/LPAE';//context de l'application
         var path = '${pageContext.servletContext.contextPath}';//context de l'application
     </script>
+    
 </body>
 
 </html>
