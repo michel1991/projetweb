@@ -58,7 +58,7 @@
         <!-- Permet d'afficher la page d'accueil de l'administrateur + les differents msgs -->
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="padding: 2.5em;">
                 <h1>Tableau de bord <small>Accueil</small></h1>
                 <%-- Dans le nav on affiche juste l'action de l'utilisateur c'est pour cela que nous avons mis informationSurAction
                      Cela provient de la requete Pour la première l'utilisateur n'a rien choisir alors il a juste un message de bienvenue

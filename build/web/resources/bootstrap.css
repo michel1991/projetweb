@@ -759,7 +759,6 @@ pre code {
   margin-left: auto;
 }
 .row {
-  margin-right: -15px;
   padding-top: 2em;
   margin-left: 15px;
 }
@@ -1248,7 +1247,6 @@ pre code {
   }
   .col-lg-12 {
     width: 100%;
-    margin: 20px;
   }
   .col-lg-11 {
     width: 91.66666666666666%;

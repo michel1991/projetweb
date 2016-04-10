@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<div class="cssManAdmin">
 <div class="text-center">
     <div class="row">
        
@@ -127,9 +129,9 @@
             </tbody>
              
 </table>
+    
+</div>
 
 <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/typeCategorie.js" type="text/javascript"></script>
-<script>
-    
-</script>
+ 

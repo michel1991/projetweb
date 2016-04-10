@@ -9,7 +9,7 @@
 <!-- Full Page Image Header Area -->
 <div id="top" class="header">
     <div class="vert-text">
-        <h1>Le bon coin &Eacute;tudiant Administration.</h1>
+        <h1>Administration Troc Students.</h1>
         <h3>Console d'administration, réalisée par les créateurs Michel et Mélissa,<em>Try it!</em></h3>
         <a href="#about" class="btn btn-default btn-lg"> Connectez-vous </a>
     </div>

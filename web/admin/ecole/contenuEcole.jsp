@@ -8,16 +8,20 @@
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<div class="cssManAdmin">
 <div class="text-center">
     <div class="row">
        
         <div class="col-md-12">
             <div class="text-center">
-                <form role="form"  onsubmit="return  addEcole();" id="formEcole"><!-- mettre la méthode à post return  addTypeCategorie();-->
+                <form role="form"  onsubmit="return addEcole();" id="formEcole"><!-- mettre la méthode à post return  addTypeCategorie();-->
 
-                    <label for="nom">Nom:  </label> <input type="text" class="css-input1" name="nom"  value="" required id="nom"/>
-                    <label for="nom">CP:  </label> <input type="text" class="css-input1" name="cp"  value="" required id="cp"/>
-                    <label for="nom">Adresse:  </label> <input type="text" class="css-input1" name="adresse"  value="" required id="adresse"/>
+                    <label for="nom" class="css-input01">Nom:  </label> <input type="text" class="css-input1" name="nom"  value="" required id="nom"/><br/>
+                    <label for="nom" class="css-input01">CP:  </label> <input type="text" class="css-input1" name="cp"  value="" required id="cp"/><br/>
+                    <label for="nom" class="css-input01">Adresse:  </label> <input type="text" class="css-input1" name="adresse"  value="" required id="adresse"/><br/>
+                    
+              
                     
                     
                     <label for="" class="cache"></label> <input type="hidden" name="idEcole" value="" id="idEcole"/>
@@ -124,8 +128,9 @@
             </tbody>
              
 </table>
+    
+</div>
 
 <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/ecole.js" type="text/javascript"></script>
-<script>
-</script>
+ 

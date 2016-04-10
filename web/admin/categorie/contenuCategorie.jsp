@@ -7,21 +7,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<div class="text-center">
+
+<div class="cssManAdmin">
+<div class="">
     <div class="row">
        
         <div class="col-md-12">
-            <div class="text-center">
+            <div class="">
                 <form role="form"  onsubmit="return addCategorie();" id="formCategorie"><!-- mettre la méthode à post return  addTypeCategorie();-->
 
-                    <label for="nom">libell&eacute;:  </label> <input type="text" class="css-input1" name="libelle"  value="" required id="libelle"/>
+                    <label for="nom" class="css-input01"> Libell&eacute;:  </label> <input type="text" class="css-input1" name="libelle"  value="" required id="libelle"/><br/>
 
-                    <label for="prenom">Type cat&eacute;gorie: </label> 
+                    <label for="prenom" class="css-input01"> Type cat&eacute;gorie: </label> 
                     <!--<input type="text" class="css-input1" name="typeCategorie" required id="typeCategorie" value=""/>-->
                     <c:set var="totalTypeCategorie" value="0"/>
                     <select name="typeCategorie" required id="typeCategorie" class="">
                         <option value="">
-                                  Aucune
+                            Aucune
                         </option>
                         <c:forEach var="tcA" items="${requestScope['tc']}">
                             <option value="${tcA.id}">
@@ -35,10 +37,10 @@
                                </option>
                             </c:if>--%>
                     </select>
-                    <input type="hidden" name="action" value=""/>
+                    <input type="hidden" name="action" value=""/> <br/>
                     <label for="" class="cache"></label> <input type="hidden" name="idCategorie" value="" id="idCategorie"/>
                     <!--<input type="submit" class="css-input2" value="" name="submit"/>-->
-                    <label for="nom">Sous annonce:  </label> <input type="checkbox"  name="sousAnnonce"  id="sousAnnonce"/>
+                    <label for="nom" class="css-input01">Sous annonce:  </label> <input type="checkbox"  name="sousAnnonce"  id="sousAnnonce"/><br/>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Action
@@ -122,9 +124,9 @@
             </tbody>
              
 </table>
+    
+</div>
 
 <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/categorie.js" type="text/javascript"></script>
-<script>
-    
-</script>
+ 
