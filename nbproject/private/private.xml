@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/web/offres.jsp</file>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/servlet/mdle/annonce/ControllerCentralAnnonces.java</file>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/servlet/mdle/annonce/ControllerCentralDescriptionAn.java</file>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/entites/Utilisateur.java</file>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/entites/Annonce.java</file>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/servlet/mdle/annonce/ControllerCentralDepotAnnoceFE.java</file>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/src/java/lpae/annonce/gestionnaire/GreAnnonce.java</file>
-            <file>file:/D:/COURSES/UNS/M1/SEM2/webs/projet/projetweb/web/product.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

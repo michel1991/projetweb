@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/transitions.css" />
 
     <!-- ///// CSS REVOLUTION SLIDER  ///// -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/setings.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/settings.css" />
 
     <!-- ///// CSS IMAGE ZOOM  ///// -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/glasscase.css" />
@@ -39,6 +39,10 @@
     <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png">
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
     
+    <!-- ///// LINKS CSS/JS MAP.JSP  ///// -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/easyLocator.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+       
     <!-- ///// CSS ZOOM SMOOTHPRODUCTS ///// -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/smoothproducts.css">
     <script src="${pageContext.servletContext.contextPath}/resources/jquery-1.10.2.js" type="text/javascript"></script>
