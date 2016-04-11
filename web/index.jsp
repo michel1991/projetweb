@@ -39,7 +39,7 @@
         <script src="${pageContext.servletContext.contextPath}/resources/js/connectionUtilisateurFE.js" type="text/javascript"></script>
         <script src="${pageContext.servletContext.contextPath}/resources/js/pourLaPageIndex.js" type="text/javascript"></script>
         
-        <script src="${pageContext.servletContext.contextPath}/resources/js/easyLocator.js" type="text/javascript"></script>
+        <%--<script src="${pageContext.servletContext.contextPath}/resources/js/easyLocator.js" type="text/javascript"></script>--%>
      
     </body>
  

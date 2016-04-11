@@ -13,7 +13,7 @@ function getDataEcole()
     xhr.onloadend = function () 
     {
         var datas =  JSON.parse(this.response);
-        console.log("reponse " +JSON.stringify(datas));
+        /*console.log("reponse " +JSON.stringify(datas));*/
         if(typeof datas !='undefined')
         {
             for(var i =0; i<datas.length; i++)
@@ -38,7 +38,7 @@ function getDataCategories()
     xhr.onloadend = function () 
     {
         var datas =  JSON.parse(this.response);
-        console.log("reponse " +JSON.stringify(datas));
+        /*console.log("reponse " +JSON.stringify(datas));*/
         if(typeof datas !='undefined')
         {
             for(var i =0; i<datas.length; i++)

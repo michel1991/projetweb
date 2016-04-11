@@ -50,10 +50,12 @@
   </head>
   <body>
       <script src="${pageContext.servletContext.contextPath}/resources/js/feutilitaire.js" type="text/javascript"></script>
+      <%--<script src="${pageContext.servletContext.contextPath}/resources/js/smoothproducts.js" type="text/javascript"></script>--%>
       <script>
+          var path = '${pageContext.servletContext.contextPath}'; // n'enlève pas ceci variable globale javascript pour toutes les pages
           // ne pas enlever ceci c'est pour utiliser bootstra js dans toutes les pages
           // si on met le lien directement et ben le menu de connection ne s'affiche plus dans certaine page
-          var path = '${pageContext.servletContext.contextPath}';
+          // fait gafe au ajout que j'ai fait ici si tu en enlève t'a des erreurs dans ta console du navigateur
           $(function(){
                $(document.body).append($('<script>', {
                         src: 'resources/js/bootstrap-3.1.1.min.js'
@@ -64,6 +66,16 @@
                         src: 'resources/jquery-1.10.2.js'
                         
                 }));*/
+        
+               $(document.body).append($('<script>', {
+                        src: 'resources/js/easyLocator.js'
+                        
+                }));
+                
+                 $(document.body).append($('<script>', {
+                        src: 'resources/js/smoothproducts.js'
+                        
+                }));
                getDataCategories();
           });
      
