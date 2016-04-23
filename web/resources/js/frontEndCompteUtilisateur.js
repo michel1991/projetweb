@@ -5,6 +5,7 @@
  */
 
 $(function (){
+    
     getDataEcole();
     
     $('#checkboxes1').click(function(){
@@ -15,8 +16,26 @@ $(function (){
             $("#validerF").removeAttr("disabled").attr("disabled", "disabled");
         }
     });
+    
+    $('#pr').hide();
+   
 });
 
+    var msecsPerUpdate = 1000/100;//60
+    var progress =  $('#pr');
+    var duration = 30;            
+    var interval = progress.attr('max')/(duration*1000/msecsPerUpdate);
+
+    var animator = function(){
+        //console.log(progress.val() + interval);
+        progress.val(progress.val() + interval);
+        if (progress.val() + interval < progress.attr('max')){
+           setTimeout(animator, msecsPerUpdate);
+        } else {
+            progress.val(progress.attr('max'));
+        }
+    };
+    
 function verificationMotDePasse() {
       var password1 = document.getElementById('mdp');
       var password2 = document.getElementById('cmdp');
@@ -57,7 +76,7 @@ function getDataEcole()
     xhr.onloadend = function () 
     {
         var datas =  JSON.parse(this.response);
-        //console.log("reponse " +JSON.stringify(datas));
+        console.log("reponse " +JSON.stringify(datas));
         if(typeof datas !='undefined')
         {
             for(var i =0; i<datas.length; i++)
@@ -121,6 +140,8 @@ function addCompteUtilisateurFrontEnd()
 
     var url =''+path+'/ControllerServletFrontEnd?action=add';
     var urlRedirection =''+path+'/ServletControllerIndex?action=accueil';
+    $('#pr').show();
+    animator();
     
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
@@ -132,6 +153,7 @@ function addCompteUtilisateurFrontEnd()
         {
             if(utilisateurR.id!='undefined' && utilisateurR.result=='success')
             {
+                window.clearTimeout(animator);
                 window.location=urlRedirection;
             }
         }

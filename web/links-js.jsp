@@ -61,7 +61,8 @@
     <script src="${pageContext.servletContext.contextPath}/resources/js/easyLocator.js" type="text/javascript"></script>
     <script src="${pageContext.servletContext.contextPath}/resources/js/markerclusterer.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
-    <script>      
+    <script>
+        //https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js https://maps.googleapis.com/maps/api/js?key=AIzaSyAjIGKNhR9D-xNSH0KSytVPUiZiizf3KWk
                 var data = [{
                     title: 'Universit&eacute; Paris-Dauphine',
                     description: 'pretty girls',
@@ -109,8 +110,13 @@
                  }
               ];
               $( document ).ready(function() {
-                $('#locatorList').easyLocator({
-                   myLocations: data
+               $('#locatorList').easyLocator({
+                   myLocations: data,
+                   mapType: 'ROADMAP'
+                   
                 });
+                
               });
+              /*myLocations: data,
+              mapType: 'ROADMAP'*/
     </script>
