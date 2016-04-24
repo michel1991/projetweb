@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lpae.annonce.gestionnaire.GreAnnonce;
+import lpae.ecole.gestionnaire.GreEcole;
 import lpae.entites.Annonce;
+import lpae.entites.Ecole;
 import lpae.entites.PhotoAnnonce;
 import lpae.entites.TypeAnnonce;
 import lpae.mdle.utilitaire.HelpClass;
@@ -40,6 +42,9 @@ public class ControllerCentralAnnonces extends HttpServlet {
      */
     @EJB
     private GreAnnonce greAnnonce;
+    
+    @EJB
+    private GreEcole greEcole;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -65,6 +70,8 @@ public class ControllerCentralAnnonces extends HttpServlet {
              }
             if((action!=null && action.equals("Offres")) || (action!=null && action.equals("Recherches")))
             {
+                request.setAttribute("action", action);
+                 request.setAttribute("whichAction", action);
                 if(flatParsing)
                 {
                     TypeAnnonce typeAnnonce = greAnnonce.rechercheTypeAnnonceParLibelle(action);//"Offres"
@@ -86,7 +93,7 @@ public class ControllerCentralAnnonces extends HttpServlet {
                             List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
                             request.setAttribute("annonces", annonceAEnvoyer);
                             request.setAttribute("photos", photosAnnonces);
-                            request.setAttribute("action", action);
+                            //request.setAttribute("action", action);
 
                             System.out.println("nombre annonces " + annonceAEnvoyer.size() + " photos " +photosAnnonces.size());
                         }else{
@@ -100,6 +107,44 @@ public class ControllerCentralAnnonces extends HttpServlet {
                 }
                 
                 request.getRequestDispatcher("offres.jsp").forward(request, response);
+            }
+            else if((action!=null && action.equals("Aecoles")))
+            {
+                String nomEcole = request.getParameter("nomEcole");
+                request.setAttribute("action", "Par ecole");
+                request.setAttribute("whichAction", action);
+                
+                if(nomEcole!=null)
+                {
+                    List<Ecole> ecoles = greEcole.obtenirEcoleParNom(nomEcole);
+                    if(ecoles!=null && ecoles.size()>0)
+                    {
+                        Ecole ecole = ecoles.get(0);
+                        System.out.println("ecole **********" + ecole);
+                        List<Annonce> annonces= greAnnonce.obtenirAnnoncesEcole(ecole, false);
+                        if(annonces!=null && annonces.size()>0)
+                        {
+                            int nombreDePage = HelpClass.calculPagination(annonces.size());
+                            //request.setAttribute("pagination", nombreDePage);
+                            request.setAttribute("pagination", nombreDePage);
+                            request.setAttribute("nbreAnnonce", annonces.size());
+                            System.out.println("nombre de page " + nombreDePage);
+                            
+                            // premier appel pageInt =0
+                            Collection<Annonce> annonceAEnvoyer= greAnnonce. obtenirAnnonceParPageEcole(pageInt, ecole, false);
+                            List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
+                            request.setAttribute("annonces", annonceAEnvoyer);
+                            request.setAttribute("photos", photosAnnonces);
+                            //request.setAttribute("action", action);
+                        }else{
+                          request.setAttribute("nbreAnnonce", 0);  
+                        }
+                    }else{
+                        //pas de resultat renvoyer une liste vide
+                         request.setAttribute("nbreAnnonce", 0); // je ne me rappelle plus de cette condition mais je l'ajoute
+                    }
+                }
+                request.getRequestDispatcher("offres.jsp").forward(request, response); // redirection vers la page des offres
             }
             /*else if((action!=null && action.equals("take")))
             {

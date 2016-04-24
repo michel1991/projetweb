@@ -62,6 +62,7 @@
                         
                 }));
                 
+                getDataEcole();
                 /*$(document.body).append($('<script>', {
                         src: 'resources/jquery-1.10.2.js'
                         
@@ -76,6 +77,8 @@
                         src: 'resources/js/smoothproducts.js'
                         
                 }));
+                
+               
                getDataCategories();
           });
      

@@ -63,57 +63,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
     <script>
         //https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js https://maps.googleapis.com/maps/api/js?key=AIzaSyAjIGKNhR9D-xNSH0KSytVPUiZiizf3KWk
-                var data = [{
-                    title: 'Universit&eacute; Paris-Dauphine',
-                    description: 'pretty girls',
-                    image: 'images/picture-school.png', 
-                    link: 'page-accueil.jsp',
-                    iconMarker: 'images/pins-maps.png',
-                    lat: 48.8700464,
-                    lng: 2.2733470
-                 },
-                 {
-                    title: 'Universit&eacute; Valrose Nice',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
-                    image: 'images/picture-school.png', 
-                    link: 'page-accueil.jsp', 
-                    iconMarker: 'images/pins-maps.png',
-                    lat: 43.7153914,
-                    lng: 7.2614853
-                 },
-                 {
-                    title: 'Universit&eacute; Arles',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
-                    image: 'images/picture-school.png', 
-                    link: 'page-accueil.jsp',  
-                    iconMarker: 'images/pins-maps.png',
-                    lat: 43.6766470,
-                    lng: 4.6277769
-                 },
-                          {
-                    title: 'Universit&eacute; de Bordeaux',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
-                    image: 'images/picture-school.png', 
-                    link: 'page-accueil.jsp',   
-                    iconMarker: 'images/pins-maps.png',
-                    lat: 44.8370298,
-                    lng: -0.5780251
-                 },
-                 {
-                    title: 'Universit&eacute; Toulouse',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
-                    image: 'http://lorempixel.com/400/200/sports/3/', 
-                    link: 'page-accueil.jsp',   
-                    iconMarker: 'images/pins-maps.png',
-                    lat: 43.5785488,
-                    lng: 1.4024108
-                 }
-              ];
+            var path = '${pageContext.servletContext.contextPath}';
+ 
+            var data = [];
+                var urlRedirectionOffresEcoles =''+path+'/ControllerCentralAnnonce?action=Aecoles&nomEcole=';
+                getDataForEasyLocator(data);
               $( document ).ready(function() {
                $('#locatorList').easyLocator({
                    myLocations: data,
                    mapType: 'ROADMAP'
                    
+                });
+                
+                 $('.locatorMap_list_item').click(function(){
+                    console.log("click");
                 });
                 
               });

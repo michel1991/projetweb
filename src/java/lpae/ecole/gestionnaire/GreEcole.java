@@ -6,6 +6,7 @@
 package lpae.ecole.gestionnaire;
 
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -94,5 +95,17 @@ public class GreEcole {
             System.out.println("Suppression Ecoles EntiteNotFound Gestionnaire Ecole : " + except.getMessage());
         }
         return resultat;
+    }
+    
+    /**
+     * retourne une ecole sachant que le nom unique d'une ecole n'a pas étét gerer faire attention
+     * @param nom
+     * @return 
+     */
+    public List<Ecole> obtenirEcoleParNom(String nom)
+    {
+        Query query =em.createQuery("SELECT ec FROM Ecole ec WHERE ec.nom=:nomEcole ORDER BY ec.nom");
+        query.setParameter("nomEcole", nom);
+        return query.getResultList();
     }
 }

@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
 import lpae.entites.Annonce;
+import lpae.entites.Ecole;
 import lpae.entites.PhotoAnnonce;
 import lpae.entites.TypeAnnonce;
 import lpae.mdle.utilitaire.HelpClass;
@@ -119,8 +120,9 @@ public class GreAnnonce {
         return q.getResultList();
     }
     
+   
     
-    
+   
     /**
      * 
      * @param start pointeur du curseur vers une page de début
@@ -201,6 +203,11 @@ public class GreAnnonce {
         
     }
     
+    /**
+     * recherche annonce par son identifiant
+     * @param idAnnonce
+     * @return 
+     */
     public List<PhotoAnnonce> getPhotoAnnonces(int idAnnonce)
     {
         List<PhotoAnnonce> photosAnnonce = new ArrayList<>();
@@ -231,6 +238,43 @@ public class GreAnnonce {
         }
         return annonce;
     }
+    
+    
+    
+    /**
+     * 
+     * @param ecole
+     * @param etat
+     * @return 
+     */
+    public List<Annonce> obtenirAnnoncesEcole(Ecole ecole, boolean etat)
+    {
+        Query query =em.createQuery("SELECT a FROM Annonce a WHERE a.idEcole=:ecole AND a.etat=:etat ORDER BY a.dateCreation, a.titre");
+        query.setParameter("ecole", ecole.getId());
+        query.setParameter("etat", etat);
+        return query.getResultList();
+    }
+    
+    /**
+     * 
+     * @param start curseur vers le debut
+     * @param ecole les annonces concernants l'ecole
+     * @param etat etat de l'annonce non regler en cours d'utilisation faudrait penser à ajouter une contrainte sur le temps egalement
+     * @return 
+     */
+    public  Collection<Annonce> obtenirAnnonceParPageEcole(int start, Ecole ecole, boolean etat) 
+    {
+        Query q = em.createQuery("SELECT a FROM Annonce a WHERE  a.idEcole=:ecole AND a.etat=:etat ORDER BY a.dateCreation, a.titre");//ORDER BY u.lastname ASC
+        q.setFirstResult(start*HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        System.out.println("requete **********" + q.toString());
+        q.setParameter("etat", etat);
+        q.setParameter("ecole", ecole.getId());
+        
+        q.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        return q.getResultList();
+    }
+    
+    
     
    
 }

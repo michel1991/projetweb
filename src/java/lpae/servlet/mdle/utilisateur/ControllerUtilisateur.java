@@ -262,6 +262,10 @@ public class ControllerUtilisateur extends HttpServlet {
                         JSONObject jsonEcole = new JSONObject();
                         jsonEcole.put("nom", next.getNom());
                         jsonEcole.put("id", next.getId());
+                        jsonEcole.put("lat", next.getLatitude());
+                        jsonEcole.put("lon", next.getLongitude());
+                        jsonEcole.put("sigle", next.getSigle());
+                         jsonEcole.put("adresse", next.getAdresse());
                        
                         jSONArray.add(jsonEcole);
                         

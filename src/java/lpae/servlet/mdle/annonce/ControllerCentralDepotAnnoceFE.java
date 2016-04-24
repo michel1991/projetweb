@@ -14,6 +14,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -242,6 +243,18 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                                 int idUtilisateurSession = (int) greSecurite.getIdUtilisateurSession(request);//bugger si pas d'utilisateur dans la session
                                  Utilisateur utilisateur = greUtilisateur.rechercherUtilisateurParId(idUtilisateurSession);
                                  annonce.setUtilisateur(utilisateur);
+                                 
+                                 if(utilisateur.getEcoleUtilisateurs()!=null)
+                                 {
+                                     // le système ne gère le fait qu'un utilisateur puisse être dans plusieurs écoles au même moment
+                                     for (Iterator iterator = utilisateur.getEcoleUtilisateurs().iterator(); iterator.hasNext();) {
+                                         EcoleUtilisateur next = (EcoleUtilisateur) iterator.next();
+                                         annonce.setIdEcole(next.getEcole().getId());
+                                         break;
+                                         
+                                     }
+                                 }
+                                 //annonce.setIdEcole(utilisateur.);
                                 if (MarquerPhoneAnnce != null && MarquerPhoneAnnce.equals("1")) {
                                     annonce.setMarquerPhoneAnnce(true);
                                 } else {

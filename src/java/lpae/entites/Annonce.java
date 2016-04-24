@@ -38,6 +38,16 @@ public class Annonce implements Serializable {
     private Categorie categorie;
     @ManyToOne
     private TypeAnnonce typeAnnonce;
+    
+    private int idEcole;
+
+    public int getIdEcole() {
+        return idEcole;
+    }
+
+    public void setIdEcole(int idEcole) {
+        this.idEcole = idEcole;
+    }
 
     public Annonce() {
     }

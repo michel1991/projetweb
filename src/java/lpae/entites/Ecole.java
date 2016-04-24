@@ -28,7 +28,90 @@ public class Ecole implements Serializable {
     
     private String nom;
     
-    private String latitude;
+    //private String latitude;
+    
+    private String sigle;
+
+    public String getUniversite() {
+        return universite;
+    }
+
+    public void setUniversite(String universite) {
+        this.universite = universite;
+    }
+    
+    private String commune;
+    
+    private String tutelle;
+    
+    private String academie;
+    
+    private String universite;
+
+    public String getTypeEtab() {
+        return typeEtab;
+    }
+
+    public void setTypeEtab(String typeEtab) {
+        this.typeEtab = typeEtab;
+    }
+    
+    private String typeEtab;
+
+    public String getSigle() {
+        return sigle;
+    }
+
+    public void setSigle(String sigle) {
+        this.sigle = sigle;
+    }
+
+    public String getCommune() {
+        return commune;
+    }
+
+    public void setCommune(String commune) {
+        this.commune = commune;
+    }
+
+    public String getTutelle() {
+        return tutelle;
+    }
+
+    public void setTutelle(String tutelle) {
+        this.tutelle = tutelle;
+    }
+
+    public String getAcademie() {
+        return academie;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setAcademie(String academie) {
+        this.academie = academie;
+    }
+
+    
+    
+    private double longitude;
+    
+    private double latitude;
+    
 
     public Departement getDepartement() {
         return departement;
@@ -43,7 +126,7 @@ public class Ecole implements Serializable {
     public Ecole() {
     }
     
-    private String longitude;
+    //private String longitude;
     
     private String cp;
     
@@ -77,21 +160,21 @@ public class Ecole implements Serializable {
         this.nom = nom;
     }
 
-    public String getLatitude() {
+    /*public String getLatitude() {
         return latitude;
     }
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
-    }
+    }*/
 
-    public String getLongitude() {
+    /*public String getLongitude() {
         return longitude;
     }
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
-    }
+    }*/
 
     @Override
     public int hashCode() {

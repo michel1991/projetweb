@@ -23,6 +23,11 @@ function getDataEcole()
                         value: datas[i].id,
                         text: datas[i].nom
                 }));
+                
+                $('#ecoleSearchBar').append($('<option>', {
+                        value: datas[i].id,
+                        text: datas[i].nom
+                }));
             }
         }
     };
@@ -60,6 +65,45 @@ function getDataCategories()
                             text: dataCategories[j].nomCat
                         }));
                     }
+                }
+            }
+        }
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.send("");
+}
+
+/**
+ * 
+ */
+function getDataForEasyLocator(tableauDonnees)
+{
+    var url =''+path+'/ControllerUtilisateur?action=dataEcole';
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.onloadend = function () 
+    {
+        var datas =  JSON.parse(this.response);
+        
+        //console.log("reponse " +JSON.stringify(datas));
+        if(typeof datas !='undefined')
+        {
+            for(var i =0; i<datas.length; i++)
+            {
+                if(datas[i].lat !='undefined' && datas[i].lon)
+                {
+                    var ecoleEasy ={
+                        title: datas[i].nom,
+                        description: datas[i].sigle,
+                        image: 'images/picture-school.png', 
+                        link: 'ServletControllerIndex',
+                        iconMarker: 'images/pins-maps.png',
+                        lat: datas[i].lat,
+                        adresse: datas[i].lat,
+                        lng: datas[i].lon
+                    };
+                    
+                    tableauDonnees.push(ecoleEasy);
                 }
             }
         }

@@ -45,7 +45,7 @@
 
 
                 <div class="catEtButton country2cat">
-                    <select id="country" class="selectpicker">
+                    <!--<select id="country" class="selectpicker">
                         <option value="4">Autour de moi</option>
                         <option value="1" selected>Provence-Alpes-Côte d'Azur</option>
                         <option value="2" >R&eacute;gions voisines</option>
@@ -57,6 +57,10 @@
                         <option value="113">Bouches-du-Rhône</option>
                         <option value="183">Var</option>
                         <option value="184">Vaucluse</option>
+                    </select>-->
+                    <select id="ecoleSearchBar" class="selectpicker form-control" required>
+                            <option value="">&laquo; Choisissez une &eacute;cole</option>
+                                                
                     </select>
                 </div>
 
