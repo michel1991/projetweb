@@ -36,8 +36,29 @@ public class Annonce implements Serializable {
     private Utilisateur utilisateur;
     @ManyToOne
     private Categorie categorie;
+
+    public boolean isUrgente() {
+        return urgente;
+    }
+
+    public void setUrgente(boolean urgente) {
+        this.urgente = urgente;
+    }
+    
+    private boolean urgente;
+
+    public Ecole getEcole() {
+        return ecole;
+    }
+
+    public void setEcole(Ecole ecole) {
+        this.ecole = ecole;
+    }
     @ManyToOne
     private TypeAnnonce typeAnnonce;
+    
+    @ManyToOne
+    private Ecole ecole;
     
     private int idEcole;
 
@@ -197,6 +218,8 @@ public class Annonce implements Serializable {
             this.photos.remove(photo);
         }
     }
+     
+     
     
     @Override
     public int hashCode() {

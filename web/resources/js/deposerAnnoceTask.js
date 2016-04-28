@@ -65,6 +65,13 @@ function deposerAnnoceFrontEnd()
         annonce.MarquerPhoneAnnce ="0";
     }
     
+    if($('#urgenteDepotAnnonce').is(':checked'))
+    {
+        annonce.annonceUrgente ="1";
+    }else{
+        annonce.annonceUrgente ="0";
+    }
+    
     if($('#checkboxesSouhaitePas').is(':checked'))
     {
         annonce.anncePart ="1";

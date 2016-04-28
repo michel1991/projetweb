@@ -7,15 +7,11 @@ package lpae.servlet.mdle.annonce;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -249,7 +245,8 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                                      // le système ne gère le fait qu'un utilisateur puisse être dans plusieurs écoles au même moment
                                      for (Iterator iterator = utilisateur.getEcoleUtilisateurs().iterator(); iterator.hasNext();) {
                                          EcoleUtilisateur next = (EcoleUtilisateur) iterator.next();
-                                         annonce.setIdEcole(next.getEcole().getId());
+                                         //annonce.setIdEcole(next.getEcole().getId()); // enlever ceci 
+                                         annonce.setEcole(next.getEcole()); // laisser ceci
                                          break;
                                          
                                      }
@@ -266,6 +263,15 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                                 } else {
                                     annonce.setAnncePart(false);
                                 }
+                                String urgenteAnnonce = request.getParameter("annonceUrgente");
+                                
+                                System.out.println("urgente " + urgenteAnnonce);
+                                if (urgenteAnnonce != null && urgenteAnnonce.equals("1")) {
+                                    annonce.setUrgente(true);
+                                } else {
+                                    annonce.setUrgente(false);
+                                }
+                                
                                 ArrayList<PhotoAnnonce> photosAnnonces = new ArrayList<PhotoAnnonce>();
                                 /**
                                  * INSERTION DES PHOTOS RESPECTIVES

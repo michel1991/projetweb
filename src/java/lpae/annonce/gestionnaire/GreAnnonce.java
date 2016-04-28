@@ -16,7 +16,13 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import lpae.entites.Annonce;
+import lpae.entites.Categorie;
 import lpae.entites.Ecole;
 import lpae.entites.PhotoAnnonce;
 import lpae.entites.TypeAnnonce;
@@ -249,8 +255,9 @@ public class GreAnnonce {
      */
     public List<Annonce> obtenirAnnoncesEcole(Ecole ecole, boolean etat)
     {
-        Query query =em.createQuery("SELECT a FROM Annonce a WHERE a.idEcole=:ecole AND a.etat=:etat ORDER BY a.dateCreation, a.titre");
-        query.setParameter("ecole", ecole.getId());
+        Query query =em.createQuery("SELECT a FROM Annonce a WHERE a.ecole=:ecole AND a.etat=:etat ORDER BY a.dateCreation, a.titre");
+        //query.setParameter("ecole", ecole.getId());
+        query.setParameter("ecole", ecole);
         query.setParameter("etat", etat);
         return query.getResultList();
     }
@@ -264,17 +271,110 @@ public class GreAnnonce {
      */
     public  Collection<Annonce> obtenirAnnonceParPageEcole(int start, Ecole ecole, boolean etat) 
     {
-        Query q = em.createQuery("SELECT a FROM Annonce a WHERE  a.idEcole=:ecole AND a.etat=:etat ORDER BY a.dateCreation, a.titre");//ORDER BY u.lastname ASC
+        Query q = em.createQuery("SELECT a FROM Annonce a WHERE  a.ecole=:ecole AND a.etat=:etat ORDER BY a.dateCreation, a.titre");//ORDER BY u.lastname ASC
         q.setFirstResult(start*HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
         System.out.println("requete **********" + q.toString());
         q.setParameter("etat", etat);
-        q.setParameter("ecole", ecole.getId());
+       // q.setParameter("ecole", ecole.getId());
+        q.setParameter("ecole", ecole);
         
         q.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
         return q.getResultList();
     }
     
+    /**
+     * 
+     * @param titre
+     * @param titreUniquement
+     * @param etat
+     * @param categorie
+     * @param ecole
+     * @return 
+     */
+    public List<Annonce> rechercheAnnoncesParRecherche(String titre, boolean titreUniquement ,boolean etat, Categorie categorie, Ecole ecole, String autres, boolean urgente)
+    {
+        
+        
+        Query query = this.requeteRechercheAnnonce(titre, titreUniquement, etat, categorie, ecole, autres, urgente);
+        //System.out.println("requete criteria greAnnonce" + query.toString());
+        //System.out.println("requete criteria greAnnonce" + query.toString() + " other " + cq.toString());
+        return query.getResultList();
+    }
     
+    /**
+     * on pourrais faire d'une pierre deux coups mais j'ai la flemme
+     * @param start pointeur vers le debut de la recherche
+     * @param titre
+     * @param titreUniquement
+     * @param etat
+     * @param categorie
+     * @param ecole
+     * @return 
+     */
+    public  Collection<Annonce> obtenirAnnonceParPageRecherche(int start, String titre, boolean titreUniquement ,boolean etat, Categorie categorie, Ecole ecole, String autres, boolean urgente) 
+    {
+        Query query = this.requeteRechercheAnnonce(titre, titreUniquement, etat, categorie, ecole, autres, urgente);
+       // System.out.println("requete " + query.toString());
+       //System.out.println("requete criteria greAnnonce" + query.toString() + " other " + cq.toString());
+       query.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+      return query.getResultList();
+    }
+    
+   public Query requeteRechercheAnnonce(String titre, boolean titreUniquement ,boolean etat, Categorie categorie, Ecole ecole, String autres, boolean urgente)
+    {
+        List<Predicate> listPredicate = new ArrayList<>();
+         CriteriaBuilder cb = em.getCriteriaBuilder();
+         CriteriaQuery cq = cb.createQuery();
+         Root from = cq.from(Annonce.class);
+         listPredicate.add(cb.equal(from.get("etat"), etat));
+         cq.orderBy(cb.asc(from.get("dateCreation")), cb.asc(from.get("titre")));
+         
+         /*if(titre!=null && titre.length()>0)
+         {
+            Expression<String> expressionLike = from.get("titre");
+            Predicate predicateTitre = cb.like(expressionLike, titre);
+            listPredicate.add(predicateTitre);     
+         }*/
+         if(categorie!=null)
+         {
+            Expression<Categorie> expressionCategorie = from.get("categorie");
+            listPredicate.add(cb.equal(expressionCategorie, categorie));
+         }
+         
+         if(ecole!=null)
+         {
+            Expression<Ecole> expressionIdEcole = from.get("ecole");
+            listPredicate.add(cb.equal(expressionIdEcole, ecole));
+         }
+         
+         if(autres!=null && autres.length()>0) // code postal
+        {
+           Expression<String> expressionCodePostal = from.get("utilisateur").get("cp");
+           listPredicate.add(cb.equal(expressionCodePostal, autres));
+        }
+         
+         
+         if(urgente)
+        {
+            System.out.println("urgente " + urgente);
+           /*Expression<Integer> expressionIdEcole = from.get("idEcole");
+           listPredicate.add(cb.equal(expressionIdEcole, ecole.getId()));*/
+           Expression expressionUrgente = from.get("urgente");
+           listPredicate.add(cb.equal(expressionUrgente, urgente));
+        }
+         
+       if(listPredicate.size()==1)
+       {
+           cq.where(listPredicate.get(0));
+       }else if(listPredicate.size()>1)
+       {
+           
+           cq.where(cb.and(listPredicate.toArray(new Predicate[listPredicate.size()])));
+       }
+       
+       Query query = em.createQuery(cq.select(from));
+       return query;
+    }
     
    
 }

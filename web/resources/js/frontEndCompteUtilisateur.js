@@ -86,6 +86,11 @@ function getDataEcole()
                         value: datas[i].id,
                         text: datas[i].nom
                 }));
+                
+                $('#ecoleSearchBar').append($('<option>', {
+                        value: datas[i].id,
+                        text: datas[i].nom
+                }));
             }
         }
     };

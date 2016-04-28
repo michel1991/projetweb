@@ -25,7 +25,10 @@
                     <ul>
                         </li>
                         <li>
-                        <li class="active"><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Créer un compte</a></li><!--creer-compte.jsp-->
+                            <c:if test="${sessionScope.idUserFrontEnd==null}">
+                               <li class="active"><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Créer un compte</a></li> 
+                            </c:if>
+                        <!--creer-compte.jsp-->
                         <li><a href="">|</a></li> 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -131,7 +134,11 @@
                             <!--<li><a href="demandes.jsp">Demandes</a></li>-->
                             
                             <li><a href="ControllerCentralAnnonce?action=Recherches">Demandes</a></li><!-- NB:pareil que pour Offres -->
-                            <li><a href="mes-annonces.jsp">Mes annonces</a></li>
+                            
+                            <c:if test="${sessionScope.idUserFrontEnd!=null}">
+                                <li><a href="mes-annonces.jsp">Mes annonces</a></li> 
+                            </c:if>
+                           
                             <li><a href="contact.jsp">Contact</a></li>
                         </ul>
                     </nav>

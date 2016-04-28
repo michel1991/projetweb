@@ -29,6 +29,10 @@ function getDataEcole()
                         text: datas[i].nom
                 }));
             }
+            
+             //$('#ecoleSearchBar option[value="134"]').prop('selected', true);
+             $("#ecoleSearchBar").val($("#ecoleId").val()); // pour cocher la recherche de l'utilisateur
+             //$("#categorieAnnonceR").val($("#cateId").val());// pour cocher la recherche de l'utilisateur
         }
     };
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
@@ -54,6 +58,13 @@ function getDataCategories()
                         label: datas[i].nomTypeCat,
                         id:datas[i].idTypeCat
                 }));
+                
+                $('#categorieAnnonceR').append($('<optgroup>', {
+                        //value:"",// datas[i].idTypeCat
+                        label: datas[i].nomTypeCat,
+                        id:datas[i].idTypeCat
+                }));
+                $("#categorieAnnonceR").val($("#cateId").val());// pour cocher l'image de la categorie selectionner
                 
                 var dataCategories = datas[i].categories;
                 if(typeof dataCategories !='undefined')
@@ -111,3 +122,4 @@ function getDataForEasyLocator(tableauDonnees)
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.send("");
 }
+

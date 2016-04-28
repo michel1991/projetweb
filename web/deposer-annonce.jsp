@@ -240,6 +240,16 @@
                                         <input id="prix" name="prix"  class="form-control input-md" type="number" min="0" >  
                                     </div>
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label for="urgenteDepotAnnonce"  class="col-md-4 control-label">
+                                       
+                                    </label>
+                                    
+                                    <div class="col-md-4">
+                                        <input  id="urgenteDepotAnnonce" value="1" type="checkbox" name="urgenteDepotAnnonce">  Annonce urgente
+                                    </div>
+                                </div>
 
 
                                 <div class="form-group">	

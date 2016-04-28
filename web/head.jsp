@@ -78,8 +78,30 @@
                         
                 }));
                 
-               
+                //$("#categorieAnnonceR").val($("#cateId").val()); // on cas ou on effectue la pagination avec les mêmes critères
+                 // on cas ou on effectue la pagination avec les mêmes critères
+                
+                
+                console.log("infos ecole research " + $("#cateId").val());
+                
                getDataCategories();
+               $('#rechercher').click(function(){
+                   var titreAnnonce = $('#textBox').val();
+                   var categorie = $("#categorieAnnonceR").val();
+                   var ecole = $("#ecoleSearchBar").val();
+                   var autres = $("#autresRech").val();
+                   var rechercherTitre = $('#ctitle').is(':checked')?1:0;
+                   var urgente = $('#curgent').is(':checked')?1:0;
+                   var action = "rAnnonces";
+                   var urlRedirectionOffresRecherche =''+path+'/ControllerCentralAnnonce?action=rAnnonces&ecoleId='+ecole+"&titreA="+titreAnnonce;
+                  urlRedirectionOffresRecherche+="&cateId="+categorie+"&other="+autres+"&findT="+rechercherTitre+"&urgent="+urgente;
+                  console.log("url direction " + urlRedirectionOffresRecherche);
+                   
+                   /*console.log("titre " + titreAnnonce + " categorie " + categorie + " ecole " + ecole + " autres " + autres + " recherche titre " +rechercherTitre
+                           +" urgent " + urgente);*/
+                   window.location = urlRedirectionOffresRecherche;
+               });
+               
           });
      
       </script>

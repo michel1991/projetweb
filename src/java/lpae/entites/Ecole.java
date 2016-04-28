@@ -8,6 +8,8 @@ package lpae.entites;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +41,14 @@ public class Ecole implements Serializable {
     public void setUniversite(String universite) {
         this.universite = universite;
     }
+
+    /*public List<Annonce> getListeAnnonces() {
+        return listeAnnonces;
+    }
+
+    public void setListeAnnonces(List<Annonce> listeAnnonces) {
+        this.listeAnnonces = listeAnnonces;
+    }*/
     
     private String commune;
     
@@ -47,6 +57,9 @@ public class Ecole implements Serializable {
     private String academie;
     
     private String universite;
+    
+    @OneToMany(mappedBy = "ecole", cascade = {CascadeType.REMOVE, CascadeType.MERGE})
+    private List<Annonce> listeAnnonces = new ArrayList<>();
 
     public String getTypeEtab() {
         return typeEtab;
@@ -176,6 +189,21 @@ public class Ecole implements Serializable {
         this.longitude = longitude;
     }*/
 
+    public void addAnnonce(Annonce annonce)
+    {
+        if(annonce!=null){
+            annonce.setEcole(this);
+            this.listeAnnonces.add(annonce);
+        }
+    }
+    
+     public void removeAnnonce(Annonce annonce)
+    {
+        if(annonce!=null){
+            this.listeAnnonces.remove(annonce);
+        }
+    }
+     
     @Override
     public int hashCode() {
         int hash = 0;

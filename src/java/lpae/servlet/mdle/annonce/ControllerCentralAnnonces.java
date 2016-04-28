@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lpae.annonce.gestionnaire.GreAnnonce;
+import lpae.categorie.gestionnaire.GreCategorie;
 import lpae.ecole.gestionnaire.GreEcole;
 import lpae.entites.Annonce;
+import lpae.entites.Categorie;
 import lpae.entites.Ecole;
 import lpae.entites.PhotoAnnonce;
 import lpae.entites.TypeAnnonce;
@@ -45,6 +47,10 @@ public class ControllerCentralAnnonces extends HttpServlet {
     
     @EJB
     private GreEcole greEcole;
+    
+    @EJB
+    private GreCategorie greCategorie;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -111,6 +117,7 @@ public class ControllerCentralAnnonces extends HttpServlet {
             else if((action!=null && action.equals("Aecoles")))
             {
                 String nomEcole = request.getParameter("nomEcole");
+                request.setAttribute("nomEcole", nomEcole);
                 request.setAttribute("action", "Par ecole");
                 request.setAttribute("whichAction", action);
                 
@@ -145,6 +152,109 @@ public class ControllerCentralAnnonces extends HttpServlet {
                     }
                 }
                 request.getRequestDispatcher("offres.jsp").forward(request, response); // redirection vers la page des offres
+            } else if((action!=null && action.equals("rAnnonces")))
+            {
+                //String nomEcole = request.getParameter("nomEcole");
+                request.setAttribute("action", "Par recherche");
+                request.setAttribute("whichAction", action);
+                
+                Categorie categorie = null;
+                Ecole ecole = null;
+                
+                String titre = request.getParameter("titreA");
+                request.setAttribute("titreA", titre);
+                
+                String categorieiD = request.getParameter("cateId");
+                //request.setAttribute("cateId", categorieiD);
+                System.out.println("categorie ***" + categorieiD);
+                
+                String ecoleId = request.getParameter("ecoleId");
+                
+                
+                boolean boolRechercheT = false; // pas de recherche par le titre
+                boolean boolUrgenteT = false; // pas de recherche dans les annonces urgentes
+                
+                if(categorieiD!=null && categorieiD.length()>0)
+                {
+                    try{
+                         int categorieInt = Integer.valueOf(categorieiD);
+                         request.setAttribute("cateId", categorieInt);
+                         
+                         categorie = greCategorie.rechercherCategorieParId(categorieInt);
+                         System.out.println("categorie " + categorie);
+                         
+                    }catch(NumberFormatException formatException)
+                    {
+                        System.out.println("erreur casting recherche annonce id catgorie " + categorieiD);
+                        categorie =null;
+                    }
+                }
+                
+                if(ecoleId!=null && ecoleId.length()>0)
+                {
+                    try{
+                         int ecoleInt = Integer.valueOf(ecoleId);
+                         ecole = greEcole.getEcoleById(ecoleInt);
+                         request.setAttribute("ecoleId", ecoleInt);
+                         
+                    }catch(NumberFormatException formatException)
+                    {
+                        System.out.println("erreur casting recherche annonce id ecole " + categorieiD);
+                        ecole =null;
+                    }
+                }
+                String other = request.getParameter("other");
+                request.setAttribute("other", other);
+                
+                String rechercherT = request.getParameter("findT");
+                request.setAttribute("findT", rechercherT);
+                
+                if(rechercherT!=null)
+                {
+                    if(rechercherT.equals("1"))
+                    {
+                        boolRechercheT= true; // recherche pas le titre
+                    }else{
+                        boolRechercheT=false;
+                    }
+                }
+                String urgent = request.getParameter("urgent");
+                request.setAttribute("urgent", urgent);
+                
+                if(urgent!=null)
+                {
+                    if(urgent.equals("1"))
+                    {
+                        boolUrgenteT= true; // recherche pas le titre
+                    }else{
+                        boolUrgenteT=false;
+                    }
+                }
+                
+                
+                 List<Annonce> annonces =greAnnonce.rechercheAnnoncesParRecherche(titre, boolRechercheT ,false, categorie, ecole, other, boolUrgenteT);
+                 System.out.println("ecole " +ecole + " categorie " + categorie + " size " + annonces.size());
+                 if(annonces!=null && annonces.size()>0)
+                {
+                    int nombreDePage = HelpClass.calculPagination(annonces.size());
+                    //request.setAttribute("pagination", nombreDePage);
+                    request.setAttribute("pagination", nombreDePage);
+                    request.setAttribute("nbreAnnonce", annonces.size());
+                    System.out.println("nombre de page " + nombreDePage);
+
+                    // premier appel pageInt =0
+                    Collection<Annonce> annonceAEnvoyer= greAnnonce.obtenirAnnonceParPageRecherche(pageInt, titre, boolRechercheT ,false, categorie, ecole, other, boolUrgenteT);
+                    List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
+                    request.setAttribute("annonces", annonceAEnvoyer);
+                    request.setAttribute("photos", photosAnnonces);
+                    //request.setAttribute("action", action);
+                }else{
+                  request.setAttribute("nbreAnnonce", 0);  
+                }
+                 
+               request.getRequestDispatcher("offres.jsp").forward(request, response); // redirection vers la page des offres
+               
+                 
             }
             /*else if((action!=null && action.equals("take")))
             {
