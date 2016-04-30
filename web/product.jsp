@@ -71,8 +71,8 @@
                                                         <a href="resources/imagesAnnonces/${photo.nomLocalisation}"><img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt=""/></a>
                                                         
                                                         <!-- CE QUIL FAUT OBTENIR : PLUSIEURS PHOTOS -->
-                                                        <!--<a href="images/image-offre2a.jpg"><img src="images/image-offre2a.jpg" alt=""></a>--> 
-                                                        <!--<a href="images/image-offre2b.jpg"><img src="images/image-offre2b.jpg" alt=""></a>--> 
+                                                        <!--<a href="resources/imagesAnnonces/image-offre1a.jpg"><img src="resources/imagesAnnonces/image-offre1a.jpg" alt=""></a>--> 
+                                                        <!--<a href="resources/imagesAnnonces/image-offre1b.jpg"><img src="resources/imagesAnnonces/image-offre1b.jpg" alt=""></a>--> 
                                                         
                                                     </c:if>
                                                 </c:forEach>

@@ -268,7 +268,7 @@
                                                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                                                 <div class="featured_info">
                                                                                     <a href="#">${annonce.titre} </a>
-                                                                                    <p>Publier le <fmt:formatDate value="${annonce.dateCreation}" pattern="dd/MM/yyyy HH:mm:ss"/></p>
+                                                                                    <p>Publiée le <fmt:formatDate value="${annonce.dateCreation}" pattern="dd/MM/yyyy HH:mm:ss"/></p>
                                                                                         <span class="amount">${annonce.cout}&euro;</span><!-- €-->
                                                                                 </div>
                                                                                 <div class="sidebar_cart">

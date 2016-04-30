@@ -239,6 +239,7 @@
                                 <div class="form-group center">	
                                     <button type="submit" class="btn btn-warning" disabled id="validerF"> VALIDER </button> 
                                     <button type="reset" class="btn btn-warning"> ANNULER </button> 
+                                    <progress id="pr" value=100  max=1000></progress> 
                                 </div>
                         </div>
                         </form>
