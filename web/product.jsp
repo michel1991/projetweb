@@ -66,9 +66,15 @@
                                                 
                                                 <c:forEach var="photo" items="${requestScope['photos']}"  varStatus="vs">
                                                     <c:if test="${photo.nomLocalisation!=null}">
-                                                        <a href="#"><img style="width: 50%; height: 50%" src="resources/imagesAnnonces/${photo.nomLocalisation}" alt="" class="imgOffer"/></a>
+                                                        
+                                                        <!-- CE QUIL NEST PAS BON : NE CHARGE QU'UNE IMAGE (voir FullDataIntoBase ligne 665 -->
+                                                        <a href="resources/imagesAnnonces/${photo.nomLocalisation}"><img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt=""/></a>
+                                                        
+                                                        <!-- CE QUIL FAUT OBTENIR : PLUSIEURS PHOTOS -->
+                                                        <!--<a href="images/image-offre2a.jpg"><img src="images/image-offre2a.jpg" alt=""></a>--> 
+                                                        <!--<a href="images/image-offre2b.jpg"><img src="images/image-offre2b.jpg" alt=""></a>--> 
+                                                        
                                                     </c:if>
-                                                    
                                                 </c:forEach>
                                             </div>
                                         </div>

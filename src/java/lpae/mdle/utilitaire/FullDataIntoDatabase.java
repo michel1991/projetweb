@@ -45,6 +45,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import lpae.entites.PhotoAnnonce;
 
 /**
  *
@@ -61,7 +62,7 @@ public class FullDataIntoDatabase {
     @EJB
     private GreEcole greEcole;
     
-     @EJB
+    @EJB
     private GreCategorie greCategorie;
 
     @EJB
@@ -661,13 +662,18 @@ public class FullDataIntoDatabase {
             annonce1.setUrgente(true);
             annonce1.setMarquerPhoneAnnce(true);
             
-            /*PhotoAnnonce photo1 = new PhotoAnnonce();
-            photo1.setNomLocalisation(MfileName1); 
-            photo1.setNomPropre(fileName1);
-            annonce1.addPhoto(photo1);*/
-          
+            PhotoAnnonce photo1 = new PhotoAnnonce();
+            photo1.setNomLocalisation("image-offre2a.jpg");
+            photo1.setNomPropre("Photo principale");
+            annonce1.addPhoto(photo1);
+            
+            PhotoAnnonce photo2 = new PhotoAnnonce();
+            photo2.setNomLocalisation("image-offre2b.jpg");
+            photo2.setNomPropre("Photo principale2");
+            annonce1.addPhoto(photo2);
+            
             Ecole ecole = null;
-             for (Iterator iterator = utilisateur.getEcoleUtilisateurs().iterator(); iterator.hasNext();) {
+            for (Iterator iterator = utilisateur.getEcoleUtilisateurs().iterator(); iterator.hasNext();) {
                 EcoleUtilisateur next = (EcoleUtilisateur) iterator.next();
                 //annonce.setIdEcole(next.getEcole().getId()); // enlever ceci 
                 annonce1.setEcole(next.getEcole()); // laisser ceci
