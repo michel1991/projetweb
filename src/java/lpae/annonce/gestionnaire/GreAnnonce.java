@@ -199,7 +199,7 @@ public class GreAnnonce {
                 if(trouve==false)
                 {
                     PhotoAnnonce photo = new PhotoAnnonce();
-                    photo.setNomLocalisation("/images/test.jpg");
+                    photo.setNomLocalisation("no_picture.png");
                     listesAnnonces.add(photo);
                 }
             }
@@ -329,12 +329,14 @@ public class GreAnnonce {
          listPredicate.add(cb.equal(from.get("etat"), etat));
          cq.orderBy(cb.asc(from.get("dateCreation")), cb.asc(from.get("titre")));
          
-         /*if(titre!=null && titre.length()>0)
+         if(titre!=null && titre.length()>0)
          {
             Expression<String> expressionLike = from.get("titre");
-            Predicate predicateTitre = cb.like(expressionLike, titre);
+            String forLike = titre+"%";
+             System.out.println("for like " + forLike);
+            Predicate predicateTitre = cb.like(expressionLike, forLike);
             listPredicate.add(predicateTitre);     
-         }*/
+         }
          if(categorie!=null)
          {
             Expression<Categorie> expressionCategorie = from.get("categorie");
@@ -361,7 +363,17 @@ public class GreAnnonce {
            listPredicate.add(cb.equal(expressionIdEcole, ecole.getId()));*/
            Expression expressionUrgente = from.get("urgente");
            listPredicate.add(cb.equal(expressionUrgente, urgente));
-        }
+        }else{
+             if(titreUniquement)
+             {
+                 Expression<String> expressionLike = from.get("description");
+                String forLike = titre+"%";
+                 System.out.println("for like " + forLike);
+                Predicate predicateDescription = cb.like(expressionLike, forLike);
+                
+                listPredicate.add(cb.or(predicateDescription));  
+             }
+         }
          
        if(listPredicate.size()==1)
        {

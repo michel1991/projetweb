@@ -24,6 +24,37 @@ $(function(){
        $(this).removeClass("hidden").addClass("hidden");
     });*/
     
+    $('#urgenteDepotAnnonce').click(function(){
+        if($('#urgenteDepotAnnonce').is(':checked'))
+        {
+           $(this).attr("value", 1);
+           console.log("value" , $(this).attr("value"));
+        }else{
+            $(this).attr("value", 0);
+        }
+    });
+    
+    $('#checkboxesMarquerPhone').click(function(){
+        if($('#checkboxesMarquerPhone').is(':checked'))
+        {
+           $(this).attr("value", 1);
+           console.log("value" , $(this).attr("value"));
+        }else{
+            $(this).attr("value", 0);
+        }
+    });
+    
+    
+    $('#checkboxesSouhaitePas').click(function(){
+        if($('#checkboxesSouhaitePas').is(':checked'))
+        {
+           $(this).attr("value", 1);
+           console.log("value" , $(this).attr("value"));
+        }else{
+            $(this).attr("value", 0);
+        }
+    });
+    
 });
 
 
@@ -80,6 +111,7 @@ function deposerAnnoceFrontEnd()
     }
      console.log("send " +JSON.stringify(annonce));
     
+    return;
 
     var url =''+path+'/ControllerCentralDepotAnnoceFE?action=add';
     var urlRedirection =''+path+'/ServletControllerIndex?action=accueil';// mettre un petit 

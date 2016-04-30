@@ -177,6 +177,10 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                      */
                     categorieAnnonce = request.getParameter("categorieAnnonce");
                     type = request.getParameter("radios");
+                    String urgenteAnnonce = request.getParameter("annonceUrgente");
+                                
+                    System.out.println("urgente " + urgenteAnnonce);
+                    
 
                     /*System.out.println("radios " + type + " " +request.getParameter("prix")
                      + " titre " + request.getParameter("titreAnnonce")
@@ -252,6 +256,13 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                                      }
                                  }
                                  //annonce.setIdEcole(utilisateur.);
+                                 if (urgenteAnnonce != null && urgenteAnnonce.equals("1")) 
+                                 {
+                                    annonce.setUrgente(true);
+                                } else{
+                                    annonce.setUrgente(false);
+                                }
+                                 
                                 if (MarquerPhoneAnnce != null && MarquerPhoneAnnce.equals("1")) {
                                     annonce.setMarquerPhoneAnnce(true);
                                 } else {
@@ -263,14 +274,7 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                                 } else {
                                     annonce.setAnncePart(false);
                                 }
-                                String urgenteAnnonce = request.getParameter("annonceUrgente");
                                 
-                                System.out.println("urgente " + urgenteAnnonce);
-                                if (urgenteAnnonce != null && urgenteAnnonce.equals("1")) {
-                                    annonce.setUrgente(true);
-                                } else {
-                                    annonce.setUrgente(false);
-                                }
                                 
                                 ArrayList<PhotoAnnonce> photosAnnonces = new ArrayList<PhotoAnnonce>();
                                 /**
@@ -302,6 +306,7 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                                     photo1.setNomPropre(fileName1);
                                     //photosAnnonces.add(photo1);
                                     annonce.addPhoto(photo1);
+                                    System.out.println("mfilename "+MfileName1 + " filename " + fileName1 +" archive " +archiveFichier1);
 
                                     HelpClass.ecritureImageSurLeDisque(filePart.getInputStream(), archiveFichier1);
                                 }

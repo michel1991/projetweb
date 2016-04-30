@@ -7,6 +7,7 @@ package lpae.categorie.gestionnaire;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -224,6 +225,18 @@ public class GreCategorie {
             System.out.println("illegal exception recherche Categorie par id : gestionnaire categorie " +illegal.getMessage());
         }
         return cat;
+    }
+    
+   /**
+    * 
+    * @param libelle
+    * @return 
+    */
+    public List<Categorie> rechercheCategorieNomCategories(String libelle)
+    {
+        Query query =em.createQuery("SELECT c FROM Categorie c WHERE c.libelle=:libelle ORDER BY c.libelle");
+        query.setParameter("libelle", libelle);
+        return query.getResultList();
     }
     
     

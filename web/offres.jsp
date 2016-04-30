@@ -234,7 +234,9 @@
                                                 <div class="tab-content">
 
                                                     <div role="tabpanel" class="tab-pane active" id="homeft">
+                                                        
                                                         <c:set var="photosTab" value="${requestScope['photos']}" scope="page"/>
+                                                        
                                                         <div id=" " class="cc_one1">
                                                             <c:forEach var="annonce" items="${requestScope['annonces']}"  varStatus="vs">
                                                                 <div class="weekly_featured888"><!-- debut d'une ligne-->

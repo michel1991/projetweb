@@ -128,8 +128,8 @@ public class Utilisateur implements Serializable {
         return ecoleUtilisateurs;
     }
     
-    @OneToMany(mappedBy = "utilisateur")
-    private final Collection<Annonce> annoces=new ArrayList<>();
+    @OneToMany(mappedBy = "utilisateur", cascade ={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    private  Collection<Annonce> annoces=new ArrayList<>();
 
     public void setEcoleUtilisateurs(Collection<EcoleUtilisateur> ecoleUtilisateurs) {
         this.ecoleUtilisateurs = ecoleUtilisateurs;
@@ -307,6 +307,21 @@ public class Utilisateur implements Serializable {
         if(ecoleUser!=null)
         {
             this.ecoleUtilisateurs.remove(ecoleUser);
+        }
+    }
+    
+    public void addAnnonce(Annonce annonce)
+    {
+        if(annonce!=null){
+            annonce.setUtilisateur(this);
+            this.annoces.add(annonce);
+        }
+    }
+    
+     public void removeAnnonce(Annonce annonce)
+    {
+        if(annonce!=null){
+            this.annoces.remove(annonce);
         }
     }
 

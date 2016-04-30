@@ -97,8 +97,18 @@ public class Annonce implements Serializable {
     }
     
     private boolean etat ;
+
+    public boolean isAlaUne() {
+        return alaUne;
+    }
+
+    public void setAlaUne(boolean alaUne) {
+        this.alaUne = alaUne;
+    }
     
     private boolean marquerPhoneAnnce;
+    
+    private boolean alaUne;
 
     public boolean isMarquerPhoneAnnce() {
         return marquerPhoneAnnce;
