@@ -1597,7 +1597,9 @@ public class FullDataIntoDatabase {
                 break;
             }
             greAnnonce.persist(annonce16);
-    
+            
+            
+            /////// END OU A CONTINUER ///////
         }       
         
    }
