@@ -234,7 +234,9 @@
                                                 <div class="tab-content">
 
                                                     <div role="tabpanel" class="tab-pane active" id="homeft">
+                                                        
                                                         <c:set var="photosTab" value="${requestScope['photos']}" scope="page"/>
+                                                        
                                                         <div id=" " class="cc_one1">
                                                             <c:forEach var="annonce" items="${requestScope['annonces']}"  varStatus="vs">
                                                                 <div class="weekly_featured888"><!-- debut d'une ligne-->
@@ -266,7 +268,7 @@
                                                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                                                 <div class="featured_info">
                                                                                     <a href="#">${annonce.titre} </a>
-                                                                                    <p>Publier le <fmt:formatDate value="${annonce.dateCreation}" pattern="dd/MM/yyyy HH:mm:ss"/></p>
+                                                                                    <p>Publiée le <fmt:formatDate value="${annonce.dateCreation}" pattern="dd/MM/yyyy HH:mm:ss"/></p>
                                                                                         <span class="amount">${annonce.cout}&euro;</span><!-- €-->
                                                                                 </div>
                                                                                 <div class="sidebar_cart">
@@ -277,12 +279,32 @@
                                                                     </div>
                                                                 </div><!-- fin d'une ligne -->
                                                             </c:forEach>
-                                                            
+                                                          
+                                                                
                                                                 <c:if test="${requestScope['annonces']!=null && requestScope.pagination>0}">
                                                                <ul class="pagination">
                                                                     <c:forEach var="compte"  begin="0" end="${requestScope.pagination-1}">
                                                                         <%--<li><a href="ControllerCentralAnnonce?action=take&key=${compte}&about=Offres">${compte+1}</a></li>--%>
-                                                                        <li><a href="ControllerCentralAnnonce?action=Offres&key=${compte}">${compte+1}</a></li>
+                                                                        <%--<li><a href="ControllerCentralAnnonce?action=Offres&key=${compte}">${compte+1}</a></li>--%>
+                                                                        
+                                                                        <!-- chefou ceci mais faut y aller mettre ça dans la boucle c'est pas cool-->
+                                                                        <c:url value="ControllerCentralAnnonce" var="servletAnnonceUrl">
+                                                                            <c:param name="titreA"   value="${requestScope.titreA}" />
+                                                                            <c:param name="cateId"    value="${requestScope.cateId}" />
+                                                                            <c:param name="ecoleId" value="${requestScope.ecoleId}" />
+                                                                            <c:param name="other" value="${requestScope.other}" />
+
+                                                                            <c:param name="findT" value="${requestScope.findT}" />
+                                                                            <c:param name="urgent" value="${requestScope.urgent}" />
+
+                                                                            <c:param name="action" value="${requestScope.whichAction}" />
+                                                                            <c:param name="key" value="${compte}" />
+                                                                            <c:param name="nomEcole" value="${requestScope.nomEcole}" />
+                                                                        </c:url>
+                                                                        <li><a href="<c:out value="${servletAnnonceUrl}" />">${compte+1}</a></li>
+                                                                        
+                                                                        <%--<li><a href="ControllerCentralAnnonce?action=${requestScope.whichAction}&key=${compte}">${compte+1}</a></li>--%>
+                                                                        
                                                                     </c:forEach>
 
                                                                 </ul> 

@@ -65,7 +65,16 @@
                                                 <a href="images/image-offre3.jpg"><img src="images/image-offre3.jpg" alt=""></a>--> 
                                                 
                                                 <c:forEach var="photo" items="${requestScope['photos']}"  varStatus="vs">
-                                                    <a href="resources/imagesAnnonces/${photo.nomLocalisation}"><img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt="" class="imgOffer"/></a>
+                                                    <c:if test="${photo.nomLocalisation!=null}">
+                                                        
+                                                        <!-- CE QUIL NEST PAS BON : NE CHARGE QU'UNE IMAGE (voir FullDataIntoBase ligne 665 -->
+                                                        <a href="resources/imagesAnnonces/${photo.nomLocalisation}"><img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt=""/></a>
+                                                        
+                                                        <!-- CE QUIL FAUT OBTENIR : PLUSIEURS PHOTOS -->
+                                                        <!--<a href="resources/imagesAnnonces/image-offre1a.jpg"><img src="resources/imagesAnnonces/image-offre1a.jpg" alt=""></a>--> 
+                                                        <!--<a href="resources/imagesAnnonces/image-offre1b.jpg"><img src="resources/imagesAnnonces/image-offre1b.jpg" alt=""></a>--> 
+                                                        
+                                                    </c:if>
                                                 </c:forEach>
                                             </div>
                                         </div>
@@ -112,7 +121,7 @@
                                         <!--<p>bonjour, je vends mes CONVERSES "Chuck Taylor all star Canvas", motif imprimé drapeau des USA, taille 44, elles sont neuves donc en parfait état et 100% authentique puisse que je les ai acheté chez converse.com. Vente car probleme de taille. Elles sont à venir chercher ou envoi par la poste (frais de port à rajouter). PRIX 65 euros, PS: les converses vous seront remise avec sa boite original.</p>-->	
 
                                         <div class="center margBtt05">
-                                            <c:if test="${annonce.marquerPhoneAnnce==true}">
+                                            <c:if test="${annonce.marquerPhoneAnnce==true}"><!-- implementer cette fonctionnalité -->
                                                  <div class="divaddCartsl inlineBk">
                                                     <a href="#" class="bgdCBlues addCartsl"><i class="fa fa-phone"></i> Voir le numéro</a>
                                                     <input type="hidden" value="${annonce.id}"/>
@@ -120,8 +129,8 @@
                                             </c:if>
                                            
 
-                                            <div class="divaddCartsl inlineBk">
-                                                <a href="" class="bgdCGrays addCartsl"><i class="fa fa-envelope-o"></i>${annonce.marquerPhoneAnnce} Envoyer un mail </a>
+                                            <div class="divaddCartsl inlineBk"><!-- pourrais lancer gmail -->
+                                                <a href="#" class="bgdCGrays addCartsl"><i class="fa fa-envelope-o"></i>Envoyer un mail </a>
                                             </div>
                                         </div>
 
