@@ -59,6 +59,16 @@ public class ControllerCentralAnnonces extends HttpServlet {
             String action = request.getParameter("action");
             //System.out.println("action " + action);
             
+            /**
+              * ANNONCE A UNE
+              */
+             Collection<Annonce> annoncesALaUne = greAnnonce.obtenirToutesLesAnnoncesALaUne(false, true);
+             //List<List<PhotoAnnonce>> photosAnnonce = greAnnonce.obtenirTableauDeToutesLesPhotosEnListe(annoncesALaUne);
+              List<PhotoAnnonce> photosAnnoncesUne = greAnnonce.obtenirTableauDeToutesLesPhotos(annoncesALaUne);
+
+             request.setAttribute("annonceALaUnes", annoncesALaUne);
+             request.setAttribute("photosAnnoncesAlaUne", photosAnnoncesUne);
+            
              String page = request.getParameter("key");
              int pageInt = 0;
              boolean flatParsing = true;

@@ -173,21 +173,26 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="common_heading">
-                                        <h2>Related products</h2>
+                                        <h2>Annonces A  la Une</h2><!--Related products-->
                                     </div>
                                     <div class="latest_product">
                                         <div id="latest-product-caro">
-
-                                            <div class="item">
+                                        <c:set var="photosUnes" value="${requestScope['photosAnnoncesAlaUne']}" scope="page"/>
+                                        
+                                        
+                                        <c:forEach var="alaune" items="${requestScope['annonceALaUnes']}"  varStatus="vsUne">
+                                            
+                                             <c:set var="photoUne" value="${photosUnes[vsUne.index]}" />
+                                            <div class="item"> 
                                                 <div class="single_featured_product">
                                                     <div class="image_feature_change">
                                                         <div class="featured_img">
                                                             <div class="image-overlay"></div>
-                                                            <img src="images/feature1.jpg" alt="" class="whFeaturePdct"/>
+                                                            <img src="resources/imagesAnnonces/${photoUne.nomLocalisation}" alt="" class="whFeaturePdct"/>
                                                         </div>
                                                         <div class="single_feature_img_hover">
                                                             <div class="image-overlay"></div>
-                                                            <img src="images/feature1.jpg" alt="" class="whFeaturePdct"/>
+                                                            <img src="resources/imagesAnnonces/${photoUne.nomLocalisation}" alt="" class="whFeaturePdct"/>
                                                         </div>
                                                     </div>
                                                     <div class="heart-icon">
@@ -197,7 +202,7 @@
                                                         <a class="fa fa-search" href=""></a> 
                                                     </div>
                                                     <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Sunglasses</a>
+                                                        <a href="ControllerCentralDescriptionAn?action=desc&flatI=${alaune.id}">${alaune.titre}</a>
                                                         <div class="rating">
                                                             <ul>
                                                                 <li><a class="fa fa-star" href=""></a></li>
@@ -207,407 +212,17 @@
                                                                 <li><a class="fa fa-star-o" href=""></a></li>
                                                             </ul>
                                                         </div>
-                                                        <span class="amount">$200.00</span>
+                                                        <span class="amount">${alaune.cout}&euro;</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature2.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature2.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Hats</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature3.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature3.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Women Shirt</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature4.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature4.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Shoe</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature5.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature5.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Hats</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature6.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature6.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Women jacket</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature7.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature7.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Shoe</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature8.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature8.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Women T-Shirt</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature9.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature9.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Women Shirt</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature10.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature10.jpg" alt="" class="whFeaturePdct"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Women T-shirt</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature11.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature11.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Women wear</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature12.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/feature12.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Man Shirt</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="single_featured_product">
-                                                    <div class="image_feature_change">
-                                                        <div class="featured_img">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/image-offre1.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                        <div class="single_feature_img_hover">
-                                                            <div class="image-overlay"></div>
-                                                            <img src="images/image-offre1.jpg" alt="" class="whFeaturePdct" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
-                                                    <div class="featured_info">
-                                                        <a href="product-without-sidebar.html">Hats</a>
-                                                        <div class="rating">
-                                                            <ul>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star" href=""></a></li>
-                                                                <li><a class="fa fa-star-o" href=""></a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="amount">$200.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        </c:forEach>
+                                        
+                                            
+                                            
+                                            
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>

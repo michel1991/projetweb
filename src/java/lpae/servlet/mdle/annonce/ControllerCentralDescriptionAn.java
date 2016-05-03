@@ -94,6 +94,16 @@ public class ControllerCentralDescriptionAn extends HttpServlet {
                         flatIdAnnonce = false;
                         System.out.println("impossible de caster le type de l'annonce controller description produit " + keyAnnonce + " " + numberException);
                     }
+                    
+                    /**
+                     * ANNONCE A UNE
+                     */
+                    Collection<Annonce> annoncesALaUne = greAnnonce.obtenirToutesLesAnnoncesALaUne(false, true);
+                    //List<List<PhotoAnnonce>> photosAnnonce = greAnnonce.obtenirTableauDeToutesLesPhotosEnListe(annoncesALaUne);
+                     List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annoncesALaUne);
+                    
+                    request.setAttribute("annonceALaUnes", annoncesALaUne);
+                    request.setAttribute("photosAnnoncesAlaUne", photosAnnonces);
                     request.getRequestDispatcher("product.jsp").forward(request, response);
                 } else {
                     // redirection vers les pages d'erreurs

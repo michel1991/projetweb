@@ -63,7 +63,7 @@
                                             </div>
                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                 <div class="featured_info">
-                                                    <a href="product-left-sidebar.html">Crée ton annonce!</a>
+                                                    <a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}">Crée ton annonce!</a><!--product-left-sidebar.html-->
                                                     <p><a href="product-left-sidebar.html" class="ColorBlues">Restez connecté sur TrocStudents.com</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
@@ -102,7 +102,7 @@
                                             </div>
                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                 <div class="featured_info">
-                                                    <a href="product-left-sidebar.html">Inscris-toi!</a>
+                                                    <a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Inscris-toi!</a>
                                                     <p><a href="product-left-sidebar.html" class="ColorBlues">Sauvegarde tes annonces favorites.</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
@@ -124,81 +124,44 @@
                                         <li data-target="#carousel-example-generic-sb-lp" data-slide-to="2"></li>
                                     </ol>
                                     <div class="carousel-inner" role="listbox">
-                                        <div class="item active">
+                                        
+                                        <!-- CODE POUR LES ANNONCES A LA UNE -->
+                                        <c:set var="photosUnes" value="${requestScope['photosAnnoncesAlaUne']}" scope="page"/>
+                                        
+                                        <c:forEach var="alaune" items="${requestScope['annonceALaUnes']}"  varStatus="vsUne">
+                                            
+                                            <c:set var="photoUne" value="${photosUnes[vsUne.index]}" />
+                                            <div class="${vsUne.index==1?'item active':'item'} ">
                                             <div class="single_featured_product">
                                                 <div class="image_feature_change">
+                                                    
                                                     <div class="featured_img">
                                                         <div class="image-overlay"></div>
-                                                        <img src="images/feature10.jpg" alt="" />
+                                                        <img src="resources/imagesAnnonces/${photoUne.nomLocalisation}" alt="" />
                                                     </div>
+                                                    
                                                     <div class="single_feature_img_hover">
                                                         <div class="image-overlay"></div>
-                                                        <img src="images/feature9.jpg" alt="" />
+                                                        <img src="resources/imagesAnnonces/${photoUne.nomLocalisation}" alt="" />
                                                     </div>
                                                 </div>
                                                 <div class="heart-icon">
-                                                    <a class="fa fa-heart" href=""></a> 
+                                                    <a class="fa fa-heart" href="ControllerCentralDescriptionAn?action=desc&flatI=${alaune.id}"></a> 
                                                 </div>
                                                 <div class="search-icon">
-                                                    <a class="fa fa-search" href=""></a> 
+                                                    <a class="fa fa-search" href="ControllerCentralDescriptionAn?action=desc&flatI=${alaune.id}"></a> 
                                                 </div>
                                                 <div class="featured_info">
-                                                    <a href="product-left-sidebar.html">Ensemble bonnet gants mitaines</a>
-                                                    <p>Alpes-Maritimes</p>
-                                                    <span class="amount">120 €</span>
+                                                    <a href="ControllerCentralDescriptionAn?action=desc&flatI=${alaune.id}">${alaune.titre}</a>
+                                                    <p></p><!--Alpes-Maritimes-->
+                                                    <span class="amount">${alaune.cout}&euro;</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="item">
-                                            <div class="single_featured_product">
-                                                <div class="image_feature_change">
-                                                    <div class="featured_img">
-                                                        <div class="image-overlay"></div>
-                                                        <img src="images/feature7.jpg" alt="" />
-                                                    </div>
-                                                    <div class="single_feature_img_hover">
-                                                        <div class="image-overlay"></div>
-                                                        <img src="images/feature11.jpg" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="heart-icon">
-                                                    <a class="fa fa-heart" href=""></a> 
-                                                </div>
-                                                <div class="search-icon">
-                                                    <a class="fa fa-search" href=""></a> 
-                                                </div>
-                                                <div class="featured_info">
-                                                    <a href="product-left-sidebar.html">Ensemble bonnet gants mitaines</a>
-                                                    <p>Alpes-Maritimes</p>
-                                                    <span class="amount">120 €</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="single_featured_product">
-                                                <div class="image_feature_change">
-                                                    <div class="featured_img">
-                                                        <div class="image-overlay"></div>
-                                                        <img src="images/feature4.jpg" alt="" />
-                                                    </div>
-                                                    <div class="single_feature_img_hover">
-                                                        <div class="image-overlay"></div>
-                                                        <img src="images/feature3.jpg" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="heart-icon">
-                                                    <a class="fa fa-heart" href=""></a> 
-                                                </div>
-                                                <div class="search-icon">
-                                                    <a class="fa fa-search" href=""></a> 
-                                                </div>
-                                                <div class="featured_info">
-                                                    <a href="product-left-sidebar.html">Ensemble bonnet gants mitaines</a>
-                                                    <p>Alpes-Maritimes</p>
-                                                    <span class="amount">120 €</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </c:forEach>
+                                        
+                                        
+                                        
                                     </div>
                                 </div>
                             </div>

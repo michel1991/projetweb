@@ -307,7 +307,7 @@ public class FullDataIntoDatabase {
         type4.setNomTyp("-- MAISON --");
 
         Categorie categorie41 = new Categorie();
-        categorie41.setLibelle("Vêtements");
+        categorie41.setLibelle("Vetements");
         categorie41.setIsSubAnnonce(false);
         type4.addCategorie(categorie41);
         
@@ -315,6 +315,17 @@ public class FullDataIntoDatabase {
         categorie42.setLibelle("Chaussures");
         categorie42.setIsSubAnnonce(false);
         type4.addCategorie(categorie42);
+        
+        
+        Categorie categorie43 = new Categorie();
+        categorie43.setLibelle("Meubles");
+        categorie43.setIsSubAnnonce(false);
+        type4.addCategorie(categorie43);
+        
+        Categorie categorie44 = new Categorie();
+        categorie44.setLibelle("Studios");
+        categorie44.setIsSubAnnonce(false);
+        type4.addCategorie(categorie44);
         
         typesCategories.add(type4);
 
@@ -642,7 +653,167 @@ public class FullDataIntoDatabase {
             utilisateur.addEcoleUtilisateur(ecoleUtilisateur);
              em.persist(utilisateur);
              em.flush();
-                   
+             
+            TypeAnnonce typeAnnonce = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
+            TypeAnnonce demande = greAnnonce.rechercheTypeAnnonceParLibelle("Recherches");
+            
+            
+            /**
+             * LISTE DES DIFFERENTES CATEGORIES SOUS FORME DE LISTE
+             */
+            List<Categorie> listesCategories = greCategorie.rechercheCategorieNomCategories("Chaussures");
+            List<Categorie> listesCategoriesMotors = greCategorie.rechercheCategorieNomCategories("Motos"); //Vêtements
+            List<Categorie> listesCategoriesVetement = greCategorie.rechercheCategorieNomCategories("Vêtements"); //Equipement Moto
+            List<Categorie> listesCategoriesEquipeMoto = greCategorie.rechercheCategorieNomCategories("Equipement Moto");
+            
+            /***
+             * liste des categories proprement parler
+             */
+            Categorie cat = null;
+            Categorie catMotor = null;
+            Categorie catVetement = null;
+             Categorie catEquipMotos= null;
+            
+            if(listesCategories!=null && listesCategories.size()>0){
+                cat = listesCategories.get(0);
+            }
+            
+            if(listesCategoriesMotors!=null && listesCategoriesMotors.size()>0){
+                catMotor = listesCategoriesMotors.get(0);
+            }
+            
+            if(listesCategoriesVetement!=null && listesCategoriesVetement.size()>0){
+                catVetement = listesCategoriesVetement.get(0);
+            }
+            
+            if(listesCategoriesEquipeMoto!=null && listesCategoriesEquipeMoto.size()>0){
+                catEquipMotos = listesCategoriesEquipeMoto.get(0);
+            }
+            
+            ////ANNONCE A LA UNE  qui se seront afficher///
+            Annonce annonceALaLune1 = new Annonce();
+            
+            annonceALaLune1.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune1.setDescription("Très belle paire de Tennis blanche pour les sorties, à la mode ");
+            
+            annonceALaLune1.setTitre("Tennis Blanche 42 ");
+            annonceALaLune1.setCategorie(cat);
+            annonceALaLune1.setTypeAnnonce(typeAnnonce);
+            annonceALaLune1.setCout(25);
+            annonceALaLune1.setEtat(false); // visible
+            annonceALaLune1.setUtilisateur(utilisateur);
+            annonceALaLune1.setUrgente(false);
+            annonceALaLune1.setMarquerPhoneAnnce(true);
+            annonceALaLune1.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne1 = new PhotoAnnonce();
+            photoAlaUne1.setNomLocalisation("basketBlanche.jpg");
+            photoAlaUne1.setNomPropre("Tennis Blanche");
+            annonceALaLune1.addPhoto(photoAlaUne1);
+            
+            /// ANNONCE A LA UNE 2/////
+            Annonce annonceALaLune2 = new Annonce();
+            annonceALaLune2.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune2.setDescription("Converse orange très pratique pour les saisons été, printemps tout le confort dans une merveilleuse chaussure Pointure 32 ");
+            
+            annonceALaLune2.setTitre("Converse Printemps/Eté ");
+            annonceALaLune2.setCategorie(cat);
+            annonceALaLune2.setTypeAnnonce(typeAnnonce);
+            annonceALaLune2.setCout(19);
+            annonceALaLune2.setEtat(false); // visible
+            annonceALaLune2.setUtilisateur(utilisateur);
+            annonceALaLune2.setUrgente(false);
+            annonceALaLune2.setMarquerPhoneAnnce(true);
+            annonceALaLune2.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne2 = new PhotoAnnonce();
+            photoAlaUne2.setNomLocalisation("converseOrange.jpg");
+            photoAlaUne2.setNomPropre("Converse");
+            annonceALaLune2.addPhoto(photoAlaUne2);
+            
+            
+            /// ANNONCE A LA UNE 3/////
+            Annonce annonceALaLune3 = new Annonce();
+            annonceALaLune3.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune3.setDescription("Envie d'effectuer de longue distance en se sentant bien dans ses bottes alors c'est pour vous ce tongs!");
+            
+            annonceALaLune3.setTitre("Tongs");
+            annonceALaLune3.setCategorie(cat);
+            annonceALaLune3.setTypeAnnonce(typeAnnonce);
+            annonceALaLune3.setCout(19);
+            annonceALaLune3.setEtat(false); // visible
+            annonceALaLune3.setUtilisateur(utilisateur);
+            annonceALaLune3.setUrgente(false);
+            annonceALaLune3.setMarquerPhoneAnnce(true);
+            annonceALaLune3.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne3 = new PhotoAnnonce();
+            photoAlaUne3.setNomLocalisation("tongs.jpg");
+            photoAlaUne3.setNomPropre("Tong");
+            annonceALaLune3.addPhoto(photoAlaUne3);
+            
+            /// ANNONCE A LA UNE 4/////
+            Annonce annonceALaLune4 = new Annonce();
+            annonceALaLune4.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune4.setDescription("Chaussures Homme de sortie, à porter pendant les grands événements, faire resortir votre côté chic");
+            
+            annonceALaLune4.setTitre("Chaussures Hommes");
+            annonceALaLune4.setCategorie(cat);
+            annonceALaLune4.setTypeAnnonce(typeAnnonce);
+            annonceALaLune4.setCout(150);
+            annonceALaLune4.setEtat(false); // visible
+            annonceALaLune4.setUtilisateur(utilisateur);
+            annonceALaLune4.setUrgente(false);
+            annonceALaLune4.setMarquerPhoneAnnce(true);
+            annonceALaLune4.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne4 = new PhotoAnnonce();
+            photoAlaUne4.setNomLocalisation("chaussureNoireMessieur.jpg");
+            photoAlaUne4.setNomPropre("Gentleman 2016");
+            annonceALaLune4.addPhoto(photoAlaUne4);
+            
+            /// ANNONCE A LA UNE 5/////
+            Annonce annonceALaLune5 = new Annonce();
+            annonceALaLune5.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune5.setDescription("Cette ballerine Geox séduira les apprenties modeuses. D'abord grâce à sa jolie silhouette, au top de la tendance. Ensuite par son confort appréciable, apporté par sa célèbre semelle qui respire !");
+            
+            annonceALaLune5.setTitre("Ballerine femme");
+            annonceALaLune5.setCategorie(cat);
+            annonceALaLune5.setTypeAnnonce(typeAnnonce);
+            annonceALaLune5.setCout(60);
+            annonceALaLune5.setEtat(false); // visible
+            annonceALaLune5.setUtilisateur(utilisateur);
+            annonceALaLune5.setUrgente(false);
+            annonceALaLune5.setMarquerPhoneAnnce(true);
+            annonceALaLune5.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne5 = new PhotoAnnonce();
+            photoAlaUne5.setNomLocalisation("balerineNoire.jpg");
+            photoAlaUne5.setNomPropre("Balerine");
+            annonceALaLune5.addPhoto(photoAlaUne5);
+            
+            
+            /// ANNONCE A LA UNE 6/////
+            Annonce annonceALaLune6 = new Annonce();
+            annonceALaLune6.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune6.setDescription("Recherche moto Harley-Davidson Noir en bon état pour effecteuer de longue distance!! avec une garantie");
+            
+            annonceALaLune6.setTitre("Harley-Davidson");
+            annonceALaLune6.setCategorie(catMotor);
+            annonceALaLune6.setTypeAnnonce(demande);
+            annonceALaLune6.setCout(1700);
+            annonceALaLune6.setEtat(false); // visible
+            annonceALaLune6.setUtilisateur(utilisateur);
+            annonceALaLune6.setUrgente(false);
+            annonceALaLune6.setMarquerPhoneAnnce(true);
+            annonceALaLune6.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne6 = new PhotoAnnonce();
+            photoAlaUne6.setNomLocalisation("davidson.jpg");
+            photoAlaUne6.setNomPropre("Harley-Davidson");
+            annonceALaLune6.addPhoto(photoAlaUne6);
+            
+          
             
             //////////////// ANNONCE 1 ////////////////
             Annonce annonce1 = new Annonce();
@@ -651,14 +822,9 @@ public class FullDataIntoDatabase {
             annonce1.setDescription("Bonjour à vous ! Je vends une paire de chaussures converse blanche taille 42 et une paire de chaussure redskins bleue marine "
                                     + "taille 42, chaussures occasions peu utilisées, prix 19 euros la paire.");
             
-            TypeAnnonce typeAnnonce = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
-            List<Categorie> listesCategories = greCategorie.rechercheCategorieNomCategories("Chaussures");
-            
-            Categorie cat = null;
-            if(listesCategories!=null && listesCategories.size()>0){
-                cat = listesCategories.get(0);
-            }
-            
+            /*TypeAnnonce typeAnnonce = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
+            List<Categorie> listesCategories = greCategorie.rechercheCategorieNomCategories("Chaussures");*/
+             
             annonce1.setTitre("Converse / Redskins taille 42");
             annonce1.setCategorie(cat);
             annonce1.setTypeAnnonce(typeAnnonce);
@@ -684,9 +850,21 @@ public class FullDataIntoDatabase {
                 //annonce.setIdEcole(next.getEcole().getId()); // enlever ceci 
                 annonce1.setEcole(next.getEcole()); // laisser ceci
                 ecole = next.getEcole();
+                annonceALaLune1.setEcole(ecole);
+                annonceALaLune2.setEcole(ecole);
+                annonceALaLune3.setEcole(ecole);
+                annonceALaLune4.setEcole(ecole);
+                annonceALaLune5.setEcole(ecole);
+                annonceALaLune6.setEcole(ecole);
                 break;
             }
             greAnnonce.persist(annonce1);
+            greAnnonce.persist(annonceALaLune1);
+            greAnnonce.persist(annonceALaLune2);
+            greAnnonce.persist(annonceALaLune3);
+            greAnnonce.persist(annonceALaLune4);
+            greAnnonce.persist(annonceALaLune5);
+            greAnnonce.persist(annonceALaLune6);
             
              
             //////////////// ANNONCE 2 ////////////////
@@ -848,15 +1026,60 @@ public class FullDataIntoDatabase {
             photo10.setNomPropre("Photo3");
             annonce4.addPhoto(photo10);
             
+            /// ANNONCE A LA UNE 7/////
+            Annonce annonceALaLune7 = new Annonce();
+            annonceALaLune7.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune7.setDescription("Recherche Polo ce modèle de préférence que j'apprécie énormement!! ");
+            
+            annonceALaLune7.setTitre("Polo à manches courtes");
+            annonceALaLune7.setCategorie(catVetement);
+            annonceALaLune7.setTypeAnnonce(demande);
+            annonceALaLune7.setCout(29);
+            annonceALaLune7.setEtat(false); // visible
+            annonceALaLune7.setUtilisateur(utilisateur2);
+            annonceALaLune7.setUrgente(false);
+            annonceALaLune7.setMarquerPhoneAnnce(true);
+            annonceALaLune7.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne7 = new PhotoAnnonce();
+            photoAlaUne7.setNomLocalisation("poloBlanc.jpg");
+            photoAlaUne7.setNomPropre("Polo blanc");
+            annonceALaLune7.addPhoto(photoAlaUne7);
+            
+            
+            /// ANNONCE A LA UNE 8/////
+            Annonce annonceALaLune8 = new Annonce();
+            annonceALaLune8.setDateCreation(HelpClass.getCurrentDate());
+            annonceALaLune8.setDescription("Recherche Casque de protection moto noir avec visière relevable Qtech");
+            
+            annonceALaLune8.setTitre("Passion moto sécurité ");
+            annonceALaLune8.setCategorie(catEquipMotos);
+            annonceALaLune8.setTypeAnnonce(demande);
+            annonceALaLune8.setCout(100);
+            annonceALaLune8.setEtat(false); // visible
+            annonceALaLune8.setUtilisateur(utilisateur2);
+            annonceALaLune8.setUrgente(false);
+            annonceALaLune8.setMarquerPhoneAnnce(true);
+            annonceALaLune8.setAlaUne(true);
+            
+            PhotoAnnonce photoAlaUne8 = new PhotoAnnonce();
+            photoAlaUne8.setNomLocalisation("casqueNoiresMototo.jpg");
+            photoAlaUne8.setNomPropre("Casque Moto");
+            annonceALaLune8.addPhoto(photoAlaUne8);
+            
             //Ecole ecole = null;
             for (Iterator iterator = utilisateur2.getEcoleUtilisateurs().iterator(); iterator.hasNext();) {
                 EcoleUtilisateur next = (EcoleUtilisateur) iterator.next();
                 //annonce.setIdEcole(next.getEcole().getId()); // enlever ceci 
                 annonce4.setEcole(next.getEcole()); // laisser ceci
                 ecole = next.getEcole();
+                annonceALaLune7.setEcole(next.getEcole());
+                annonceALaLune8.setEcole(next.getEcole());
                 break;
             }
             greAnnonce.persist(annonce4);
+            greAnnonce.persist(annonceALaLune7);
+            greAnnonce.persist(annonceALaLune8);
                    
         }
         

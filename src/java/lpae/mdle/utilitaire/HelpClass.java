@@ -35,7 +35,7 @@ public class HelpClass {
     public static final String MESSAGE_UTILISATEUR_ECHEC_DEPOT_ANNONCE="Impossible de sauver votre annonce";// message final à destination de l'utilisateur
     public static final String MESSAGE_RESULTAT_ACTION="messageResultatAction"; // servira pour clé dans setAttribute pour tous les message à destionation de l'utilisateur
     
-    public static final int MAX_DATA_TO_RETRIEVE_ANNONCE=1;
+    public static final int MAX_DATA_TO_RETRIEVE_ANNONCE=10;
     
     public static final int DUREE_COOKIE=172800; // DEUX JOURS EN SECONDE
     

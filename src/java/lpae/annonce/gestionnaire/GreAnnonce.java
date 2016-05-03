@@ -7,9 +7,7 @@ package lpae.annonce.gestionnaire;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -113,16 +111,35 @@ public class GreAnnonce {
         }
     }
     
-    /**
-     * obtenir toutes les annonces 
-     * @return 
-     */
+   /**
+    * 
+    * @param typeAnnonce
+    * @param etat
+    * @return 
+    */
     public Collection<Annonce> obtenirToutesLesAnnonces(TypeAnnonce typeAnnonce, boolean etat) {
         Query q = em.createQuery("select a from Annonce a WHERE a.typeAnnonce=:typeAnnonce AND a.etat=:etat ORDER BY a.dateCreation, a.titre");
         //ORDER BY u.lastname ASC
         q.setParameter("typeAnnonce", typeAnnonce);
         q.setParameter("etat", etat);
         
+        //.setParameter("alaune", false);
+        
+        return q.getResultList();
+    }
+    
+    
+   
+    /**
+     * 
+     * @param etat
+     * @param alaUne
+     * @return 
+     */
+    public Collection<Annonce> obtenirToutesLesAnnoncesALaUne(boolean etat, boolean alaUne) {
+        Query q = em.createQuery("select a from Annonce a WHERE a.etat=:etat AND a.alaUne=:alaUne ORDER BY a.dateCreation, a.titre");
+        q.setParameter("etat", etat);
+        q.setParameter("alaUne", alaUne);
         return q.getResultList();
     }
     
@@ -207,6 +224,27 @@ public class GreAnnonce {
        
         return listesAnnonces;
         
+    }
+    
+   
+    /**
+     * retourne la collection de photo pour toutes les annonces
+     * @param annonceAEnvoyer
+     * @return 
+     */
+    public List<List<PhotoAnnonce>> obtenirTableauDeToutesLesPhotosEnListe(Collection<Annonce> annonceAEnvoyer)
+    {
+        List<List<PhotoAnnonce>> listesAnnonces = new ArrayList<>();
+        if(annonceAEnvoyer!=null)
+        {
+             for (Annonce annonce : annonceAEnvoyer) 
+            {
+                List<PhotoAnnonce> photos = this.getPhotoAnnonces(annonce.getId());
+                listesAnnonces.add(photos);
+            }
+        }
+       
+        return listesAnnonces;
     }
     
     /**
@@ -331,11 +369,13 @@ public class GreAnnonce {
          
          if(titre!=null && titre.length()>0)
          {
-            Expression<String> expressionLike = from.get("titre");
-            String forLike = titre+"%";
+            //Expression<String> expressionLike = from.get("titre");
+             Expression<String> expressionLike = cb.upper(from.get("titre"));
+            String forLike = titre.toUpperCase()+"%";
              System.out.println("for like " + forLike);
             Predicate predicateTitre = cb.like(expressionLike, forLike);
-            listPredicate.add(predicateTitre);     
+            //listPredicate.add(predicateTitre); 
+            listPredicate.add(predicateTitre);
          }
          if(categorie!=null)
          {
@@ -366,8 +406,9 @@ public class GreAnnonce {
         }else{
              if(titreUniquement)
              {
-                 Expression<String> expressionLike = from.get("description");
-                String forLike = titre+"%";
+                 //Expression<String> expressionLike = from.get("description");
+                 Expression<String> expressionLike = cb.upper(from.get("description"));
+                String forLike = titre.toUpperCase()+"%";
                  System.out.println("for like " + forLike);
                 Predicate predicateDescription = cb.like(expressionLike, forLike);
                 
