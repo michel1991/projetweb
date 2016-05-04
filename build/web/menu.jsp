@@ -25,7 +25,10 @@
                     <ul>
                         </li>
                         <li>
-                        <li class="active"><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Créer un compte</a></li><!--creer-compte.jsp-->
+                            <c:if test="${sessionScope.idUserFrontEnd==null}">
+                               <li class="active"><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Créer un compte</a></li> 
+                            </c:if>
+                        <!--creer-compte.jsp-->
                         <li><a href="">|</a></li> 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -87,6 +90,9 @@
                                                             <input type="hidden" class="form-control" name="indice" value="deconnect">
                                                         </div>
                                                         
+                                                        <div> <br/><div><i class="fa fa-user"></i> ${requestScope.annonce.utilisateur.login}</div><br/> </div>
+                                                                                                                       
+                                                        
                                                         <div class="form-group ">
                                                             <button type="submit" class="btn btn-success btn-block">Se D&eacute;connecter</button>
                                                         </div>
@@ -131,67 +137,17 @@
                             <!--<li><a href="demandes.jsp">Demandes</a></li>-->
                             
                             <li><a href="ControllerCentralAnnonce?action=Recherches">Demandes</a></li><!-- NB:pareil que pour Offres -->
-                            <li><a href="mes-annonces.jsp">Mes annonces</a></li>
+                            
+                            <c:if test="${sessionScope.idUserFrontEnd!=null}">
+                                <li><a href="ControllerCentralMesAnnonces?action=MesAnnonces">Mes annonces</a></li><!--mes-annonces.jsp--> 
+                            </c:if>
+                           
                             <li><a href="contact.jsp">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
-            <div class="col-md-288 col-sm-2 col-xs-12">
-                <div class="header_middle_cc_search">
-                    <ul>
-                        <li><a href="">|</a></li>
-                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i>(2) </a>
-                            <div class="cart_number_drd">
-                                <div class="single_add_cart_design">
-                                    <div class="s_add_cart_left">
-                                        <div class="add_cart_h_img">
-                                            <a href=""><img src="images/1011663_fro.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="add_cart_h_txt">
-                                            <a href="product-left-sidebar.html">Floral Print Buttoned</a>
-                                            <p>Quantity: 1</p>
-                                        </div>
-                                    </div>
-                                    <div class="s_add_cart_left_h">
-                                        <p>£25.00</p>
-                                        <a class="fa fa-times" href=""></a>
-                                    </div>
-                                </div>
-                                <div class="single_add_cart_design">
-                                    <div class="s_add_cart_left">
-                                        <div class="add_cart_h_img">
-                                            <a href=""><img src="images/1014254_full1.jpg" alt="" /></a>
-                                        </div>
-                                        <div class="add_cart_h_txt">
-                                            <a href="product-left-sidebar.html">Floral Print Buttoned</a>
-                                            <p>Quantity: 1</p>
-                                        </div>
-                                    </div>
-                                    <div class="s_add_cart_left_h">
-                                        <p>£25.00</p>
-                                        <a class="fa fa-times" href=""></a>
-                                    </div>
-                                </div>
-                                <div class="single_add_cart_design sp_des">
-                                    <div class="s_add_cart_left_bld">
-                                        <p>Subtotal</p>
-                                    </div>
-                                    <div class="s_add_cart_left_h bold_h">
-                                        <p>£55.00</p>
-                                    </div>
-                                </div>
-                                <div class="bottom_add_c_h">
-                                    <ul>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i>View Cart</a></li>
-                                        <li><a href="checkout.html">Checkout<i class="fa fa-angle-right"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+         
         </div>
     </div>
 </div>
