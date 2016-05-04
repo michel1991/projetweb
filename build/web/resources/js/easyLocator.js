@@ -67,7 +67,8 @@
          
       },
       createEvents: function() {
-         $('.js-locatorMap_list_Close').on('click',function() {            
+         $('.js-locatorMap_list_Close').on('click',function() { 
+            
                $('.js-locatorMap_listContaineMobile').slideToggle( "fast");        
          });
          
@@ -151,6 +152,7 @@
                description: entry.gsx$description.$t,
                image: entry.gsx$image.$t, 
                link: entry.gsx$link.$t,
+               adresse:entry.gsx$adresse.$t,
                iconMarker: entry.gsx$iconmarker.$t,
                marker: marker 
             });
@@ -193,6 +195,7 @@
                description: entry.description,
                image: entry.image, 
                link: entry.link,
+               adresse:entry.adresse,
                iconMarker: entry.iconmarker,
                marker: marker 
             });
@@ -228,7 +231,13 @@
          $('.locatorMap_list_item').on('click',function() {
             var locationClicked = that.easyLocatorMethods.locations[$(this).attr('data-indexarray')];
             that.easyLocatorMethods.options.map.setCenter(locationClicked.marker.getPosition());
-            
+            //console.log("click " + $(this).attr('data-indexarray') + " other " + locationClicked.toString + that.easyLocatorMethods.locations[$(this).attr('data-indexarray')].title);
+            /*$.each(locationClicked, function(key, element) {
+                console.log('key: ' + key + '\n' + 'value: ' + element);
+            });*/
+            var myLink = urlRedirectionOffresEcoles+that.easyLocatorMethods.locations[$(this).attr('data-indexarray')].title;
+            console.log("myLink " + myLink);
+            window.location=myLink;
             if(that.easyLocatorMethods.options.openInfowindowAfterClick) {
                that.easyLocatorMethods.openInfoWindow(locationClicked);   
             }            
@@ -243,12 +252,14 @@
          var locationLink = '';
          var locationImage = '';
          
+         console.log(location.adresse);
+         
          if(location.link != '') {
-            locationLink = '<p><a href="' + location.link + '" target="_blank">8 Rue des Colombes, 75044 Paris</a></p>';
+            locationLink = '<p><a href="' + location.link + '" target="_blank">'+''+'</a></p>'; //8 Rue des Colombes, 75044 Paris location.adresse
          }
          
          if(location.image != '') {
-            locationImage = '<a href="' + location.link + '"><img src="' + location.image + '" class="locatorMap_responsiveImg"/></a>';
+            locationImage = '<img src="' + location.image + '" class="locatorMap_responsiveImg"/>';
          }
          
          var contentHTMl = '<div id="locatorMap_contentInfoWindow">' + locationImage + 

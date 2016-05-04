@@ -259,7 +259,7 @@
          }
          
          if(location.image != '') {
-            locationImage = '<a href="' + location.link + '"><img src="' + location.image + '" class="locatorMap_responsiveImg"/></a>';
+            locationImage = '<img src="' + location.image + '" class="locatorMap_responsiveImg"/>';
          }
          
          var contentHTMl = '<div id="locatorMap_contentInfoWindow">' + locationImage + 
