@@ -46,7 +46,7 @@
                                     <div class="single_weekly_featured">
                                         <div class="row">
                                             <div class="col-md-5 col-sm-5 col-xs-5">                                                
-                                                <div class="image_weekly_change">
+                                                <div class="">
                                                     <div class="">
                                                         <div class="weekly_overlay"></div>
                                                         <img src="images/1013424_07_1.jpg" alt="" />

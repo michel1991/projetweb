@@ -145,7 +145,7 @@
 
                                             <div class="product_meta">
                                                 <div class="cats">
-                                                    <p class="inlineBk">Tags: <a href="">Buttoned , </a><a href="">Floral , </a><a href="">Print</a></p>
+                                                    <p class="inlineBk">Tags: <a href="">Annonce, </a><a href="">Maison, </a><a href="">Etudiant</a></p>
 
                                                     <div class="modal_icon modEdvi">
                                                         <span class="shareShop"><a href="" class="ColorBlues"><i class="fa fa-share-alt"></i> Partager l'annonce</a></span>
@@ -195,12 +195,7 @@
                                                             <img src="resources/imagesAnnonces/${photoUne.nomLocalisation}" alt="" class="whFeaturePdct"/>
                                                         </div>
                                                     </div>
-                                                    <div class="heart-icon">
-                                                        <a class="fa fa-heart" href=""></a> 
-                                                    </div>
-                                                    <div class="search-icon">
-                                                        <a class="fa fa-search" href=""></a> 
-                                                    </div>
+
                                                     <div class="featured_info">
                                                         <a href="ControllerCentralDescriptionAn?action=desc&flatI=${alaune.id}">${alaune.titre}</a>
                                                         <div class="rating">
