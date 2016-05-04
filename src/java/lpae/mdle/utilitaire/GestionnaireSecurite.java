@@ -69,4 +69,17 @@ public class GestionnaireSecurite {
         }
         
     }
+    
+    /**
+     * obtenir l'id de l'utilisateur
+     * @param typeRequete
+     * @param request
+     * @return 
+     */
+     public int obtenirIdentifiantUtilisateurFE(HttpServletRequest request)
+     {
+         HttpSession session = request.getSession();
+         return session.getAttribute("idUserFrontEnd")==null?0:(Integer)session.getAttribute("idUserFrontEnd");
+        
+     }
 }

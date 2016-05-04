@@ -24,6 +24,7 @@ import lpae.entites.Categorie;
 import lpae.entites.Ecole;
 import lpae.entites.PhotoAnnonce;
 import lpae.entites.TypeAnnonce;
+import lpae.entites.Utilisateur;
 import lpae.mdle.utilitaire.HelpClass;
 
 /**
@@ -60,11 +61,21 @@ public class GreAnnonce {
         return annonce;
     }
     
+    /**
+     * mise à jour d'un type d'anonce
+     * @param ta
+     * @return 
+     */
     public TypeAnnonce miseAjourTypeCategorie(TypeAnnonce ta)
     {
         return em.merge(ta);
     }
     
+    /**
+     * supprimer un type d'annonce
+     * @param tableauIdTypeAnnonce
+     * @return 
+     */
     public int supprimerLesTypeAnnonce(int[] tableauIdTypeAnnonce)
     {
         int resultat = 0;
@@ -125,6 +136,34 @@ public class GreAnnonce {
         
         //.setParameter("alaune", false);
         
+        return q.getResultList();
+    }
+    
+    
+    /**
+     * méthode pour récuperer toutes les annonces de l'utilisateur et il pourra les supprimer ou les modifier
+     * @param utilisateur utilisateur à qui les annonces appartiennet
+     * @return 
+     */
+    public Collection<Annonce> obtenirToutesLesAnnoncesDeUtilisateur(Utilisateur utilisateur) {
+        Query q = em.createQuery("select a from Annonce a WHERE a.utilisateur=:utilisateur ORDER BY a.dateCreation, a.titre");
+        //ORDER BY u.lastname ASC
+        q.setParameter("utilisateur", utilisateur);
+        return q.getResultList();
+    }
+    
+    /**
+     * 
+     * @param start curseur indiquant le début de la recherche
+     * @param utilisateur
+     * @return 
+     */
+    public  List<Annonce> obtenirToutesLesAnnoncesDeUtilisateurParPage(int start, Utilisateur utilisateur) 
+    {
+        Query q = em.createQuery("SELECT a FROM Annonce a WHERE a.utilisateur=:utilisateur ORDER BY a.dateCreation, a.titre");//ORDER BY u.lastname ASC
+        q.setFirstResult(start*HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        q.setParameter("utilisateur", utilisateur);
+        q.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
         return q.getResultList();
     }
     
@@ -209,7 +248,7 @@ public class GreAnnonce {
                     {
                         listesAnnonces.add(photo);
                         trouve=true;
-                        System.out.println("trouver " + photo.getNomLocalisation());
+                        //System.out.println("trouver " + photo.getNomLocalisation());
                         break;
                     }
                 }
@@ -286,7 +325,7 @@ public class GreAnnonce {
     
     
     /**
-     * 
+     * obtenir toutes les annonces d'une école
      * @param ecole
      * @param etat
      * @return 
@@ -352,6 +391,7 @@ public class GreAnnonce {
     public  Collection<Annonce> obtenirAnnonceParPageRecherche(int start, String titre, boolean titreUniquement ,boolean etat, Categorie categorie, Ecole ecole, String autres, boolean urgente) 
     {
         Query query = this.requeteRechercheAnnonce(titre, titreUniquement, etat, categorie, ecole, autres, urgente);
+        query.setFirstResult(start*HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
        // System.out.println("requete " + query.toString());
        //System.out.println("requete criteria greAnnonce" + query.toString() + " other " + cq.toString());
        query.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);

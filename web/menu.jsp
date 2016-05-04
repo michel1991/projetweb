@@ -136,7 +136,7 @@
                             <li><a href="ControllerCentralAnnonce?action=Recherches">Demandes</a></li><!-- NB:pareil que pour Offres -->
                             
                             <c:if test="${sessionScope.idUserFrontEnd!=null}">
-                                <li><a href="mes-annonces.jsp">Mes annonces</a></li> 
+                                <li><a href="ControllerCentralMesAnnonces?action=MesAnnonces">Mes annonces</a></li><!--mes-annonces.jsp--> 
                             </c:if>
                            
                             <li><a href="contact.jsp">Contact</a></li>

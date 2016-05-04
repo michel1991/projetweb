@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 $(function(){
-    getDataCategories();
+    //getDataCategories();
     
     /*$("#formDepotAnnonce").submit(function( event ) {
         var categorieAnnonce = document.getElementById('categorieAnnonce');

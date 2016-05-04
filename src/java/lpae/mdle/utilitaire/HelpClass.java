@@ -105,8 +105,23 @@ public class HelpClass {
     
     public static int calculPagination(int nombreElement)
     {
-        System.out.println("nombre division help classe " + (int) Math.ceil(nombreElement/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE));
-        return (int) Math.ceil(nombreElement/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        System.out.println("nombre division help classe " +  Double.parseDouble(String.valueOf(nombreElement))/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        double resultat =  Math.ceil(Double.parseDouble(String.valueOf(nombreElement))/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
+        
+        String conversion = String.valueOf(resultat);
+        String partieEntiere  = "";
+        int monResultatFinal = 0;
+        if(conversion.contains("."))
+        {
+             partieEntiere = conversion.substring(0, conversion.indexOf("."));
+             monResultatFinal = Integer.parseInt(partieEntiere);
+             
+        }else{
+            monResultatFinal = Integer.parseInt(conversion);
+        }
+        //System.out.println("resultat " + resultat + " partie entiere " + monResultatFinal);
+        //(int) Math.floor(nombreElement/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE) avec cel
+        return monResultatFinal;
     }
 }
 

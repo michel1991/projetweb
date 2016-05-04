@@ -266,41 +266,7 @@ public class ControllerCentralAnnonces extends HttpServlet {
                
                  
             }
-            /*else if((action!=null && action.equals("take")))
-            {
-                String page = request.getParameter("key");
-                String typeAnnonce = request.getParameter("about");
-                try{
-                    int pageInt = Integer.parseInt(page);
-                    
-                    if(typeAnnonce!=null)
-                    {
-                        TypeAnnonce typeAnnonceEntity = greAnnonce.rechercheTypeAnnonceParLibelle(typeAnnonce);
-                        Collection<Annonce> annonces= greAnnonce.obtenirToutesLesAnnonces(typeAnnonceEntity, false);
-                        
-                        if(annonces!=null && annonces.size()>0)
-                        {
-                            int nombreDePage = HelpClass.calculPagination(annonces.size());
-                            request.setAttribute("pagination", nombreDePage);
-                            request.setAttribute("nbreAnnonce", annonces.size());
-                            System.out.println("nombre de page " + nombreDePage);
-                            
-                            Collection<Annonce> annonceAEnvoyer= greAnnonce.obtenirTouteAnnoncePage(pageInt, typeAnnonceEntity, false);
-                            List<PhotoAnnonce> photosAnnonces = greAnnonce.obtenirTableauDeToutesLesPhotos(annonceAEnvoyer);
-                            request.setAttribute("annonces", annonceAEnvoyer);
-                            request.setAttribute("photos", photosAnnonces);
-                            request.setAttribute("action", typeAnnonce);
-                            System.out.println("nombre annonces " + annonceAEnvoyer.size() + " photos " +photosAnnonces.size());
-                        }
-                    }
-                    
-                }catch(NumberFormatException formatException)
-                {
-                    
-                }
-                
-                request.getRequestDispatcher("offres.jsp").forward(request, response);
-            }*/
+            
         }
     }
 

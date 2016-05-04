@@ -47,7 +47,9 @@ function getDataCategories()
     xhr.onloadend = function () 
     {
         var datas =  JSON.parse(this.response);
-        /*console.log("reponse " +JSON.stringify(datas));*/
+        //console.log("reponse " +JSON.stringify(datas));
+        
+        console.log("longueur 0 " + datas.length);
         if(typeof datas !='undefined')
         {
             for(var i =0; i<datas.length; i++)
@@ -65,12 +67,14 @@ function getDataCategories()
                         id:datas[i].idTypeCat
                 }));
                 $("#categorieAnnonceR").val($("#cateId").val());// pour cocher l'image de la categorie selectionner
+                console.log(" erreur " + '#'+datas[i].idTypeCat + datas[i].nomTypeCat);
                 
                 var dataCategories = datas[i].categories;
                 if(typeof dataCategories !='undefined')
                 {
                     for(var j =0; j<dataCategories.length; j++)
                     {
+                        
                         $('#'+datas[i].idTypeCat).append($('<option>', {
                             value: dataCategories[j].idCat,
                             text: dataCategories[j].nomCat
@@ -81,6 +85,7 @@ function getDataCategories()
         }
     };
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+     console.log("appel" );
     xhr.send("");
 }
 

@@ -84,7 +84,9 @@
                 
                 console.log("infos ecole research " + $("#cateId").val());
                 
-               getDataCategories();
+               getDataCategories();//attention il m'a fait une misère
+               
+               
                $('#rechercher').click(function(){
                    var titreAnnonce = $('#textBox').val();
                    var categorie = $("#categorieAnnonceR").val();

@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,7 +51,7 @@
                         <div class="row">
                             <div class="featered_products">
                                 <div role="tabpanel">
-
+                                     <c:set var="vPhotosMesAnnonces" value="${requestScope['photosMesAnnonces']}" scope="page"/>
 
                                     <!-- Tab panes -->
                                     <div class="tab-content">
@@ -58,41 +59,69 @@
                                         <div role="tabpanel" class="tab-pane active" id="homeft">
 
                                             <div id=" " class="cc_one1">
+                                                
+                                                <!-- DEBUT INSERTION DES ANNONCES VIA LE TALEAU DES ANNONCES -->
+                                                <c:forEach var="monAnnonce" items="${requestScope['annoncesMesAnnonces']}"  varStatus="vsUne">
+                                                     <c:set var="photoMonAnnonce" value="${vPhotosMesAnnonces[vsUne.index]}" />
+                                                     
+                                                    <div class="weekly_featured888"><!-- debut d'une ligne-->
+                                                        <div class="single_weekly_featured">
+                                                            <div class="row">
 
-                                                <div class="weekly_featured888"><!-- debut d'une ligne-->
-                                                    <div class="single_weekly_featured">
-                                                        <div class="row">
-
-                                                            <div class="col-md-5 col-sm-5 col-xs-5"><!-- pour l'image-->
-                                                                <div class="weekly_hover">
-                                                                    <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal09"></a>
-                                                                </div>
-                                                                <div class="image_weekly_change">
-                                                                    <div class="single_weekly_img">
-                                                                        <div class="weekly_overlay"></div>
-                                                                        <img src="resources/imagesAnnonces/image-offre5a.jpg" alt="" class="imgOffer"/><!--images/feature4.jpg-->
-
+                                                                <div class="col-md-5 col-sm-5 col-xs-5"><!-- pour l'image-->
+                                                                    <div class="weekly_hover">
+                                                                        <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal09"></a>
                                                                     </div>
-                                                                    <div class="single_weekly_img_hover">
-                                                                        <div class="weekly_overlay"></div>                       
-                                                                        <img src="resources/imagesAnnonces/image-offre5a.jpg" alt="" class="imgOffer"/>
+                                                                    <div class="image_weekly_change">
+                                                                        <div class="single_weekly_img">
+                                                                            <div class="weekly_overlay"></div>
+                                                                            <img src="resources/imagesAnnonces/${photoMonAnnonce.nomLocalisation}" alt="" class="imgOffer"/><!--images/feature4.jpg-->
+
+                                                                        </div>
+                                                                        <div class="single_weekly_img_hover">
+                                                                            <div class="weekly_overlay"></div>                       
+                                                                            <img src="resources/imagesAnnonces/${photoMonAnnonce.nomLocalisation}" alt="" class="imgOffer"/>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
-                                                                <div class="featured_info">
-                                                                    <a href="#">Banquette convertible </a>
-                                                                    <p>Publiée le 30/04/2016 18:38:49</p>
-                                                                    <span class="amount">150.0&euro;</span><!-- €-->
-                                                                </div>
-                                                                <div class="sidebar_cart">
-                                                                    <a href="modify-annonce.jsp">Modifier cette annonce</a>  <!--product.jsp-->
+                                                                <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
+                                                                    <div class="featured_info">
+                                                                        <a href="#">${monAnnonce.titre} </a>
+                                                                        <p>Publiée le  <fmt:formatDate value="${annonce.dateCreation}" pattern="dd/MM/yyyy HH:mm:ss"/></p>
+                                                                        <span class="amount">${monAnnonce.cout}&euro;</span><!-- €-->
+                                                                    </div>
+                                                                    <div class="sidebar_cart">
+                                                                        <a href="ControllerCentrerGererMesAnnonces?action=freshToAll&keyPlot=${monAnnonce.id}">Modifier cette annonce</a>  <!--product.jsp-->
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div><!-- fin d'une ligne -->
+                                                    </div><!-- fin d'une ligne -->
+                                                    
+                                                </c:forEach>
+                                               <!-- FIN INSERTION DES ANNONCES -->
+                                               
+                                               <!-- GESTION DE LA PAGINATION --> 
+                                                <c:if test="${requestScope['annoncesMesAnnonces']!=null && requestScope.pagination>0}">
+                                                   <ul class="pagination">
+                                                        <c:forEach var="compte"  begin="0" end="${requestScope.pagination-1}">
+                                                            
+                                                            <c:url value="ControllerCentralMesAnnonces" var="servletMesAnnoncesUrl">
+                                                                <c:param name="action" value="MesAnnonces" />
+                                                                <c:param name="key" value="${compte}" />
+                                                            </c:url>
+                                                            <li><a href="<c:out value="${servletMesAnnoncesUrl}" />">${compte+1}</a></li>
+
+                                                        </c:forEach>
+
+                                                    </ul> 
+                                                </c:if>
+                                                <!-- GESTION DE LA PAGINATION -->
+
+                                                
+                                                
+                                                
                                             </div>
 
                                         </div>

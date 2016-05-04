@@ -30,8 +30,8 @@
                     
                     <br/>
                         
-                    <h3><a href="mes-annonces.jsp"><i class="fa fa-chevron-left" aria-hidden="true"></i>Retour</a></h3> 
-                    <h3>Modification de l'annonce : Mettre Titre</h3>
+                    <h3><a href="ControllerCentralMesAnnonces"><i class="fa fa-chevron-left" aria-hidden="true"></i>Retour</a></h3> 
+                    <h3>Modification de l'annonce : ${annonce.titre}</h3>
                      
 
                          <!--onsubmit="return deposerAnnoceFrontEnd();"-->
@@ -48,7 +48,8 @@
                                             <option value=""> Choisissez la catégorie </option> 
                                             
                                         </select>
-                                        <input type="hidden" name="action" value="add"/>
+                                        <input type="hidden" name="action" value="add"/><!-- je ne me rappelle plus à quoi il me sert celui là-->
+                                        <input type="hidden" name="idCategorie" value="${requestScope.idCategorie}"/>
                                     </div>
                                 </div>
 
@@ -56,11 +57,11 @@
                                     <label class="col-md-4 control-label" for="typeAnnonce">Type d'annonce:</label>
                                     <div class="col-md-4"> 
                                         <label class="radio-inline" for="radios-0">
-                                            <input name="radios" id="radios-0" value="Offres" checked="checked" type="radio"><!-- NB:ne change pas la valeur de l'attibut value -->
+                                            <input name="radios" id="radios-0" value="Offres"  ${requestScope.monTypeAnnonce!=null?'checked="checked"':''} type="radio"><!-- NB:ne change pas la valeur de l'attibut value -->
                                             Offres
                                         </label> 
                                         <label class="radio-inline" for="radios-1">
-                                            <input name="radios" id="radios-1" value="Recherches" type="radio">
+                                            <input name="radios" id="radios-1"  ${requestScope.monTypeAnnonce!=null?'checked="checked"':''} value="Recherches" type="radio">
                                             <!--Demandes-->
                                             Recherches<!-- NB:ne change pas la valeur de l'attibut value -->
                                         </label>
@@ -93,21 +94,21 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="titreAnnonce">Titre de l'annonce:</label>  
                                     <div class="col-md-4">
-                                        <textarea class="form-control" id="titreAnnonce" name="titreAnnonce" required>Banquette convertible</textarea> 
+                                        <textarea class="form-control" id="titreAnnonce" name="titreAnnonce" required>${annonce.titre}</textarea> 
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textAnnonce">Texte de l'annonce:</label><!--Texte de l'annonce:-->
                                     <div class="col-md-4">                     
-                                        <textarea class="form-control" id="textAnnonce" name="textAnnonce" required>Banquette convertible tissus marron 2 places matelas 127 x 197 banquette 160 x 67 pour voir mes autres annonces tapez janneke83/toutes catégories /provence Alpes Côte d'Azur dans la barre de recherche</textarea><!--Votre texte-->
+                                        <textarea class="form-control" id="textAnnonce" name="textAnnonce" required>${annonce.description}</textarea><!--Votre texte-->
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="prix">Prix(&euro;):</label>  
                                     <div class="col-md-4">
-                                        <input id="prix" name="prix"  class="form-control input-md" type="number" min="0" value="140">  
+                                        <input id="prix" name="prix"  class="form-control input-md" type="number" min="0" value="${annonce.cout}">  
                                     </div>
                                 </div>
                                 
@@ -117,7 +118,7 @@
                                     </label>
                                     
                                     <div class="col-md-4">
-                                        <input  id="urgenteDepotAnnonce" value="1" type="checkbox" name="annonceUrgente">  Annonce urgente
+                                        <input  id="urgenteDepotAnnonce" value="1" ${requestScope.urgenteAnnonce==1?'checked="checked"':''} type="checkbox" name="annonceUrgente">  Annonce urgente
                                     </div>
                                 </div>
 
