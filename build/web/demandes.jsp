@@ -209,24 +209,19 @@
                         <section class="featured_area">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="common_heading">
-                                        <h2>Annonces</h2>
+                                    <div style="padding-top:1px;" class="common_heading">
+                                        <div class="divcssTabtt1"><h4><i class="fa fa-search-plus" aria-hidden="true"></i> Annonces: ${requestScope.action} </h4></div>
+                                        <div class="bgdCGrays divcssTabtt2"><h4> TOUTES(${requestScope.nbreAnnonce})</h4></div>
                                     </div>
+
+
+                                    <!--==| espace blanc div |==-->
+                                    <div class="classWhite"></div>
+                                    
+                                    
                                     <div class="row">
                                         <div class="featered_products">
                                             <div role="tabpanel">
-
-                                                <!-- Nav tabs -->
-                                                <ul class="nav nav-tabs"   role="tablist">
-
-                                                    <li role="presentation" class="active"><a href="#homeft" role="tab" data-toggle="tab">TOUTES (1 471)</a></li>
-
-                                                    <li role="presentation"><a href="#profileft" role="tab" data-toggle="tab">Etudiants (568)</a></li>
-
-                                                    <li role="presentation"><a href="#messagesft" role="tab" data-toggle="tab">Profesionnels (327)</a></li>
-
-                                                </ul>
-
                                                 <!-- Tab panes -->
                                                 <div class="tab-content">
 
@@ -456,6 +451,139 @@
                             </div>
                         </section>
                         <!--==| FIN |==-->
+                        
+                                                <section class="latest_from_blog_area">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="common_heading">
+                                        <h2>Derniers posts Blog</h2>
+                                    </div>
+                                    <div class="latest_from_blog">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="single_latest_f_blog">
+                                                    <div class="f_blog_img">
+                                                        <a href=""><img src="images/blog1_2.jpg" alt="" /></a>
+                                                        <div class="nd-content text-center">
+                                                            <div class="nd-content_inner">
+                                                                <div class="nd-content_inner1">
+                                                                    <div class="nd-title">
+                                                                        <a href="article1.jsp">LIRE PLUS</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                  
+                                                        </div>              
+                                                    </div>
+                                                    <div class="f_blog_heading">
+                                                        <a href="blog-right-sidebar.html">La boutique Troc Students!</a>
+                                                    </div>
+                                                    <div class="f_blog_menu">
+                                                        <ul>
+                                                            <li><a href=""><i class="fa fa-pencil-square-o"></i>Par Mvouma Michel</a></li>
+                                                            <li><a href=""><i class="fa fa-calendar"></i>18 Avr 2016</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>Améliorez la visibilité de votre école et de vos annonces, bénéficiez d'une page vitrine sur trocstudents.fr pour présenter votre école...</p>
+                                                    <div class="f_blog_read_more">
+                                                        <a href="article1.jsp">Lire plus ></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="single_latest_f_blog">
+                                                    <div class="f_blog_img">
+                                                        <a href=""><img src="images/blog3_1.jpg" alt="" /></a>
+                                                        <div class="nd-content text-center">
+                                                            <div class="nd-content_inner">
+                                                                <div class="nd-content_inner1">
+                                                                    <div class="nd-title">
+                                                                        <a href="blog-right-sidebar.html">LIRE PLUS</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                  
+                                                        </div>              
+                                                    </div>
+                                                    <div class="f_blog_heading">
+                                                        <a href="article2.jsp">Un Troc multi-service</a>
+                                                    </div>
+                                                    <div class="f_blog_menu">
+                                                        <ul>
+                                                            <li><a href=""><i class="fa fa-pencil-square-o"></i>Par Begyn Mélissa</a></li>
+                                                            <li><a href=""><i class="fa fa-calendar"></i>16 Avr 2016</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>TrocStudent : 10 services que vous pouvez trouver sur le site de petites annonces très intéressantes. Des cours de musiques au jardinage...</p>
+                                                    <div class="f_blog_read_more">
+                                                        <a href="article3.jsp">Lire plus ></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="single_latest_f_blog">
+                                                    <div class="f_blog_img">
+                                                        <a href=""><img src="images/blog2.jpg" alt="" /></a>
+                                                        <div class="nd-content text-center">
+                                                            <div class="nd-content_inner">
+                                                                <div class="nd-content_inner1">
+                                                                    <div class="nd-title">
+                                                                        <a href="blog-right-sidebar.html">Lire plus</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                  
+                                                        </div>              
+                                                    </div>
+                                                    <div class="f_blog_heading">
+                                                        <a href="blog-right-sidebar.html">Les annonces qui font rêver</a>
+                                                    </div>
+                                                    <div class="f_blog_menu">
+                                                        <ul>
+                                                            <li><a href=""><i class="fa fa-pencil-square-o"></i>Par Melou Michou</a></li>
+                                                            <li><a href=""><i class="fa fa-calendar"></i>15 Avr 2016</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>Envie de passer vos vacances au bord d'une piscine? TrocStudents peut vous aider à trouver votre futur logement. Suivez...</p>
+                                                    <div class="f_blog_read_more">
+                                                        <a href="blog-right-sidebar.html">Lire plus ></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="brand_area">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="brands">
+                                        <h2>NOS PARTENAIRES</h2>
+                                        <div id="brand-carousel">
+
+                                            <div class="item"><a href=""><img src="images/brand1.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand2.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand3.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand4.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand5.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand6.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand1.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand2.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand3.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand4.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand5.png" alt="Owl Image"></a></div>
+                                            <div class="item"><a href=""><img src="images/brand6.png" alt="Owl Image"></a></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--==| FIN |==-->
+                        
+                        
+                        
+                        
+                        
                     </div>
                 </div>
             </div>

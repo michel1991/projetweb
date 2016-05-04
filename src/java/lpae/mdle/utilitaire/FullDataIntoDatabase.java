@@ -1166,7 +1166,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 2 ////////////////
             Annonce annonce6 = new Annonce();
             annonce6.setDateCreation(HelpClass.getCurrentDate());
-            annonce6.setDescription("Billet");
+            annonce6.setDescription("Bonjour Je vend deux places pour le concert de Muse au festival Garorock 2016 à partir de 16h à Marmande. Valeur du billet : 67euro ");
             
             TypeAnnonce typeAnnonce6 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories6 = greCategorie.rechercheCategorieNomCategories("CD / Musique");
@@ -1242,7 +1242,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 1 ////////////////
             Annonce annonce7 = new Annonce();           
             annonce7.setDateCreation(HelpClass.getCurrentDate());
-            annonce7.setDescription("Fauteuil vert à vendre !");
+            annonce7.setDescription("Je vends un fauteuil tissu et bois coussin d'assise avec ressorts (style matelas) très confortable housse du dossier à recoudre ou re-housser!");
             
             TypeAnnonce typeAnnonce7 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories7 = greCategorie.rechercheCategorieNomCategories("Chaussures");
@@ -1285,7 +1285,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 2 ////////////////
             Annonce annonce8 = new Annonce();
             annonce8.setDateCreation(HelpClass.getCurrentDate());
-            annonce8.setDescription("Prix ferme ! Disque de 500 gigas!");
+            annonce8.setDescription("Prix ferme ! proche du neuf! blanc laquer ! tres performant ! tres belle image processeur puissant 2.40ghZ ET 4 gigas de rams ! disque de 500 gigas!!");
             
             TypeAnnonce typeAnnonce8 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories8 = greCategorie.rechercheCategorieNomCategories("CD / Musique");
@@ -1366,7 +1366,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 1 ////////////////
             Annonce annonce9 = new Annonce();           
             annonce9.setDateCreation(HelpClass.getCurrentDate());
-            annonce9.setDescription("LIT ENFANT 90cm (Cadre + Matelas + Sommier) ");
+            annonce9.setDescription("Bonjour je vends un lit 90 cm, cadre parfait état avec tiroir, matelas mérinos parfait état, sommier parfait état, marque : gami");
             
             TypeAnnonce typeAnnonce9 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories9 = greCategorie.rechercheCategorieNomCategories("Chaussures");
@@ -1409,7 +1409,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 2 ////////////////
             Annonce annonce10 = new Annonce();
             annonce10.setDateCreation(HelpClass.getCurrentDate());
-            annonce10.setDescription("Freelander 2.0 DI TURBO");
+            annonce10.setDescription("Je vends une voiture bon état général, ct effectue, pas de contre visite à prévoir, injecteur neuf, batterie neuve, option: pare bufle, radio cd pionneer, toile protection anti pluie.");
             
             TypeAnnonce typeAnnonce10 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories10 = greCategorie.rechercheCategorieNomCategories("CD / Musique");
@@ -1490,7 +1490,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 1 ////////////////
             Annonce annonce11 = new Annonce();           
             annonce11.setDateCreation(HelpClass.getCurrentDate());
-            annonce11.setDescription("Ordinateur bureau occasion HP DC8000 garanti");
+            annonce11.setDescription("Retrouvez toutes nos annonces sur leboncoin avec le mot clé Ecodair, Ordinateur HP DC8000 fixe, tour, reconditionné à neuf. Série professionnelle: rapide, fiable et silencieux.");
             
             TypeAnnonce typeAnnonce11 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories11 = greCategorie.rechercheCategorieNomCategories("Chaussures");
@@ -1533,7 +1533,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 2 ////////////////
             Annonce annonce12 = new Annonce();
             annonce12.setDateCreation(HelpClass.getCurrentDate());
-            annonce12.setDescription("JOLI piano à queue YAMAHA Blanc Brillant");
+            annonce12.setDescription("Très beau piano à queue Yamaha blanc brillant grande taille. Très bon état - 3 pédales -  + banquette neuve accordé et livraison possible");
             
             TypeAnnonce typeAnnonce12 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories12 = greCategorie.rechercheCategorieNomCategories("CD / Musique");
@@ -1614,7 +1614,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 1 ////////////////
             Annonce annonce13 = new Annonce();           
             annonce13.setDateCreation(HelpClass.getCurrentDate());
-            annonce13.setDescription("Collection BALZAC");
+            annonce13.setDescription("Collection de 13 ouvrages de Balzac : Eugénie Grandet, la peau de chagrin, ... tous les titres, Excellent état, 4€ le livre ou le lot à 20 €, A venir chercher sur l'Estaque");
             
             TypeAnnonce typeAnnonce13 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories13 = greCategorie.rechercheCategorieNomCategories("Chaussures");
@@ -1657,7 +1657,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 2 ////////////////
             Annonce annonce14 = new Annonce();
             annonce14.setDateCreation(HelpClass.getCurrentDate());
-            annonce14.setDescription("Basse cort b4 défrettée");
+            annonce14.setDescription("Je vends Basse Cort Artisan B4 défrettée, pour financer un prochain achat. Elle est en très bon état, très peu joué avec. Caractéristiques: Corps en frêne des marais massif, Manche 5 pièces vissé");
             
             TypeAnnonce typeAnnonce14 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories14 = greCategorie.rechercheCategorieNomCategories("CD / Musique");
@@ -1739,7 +1739,7 @@ public class FullDataIntoDatabase {
             //////////////// ANNONCE 1 ////////////////
             Annonce annonce15 = new Annonce();           
             annonce15.setDateCreation(HelpClass.getCurrentDate());
-            annonce15.setDescription("Lot de 3 DVD humour");
+            annonce15.setDescription("Lot de 3 DVD humour : Michelle Bernier : Le démon de midi/ et pas une ride, Franck Dubosc : le romantique, Gad Elmaleh : l'autre, c'est moi !");
             
             TypeAnnonce typeAnnonce15 = greAnnonce.rechercheTypeAnnonceParLibelle("Offres");
             List<Categorie> listesCategories15 = greCategorie.rechercheCategorieNomCategories("DVD / Films");

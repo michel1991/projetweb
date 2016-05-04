@@ -20,34 +20,38 @@
         <section class="content_wrapper">
             <div class="container">
                 <div class="row">  
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-
+                    <div class="col-md-12 col-sm-12 col-xs-12">      
                         <div class="divbAide">
-
                             <div class="center ctAide">
+
+
+
+
+
+
                                 <div class="lineSpcregl fontB">MES ANNONCES</div> 
                                 <HR>
-
                                 <p class="shareShop"><a href="" class="ColorBlues"><i class="fa fa-heart"></i> Modifier mes annonces</a></p><br/>
-
                                 <p>Pour modifier des annonces, cliquez sur le lien « Modifier l'annonce » et vous serez redirigé vers la page de modification de cette annonce.
                                     Si l'annonce n'est plus active sur le site, elle disparaîtra automatiquement de votre sélection.
                                 </p>
                                 <p><span class="ColorBlues">Attention :</span> si vous supprimez vos cookies, vous perdrez toutes vos annonces sauvegardées.</p>
 
+
+
+
+
                                 <!-- ////////// LISTE DES ANNONCES ////////// -->
-                                <div class="row">
+                                <div class="row" style="background-color:red;">
+
+
                                     <div class="featered_products">
                                         <div role="tabpanel">
                                             <c:set var="vPhotosMesAnnonces" value="${requestScope['photosMesAnnonces']}" scope="page"/>
-
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-
                                                 <div role="tabpanel" class="tab-pane active" id="homeft">
-
                                                     <div id=" " class="cc_one1">
-
                                                         <!-- DEBUT INSERTION DES ANNONCES VIA LE TALEAU DES ANNONCES -->
                                                         <c:forEach var="monAnnonce" items="${requestScope['annoncesMesAnnonces']}"  varStatus="vsUne">
                                                             <c:set var="photoMonAnnonce" value="${vPhotosMesAnnonces[vsUne.index]}" />
@@ -56,8 +60,7 @@
                                                                 <div class="single_weekly_featured">
                                                                     <div class="row">
 
-                                                                        <div class="col-md-5 col-sm-5 col-xs-5"><!-- pour l'image-->
-                                                                             
+                                                                        <div class="col-md-5 col-sm-5 col-xs-5"><!-- pour l'image-->                                                                             
                                                                             <div class=" ">
                                                                                 <div class="single_weekly_img">
                                                                                     <div class="weekly_overlay"></div>
@@ -71,7 +74,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
+                                                                        <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding" style="background-color:blue;">
                                                                             <div class="featured_info">
                                                                                 <a href="#">${monAnnonce.titre} </a>
                                                                                 <p>Publiée le  <fmt:formatDate value="${monAnnonce.dateCreation}" pattern="dd/MM/yyyy HH:mm:ss"/></p>
@@ -80,7 +83,7 @@
                                                                             <div class="sidebar_cart inlineBk">
                                                                                 <a href="ControllerCentrerGererMesAnnonces?action=freshToAll&keyPlot=${monAnnonce.id}">Modifier cette annonce</a>  <!--product.jsp-->
                                                                             </div>
-                                                                            
+
                                                                             <div class="sidebar_cart inlineBk">
                                                                                 <a href="#" role="button" data-toggle="modal" data-target="#login-modal">Supprimer l'annonce</a>
                                                                             </div>
@@ -103,6 +106,8 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+
+
                                                                         </div>
                                                                         <!-- END # MODAL LOGIN -->
 
@@ -133,29 +138,29 @@
                                                     </c:if>
                                                     <!-- GESTION DE LA PAGINATION -->
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>  
-                    </div>    	
+
+
+
+
+
+                            </div>  
+                        </div>                                            
+                    </div>
                 </div>
-                <!--==| Feature End |==-->
-
             </div>
-        </div>
+        </section>
+                                            
+        <footer>
+            <jsp:include page="footer.jsp"/> 
+        </footer>
 
-    </section>
-    <footer>
-        <jsp:include page="footer.jsp"/> 
-    </footer>
+        <jsp:include page="links-js.jsp"/> 
 
-    <jsp:include page="links-js.jsp"/> 
-
-</body>
+    </body>
 
 </html>
 

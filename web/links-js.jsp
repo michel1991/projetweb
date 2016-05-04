@@ -84,4 +84,12 @@
               mapType: 'ROADMAP'*/
     </script>
     
- 
+ <script>
+$('.launchConfirm').on('click', function (e) {
+    $('#confirm')
+        .modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#delete', function (e) {
+            //delete function
+        });
+});
+</script>

@@ -16,8 +16,10 @@
     <body>  
         <jsp:include page="menu.jsp"/>
         
-        <!-- ///// ESPACE BLANC DIV ///// -->
+        <!-- ///// ESPACE BLANC DIV /////  -->
         <div class="classWhite"></div>
+        
+        
         
         <div id="locatorList" style="height:400px;"></div>
         
