@@ -11,6 +11,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
@@ -488,6 +490,36 @@ public class GreAnnonce {
        Query query = em.createQuery(cq.select(from));
        return query;
     }
+   
+   
+   /**
+    * methode permettant de recherche une photo d'une annonce par categorie
+    * @param nomPropre
+    * @return 
+    */
+   public PhotoAnnonce recherchePhotoAnnonce(String nomPropre)
+    {
+        Query query =em.createQuery("SELECT pa FROM PhotoAnnonce pa WHERE pa.nomLocalisation=:nomLocalisation");
+        PhotoAnnonce photoAnnonce = null;
+        try{
+             photoAnnonce = (PhotoAnnonce) query.getSingleResult();
+        }catch(NoResultException | NonUniqueResultException | IllegalStateException noreException)
+        {
+             photoAnnonce=null;
+        }
+        return photoAnnonce;
+    }
+   
+   /**
+    * 
+    * @param photoAnnonce photoAnnonce a supprimer
+    */
+   public void supprimerPhotoAnnonce(PhotoAnnonce photoAnnonce)
+   {
+       PhotoAnnonce photoAnnonceG= em.merge(photoAnnonce);
+       this.em.remove(photoAnnonceG);
+       this.em.flush();
+   }
     
    
 }

@@ -83,7 +83,7 @@ public class HelpClass {
      * @param filePath chemin vers le fichier
      * @throws IOException 
      */
-    public static  void supprimerImageSurLeDisque(String filePath) throws IOException {
+    public static void supprimerImageSurLeDisque(String filePath) throws IOException {
         File file = new File(filePath);
         if(file!=null && file.exists())
         {

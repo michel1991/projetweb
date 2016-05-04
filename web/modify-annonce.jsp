@@ -170,6 +170,7 @@
                                                 <c:choose>
                                                         <c:when test="${requestScope.photo2!=null}">
                                                             <img id="blah2" src="resources/imagesAnnonces/${photo2.nomLocalisation}" alt="" class="classBlah"/>
+                                                             
                                                             <input type="hidden" value="${photo2.nomLocalisation}" name="oldFichier2"/>
                                                         </c:when>
 

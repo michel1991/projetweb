@@ -278,6 +278,20 @@ public class ControllerCentrerGererMesAnnonces extends HttpServlet {
                                         {
                                             final String MfileName1 = HelpClass.ajoutInformationNomPhoto() + fileName1;
                                             String archiveFichier1 = locationFichier + File.separator + MfileName1;
+                                            
+                                            String ancienFichier1 = request.getParameter("oldFichier1");
+                                            if(ancienFichier1!=null && !fileName1.equals(ancienFichier1))
+                                            {
+                                                String cheminCompletFichierSupprimer1 = locationFichier + File.separator + ancienFichier1;
+                                                HelpClass.supprimerImageSurLeDisque(cheminCompletFichierSupprimer1);
+                                                PhotoAnnonce annoncePhoto1 = greAnnonce.recherchePhotoAnnonce(ancienFichier1);
+                                                
+                                                if(annoncePhoto1!=null)
+                                                {
+                                                    greAnnonce.supprimerPhotoAnnonce(annoncePhoto1);
+                                                }
+                                            }
+                                            
                                             PhotoAnnonce photo1 = new PhotoAnnonce();
                                             photo1.setNomLocalisation(MfileName1);
                                             photo1.setNomPropre(fileName1);
@@ -291,6 +305,20 @@ public class ControllerCentrerGererMesAnnonces extends HttpServlet {
 
                                             final String MfileName2 = HelpClass.ajoutInformationNomPhoto() + fileName2;
                                             String archiveFichier2 = locationFichier + File.separator + MfileName2;
+                                            
+                                            String ancienFichier2 = request.getParameter("oldFichier2");
+                                            if(ancienFichier2!=null && !fileName2.equals(ancienFichier2))
+                                            {
+                                                String cheminCompletFichierSupprimer2 = locationFichier + File.separator + ancienFichier2;
+                                                HelpClass.supprimerImageSurLeDisque(cheminCompletFichierSupprimer2);
+                                                PhotoAnnonce annoncePhoto2 = greAnnonce.recherchePhotoAnnonce(ancienFichier2);
+                                                
+                                                if(annoncePhoto2!=null)
+                                                {
+                                                    greAnnonce.supprimerPhotoAnnonce(annoncePhoto2);
+                                                }
+                                            }
+                                            
                                             PhotoAnnonce photo2 = new PhotoAnnonce();
                                             photo2.setNomLocalisation(MfileName2);
                                             photo2.setNomPropre(fileName2);
@@ -303,9 +331,16 @@ public class ControllerCentrerGererMesAnnonces extends HttpServlet {
                                             String archiveFichier3 = locationFichier + File.separator + MfileName3;
                                             
                                             String ancienFichier3 = request.getParameter("oldFichier3");
-                                            if(ancienFichier3!=null && fileName3.equals(ancienFichier3))
+                                            if(ancienFichier3!=null && !fileName3.equals(ancienFichier3))
                                             {
+                                                String cheminCompletFichierSupprimer3 = locationFichier + File.separator + ancienFichier3;
+                                                HelpClass.supprimerImageSurLeDisque(cheminCompletFichierSupprimer3);
+                                                PhotoAnnonce annoncePhoto3 = greAnnonce.recherchePhotoAnnonce(ancienFichier3);
                                                 
+                                                if(annoncePhoto3!=null)
+                                                {
+                                                    greAnnonce.supprimerPhotoAnnonce(annoncePhoto3);
+                                                }
                                             }
                                             PhotoAnnonce photo3 = new PhotoAnnonce();
                                             photo3.setNomLocalisation(MfileName3);
