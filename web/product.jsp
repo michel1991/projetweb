@@ -82,7 +82,7 @@
 
                                     <!-- INFORMATIONS SUPP -->
                                     <div class="center margBtt05">
-                                        <div class="publPdct"><span>Publiée par <a href=""><i class="fa fa-user"></i>
+                                        <div class="publPdct"><span>Annonce publiée par <a href=""><i class="fa fa-user"></i>
                                                     ${requestScope.annonce.utilisateur.login}<!--MelGD11-->
                                              </a></span></div>
 
@@ -130,7 +130,7 @@
                                            
 
                                             <div class="divaddCartsl inlineBk"><!-- pourrais lancer gmail -->
-                                                <a href="#" class="bgdCGrays addCartsl"><i class="fa fa-envelope-o"></i>Envoyer un mail </a>
+                                                <a href="#" class="bgdCGrays addCartsl"><i class="fa fa-envelope-o"></i> Envoyer un mail </a><!-- marquer l'espace avec le <i> -->
                                             </div>
                                         </div>
 
