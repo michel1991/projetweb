@@ -95,9 +95,9 @@
                                 <h3>MON COMPTE</h3>
                                 <nav class="footer_wid_menu">
                                     <ul>
-                                        <li><a href="index.jsp"><i class="fa fa-caret-right"></i>Mon panier</a></li>
-                                        <li><a href="creer-compte.jsp"><i class="fa fa-caret-right"></i>Créer un compte</a></li>
-                                        <li><a href=""><i class="fa fa-caret-right"></i>Mon profil</a></li>
+                                        <li><a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}"><i class="fa fa-caret-right"></i>Publier annonce</a></li>
+                                        <li><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil"><i class="fa fa-caret-right"></i>Créer un compte</a></li>
+                                        <li><a href="contact.jsp"><i class="fa fa-caret-right"></i>Contactez-nous</a></li>
                                         <li class="last_child"><a href="help.jsp"><i class="fa fa-caret-right"></i>Aide</a></li>
                                     </ul>
                                 </nav>
@@ -110,21 +110,21 @@
                                     <ul>
                                         <li><a href="qsn.jsp"><i class="fa fa-caret-right"></i>Qui sommes-nous</a></li>
                                         <li><a href="regles-diffusion.jsp"><i class="fa fa-caret-right"></i>Règles diffusion</a></li>
-                                        <li><a href="checkout.html"><i class="fa fa-caret-right"></i>Check-out</a></li>
-                                        <li class="last_child"><a href="map.jsp"><i class="fa fa-caret-right"></i>Troc Maps</a></li>
+                                        <li><a href="infos-legales.jsp"><i class="fa fa-caret-right"></i>Infos Légales</a></li>
+                                        <li class="last_child"><a href="index.jsp"><i class="fa fa-caret-right"></i>Troc Maps</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-12">
                             <div class="footer_wid">
-                                <h3>MES ACHATS</h3>
+                                <h3>NOS ACTUS</h3>
                                 <nav class="footer_wid_menu">
                                     <ul>
-                                        <li><a href="index.jsp"><i class="fa fa-caret-right"></i>Rappel de produit</a></li>
-                                        <li><a href="index.jsp"><i class="fa fa-caret-right"></i>Retours et échanges</a></li>
-                                        <li><a href="infos-legales.jsp"><i class="fa fa-caret-right"></i>Infos Légales</a></li>
-                                        <li class="last_child"><a href="help.jsp"><i class="fa fa-caret-right"></i>Aide et FAQ</a></li>
+                                        <li><a href="article1.jsp"><i class="fa fa-caret-right"></i>Shop Premium!</a></li>
+                                        <li><a href="article2.jsp"><i class="fa fa-caret-right"></i>Emplois</a></li>
+                                        <li><a href="article3.jsp"><i class="fa fa-caret-right"></i>Le rêve !</a></li>
+                                        <li class="last_child"><a href="index.jsp"><i class="fa fa-caret-right"></i>Accueil</a></li>
                                     </ul>
                                 </nav>
                             </div>
