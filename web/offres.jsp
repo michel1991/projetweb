@@ -45,29 +45,21 @@
                                 <div class="weekly_featured">
                                     <div class="single_weekly_featured">
                                         <div class="row">
-                                            <div class="col-md-5 col-sm-5 col-xs-5">
-                                                <div class="weekly_hover">
-                                                    <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal09"></a>
-                                                </div>
+                                            <div class="col-md-5 col-sm-5 col-xs-5">                                                
                                                 <div class="image_weekly_change">
-                                                    <div class="single_weekly_img">
+                                                    <div class="">
                                                         <div class="weekly_overlay"></div>
                                                         <img src="images/1013424_07_1.jpg" alt="" />
-                                                    </div>
-                                                    <div class="single_weekly_img_hover">
-                                                        <div class="weekly_overlay"></div>
-                                                        <img src="images/1008627-4_1.jpg" alt="" />
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                                    </div>                                         
+                                                </div>                             
+                                            </div>                                       
                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                 <div class="featured_info">
                                                     <a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}">Crée ton annonce!</a><!--product-left-sidebar.html-->
-                                                    <p><a href="product-left-sidebar.html" class="ColorBlues">Restez connecté sur TrocStudents.com</a></p>
+                                                    <p><a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}" class="ColorBlues">Restez connecté sur TrocStudents.com</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
-                                                    <a href="product.jsp">Voir ici</a>
+                                                    <a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}">Voir ici</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,37 +68,21 @@
                                 <div class="weekly_featured">
                                     <div class="single_weekly_featured">
                                         <div class="row">
-                                            <div class="col-md-5 col-sm-5 col-xs-5">
-                                                <div class="weekly_hover">
-                                                    <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal10"></a>
-                                                </div>
+                                            <div class="col-md-5 col-sm-5 col-xs-5">                                                
                                                 <div class="image_weekly_change">
-                                                    <div class="single_weekly_img">
+                                                    <div class="">
                                                         <div class="weekly_overlay"></div>
                                                         <img src="images/1010681-4.jpg" alt="" />
-                                                    </div>
-                                                    <div class="single_weekly_img_hover">
-                                                        <div class="weekly_overlay"></div>
-                                                        <img src="images/1009859_2_1.jpg" alt="" />
-                                                    </div>
-                                                </div>
-                                                <!-- Modal Start -->
-                                                <div id="myModal10" class="modal fade" role="dialog">
-                                                    <div class="modal-dialog">
-
-
-                                                    </div>
-                                                </div>
-                                                <!-- Modal END -->
-
+                                                    </div>                                         
+                                                </div>                             
                                             </div>
                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                 <div class="featured_info">
                                                     <a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Inscris-toi!</a>
-                                                    <p><a href="product-left-sidebar.html" class="ColorBlues">Sauvegarde tes annonces favorites.</a></p>
+                                                    <p><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil" class="ColorBlues">Sauvegarde tes annonces favorites.</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
-                                                    <a href="product.jsp">Voir ici</a>
+                                                    <a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Voir ici</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -207,11 +183,8 @@
                                                                         <div class="row">
 
                                                                             <div class="col-md-5 col-sm-5 col-xs-5"><!-- pour l'image-->
-                                                                                <div class="weekly_hover">
-                                                                                    <a class="fa fa-search" href="" data-toggle="modal" data-target="#myModal09"></a>
-                                                                                </div>
                                                                                 <div class="image_weekly_change">
-                                                                                    <div class="single_weekly_img">
+                                                                                    <div class="">
                                                                                         <div class="weekly_overlay"></div>
                                                                                         <c:set var="photo" value="${photosTab[vs.index]}" />
                                                                                         <img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt="" class="imgOffer"/><!--images/feature4.jpg-->
@@ -219,11 +192,6 @@
                                                                                             <img src="${photo.nomLocalisation}" alt="" class="imgOffer"/>
                                                                                           
                                                                                         </c:forEach>--%>
-                                                                                    </div>
-                                                                                    <div class="single_weekly_img_hover">
-                                                                                        <div class="weekly_overlay"></div>
-                                                                                        <!--<img src="images/feature4.jpg" alt="" class="imgOffer"/>-->
-                                                                                        <img src="resources/imagesAnnonces/${photo.nomLocalisation}" alt="" class="imgOffer"/>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

@@ -60,11 +60,11 @@
                                             </div>
                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                 <div class="featured_info">
-                                                    <a href="product-left-sidebar.html">Crée ton annonce!</a>
-                                                    <p><a href="product-left-sidebar.html" class="ColorBlues">Restez connecté sur TrocStudents.com</a></p>
+                                                    <a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}">Crée ton annonce!</a><!--product-left-sidebar.html-->
+                                                    <p><a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}" class="ColorBlues">Restez connecté sur TrocStudents.com</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
-                                                    <a href="product.html">Voir ici</a>
+                                                    <a href="${sessionScope.idUserFrontEnd==null?'ControllerServletFrontEnd?action=accueil':'ControllerCentralDepotAnnoceFE'}">Voir ici</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,11 +99,11 @@
                                             </div>
                                             <div class="col-md-7 col-sm-7 col-xs-7 no_col_padding">
                                                 <div class="featured_info">
-                                                    <a href="product-left-sidebar.html">Inscris-toi!</a>
-                                                    <p><a href="product-left-sidebar.html" class="ColorBlues">Sauvegarde tes annonces favorites.</a></p>
+                                                    <a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Inscris-toi!</a>
+                                                    <p><a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil" class="ColorBlues">Sauvegarde tes annonces favorites.</a></p>
                                                 </div>
                                                 <div class="sidebar_cart">
-                                                    <a href="product.html">Voir ici</a>
+                                                    <a href="${pageContext.servletContext.contextPath}/ControllerServletFrontEnd?action=accueil">Voir ici</a>
                                                 </div>
                                             </div>
                                         </div>
