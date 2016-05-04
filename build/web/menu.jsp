@@ -90,7 +90,7 @@
                                                             <input type="hidden" class="form-control" name="indice" value="deconnect">
                                                         </div>
                                                         
-                                                        <div> <br/><div><i class="fa fa-user"></i> ${requestScope.annonce.utilisateur.login}</div><br/> </div>
+                                                        <div> <br/><div><i class="fa fa-user"></i> </div><br/> </div>
                                                                                                                        
                                                         
                                                         <div class="form-group ">
