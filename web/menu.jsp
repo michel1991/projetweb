@@ -90,7 +90,7 @@
                                                             <input type="hidden" class="form-control" name="indice" value="deconnect">
                                                         </div>
                                                         
-                                                        <div> <br/><div><i class="fa fa-user"></i> </div><br/> </div>
+                                                        <div> <br/><div><i class="fa fa-user"></i> ${sessionScope.loginUserFrontEnd}</div><br/> </div>
                                                                                                                        
                                                         
                                                         <div class="form-group ">
@@ -128,7 +128,7 @@
                 <div class="header_middle_right">
                     <nav class="mainmenu">
                         <ul>
-                            <li><a href="index.jsp">Accueil</a></li>
+                            <li><a href="ServletControllerIndex">Accueil</a></li>
                             <c:if test="${sessionScope.idUserFrontEnd!=null}">
                                     <li><a href="ControllerCentralDepotAnnoceFE">Déposer une annonce</a></li>
                             </c:if>

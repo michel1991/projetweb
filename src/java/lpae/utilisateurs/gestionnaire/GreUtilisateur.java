@@ -6,6 +6,7 @@
 package lpae.utilisateurs.gestionnaire;
 
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -33,7 +34,8 @@ public class GreUtilisateur {
         return utilisateur;
     }
     
-    public Collection<Utilisateur> obtenirToutesLesEcoles()
+    
+    public List<Utilisateur> obtenirTousLesUtilisateurs()
     {
         Query query =em.createQuery("SELECT u FROM Utilisateur u ORDER BY u.nom, u.prenom");
         return query.getResultList();
@@ -168,5 +170,7 @@ public class GreUtilisateur {
         }
         return utilisateur;
     }
+    
+    
     
 }

@@ -24,7 +24,7 @@ import org.joda.time.format.DateTimeFormat;
  */
 public class HelpClass {
     
-    public static final String PAGE_ACCUEIL_FRONT_END="index.jsp";
+    public static final String PAGE_ACCUEIL_FRONT_END="page-accueil.jsp";
     public static final String COOKIE_NAME_MDP="troc_student_cookie_mdp";
     public static final String COOKIE_NAME_EMAIL="troc_student_cookie_email";
     public static final String NOM_SERVLET_CONTROLLER_END="ServletControllerIndex";

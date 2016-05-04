@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -51,6 +52,7 @@ public class ControllerUtilisateur extends HttpServlet {
     
      @EJB
     private GreEcole greEcole;
+     
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,6 +70,9 @@ public class ControllerUtilisateur extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             //System.out.println("utilisateur requete");
             gestionnaireSecurite.verificationAccesUtilisateurAdmin("redirection", request, response);
+             List<Utilisateur> utilisateurs = greUtilisateur.obtenirTousLesUtilisateurs();
+              request.setAttribute("usersGet", utilisateurs);
+              request.setAttribute("cc", "bonjour");
             try{
                 String action = request.getParameter("action");
                 //System.out.println("action voulu par l'utilisateur " + action);
@@ -79,12 +84,15 @@ public class ControllerUtilisateur extends HttpServlet {
                     {
                         case "accueil": {
                             Collection<Ecole> ecoles = greEcole.obtenirToutesLesEcoles();
+                           
+                            System.out.println("taille de la liste des utilisateurs " + utilisateurs.size());
                             //System.out.println("taille ecoles " + ecoles.size());
                             /*for (Iterator<Ecole> iterator = ecoles.iterator(); iterator.hasNext();) {
                                 Ecole next = iterator.next();
                                 System.out.println("ecole " + next);
                             }*/
                             request.setAttribute("ecolesM", ecoles);
+                           
                             request.getRequestDispatcher(PAGE_ACCUIEL_PRESENTATION).forward(request, response);
                             break;
                             

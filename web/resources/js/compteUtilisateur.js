@@ -59,6 +59,40 @@ $(function(){
         
         getDataEcole();
         
+       table = $('#tableUtilisateur').DataTable(
+        {
+            'columnDefs': [{
+            'targets': 0,
+            'searchable': false,
+            'orderable': false,
+            'width': '1%',
+            'className': 'dt-body-center',
+            'render': function (data, type, full, meta){
+                return '<input type="checkbox">';
+            }
+          },
+            {
+              "targets": [ 4 ],
+              "visible": false,
+              "searchable": false
+           }// pour l'id de la categorie
+           
+           
+          
+      ],
+          'order': [1, 'asc'],
+           'rowCallback': function(row, data, dataIndex)
+            {
+              // Get row ID
+              var rowId = data[0];
+              // If row ID is in the list of selected row IDs
+              if($.inArray(rowId, rows_selected) !== -1){
+                 $(row).find('input[type="checkbox"]').prop('checked', true);
+                 $(row).addClass('selected');
+              }
+              
+            }
+        }); // fin du databale
         
         
   });

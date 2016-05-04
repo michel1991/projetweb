@@ -161,6 +161,41 @@ public class ControllerCentrerGererMesAnnonces extends HttpServlet {
                 
                 request.getRequestDispatcher(redirection).forward(request, response);// c'est vraiment un intru
             }
+            
+            else if(request.getParameter("action")!=null && request.getParameter("action").equals("supprimerAnnonce")) 
+            {
+                String idAnnonceChaine = request.getParameter("idAnnonce");
+                Annonce annonce = null;
+                int intIdAnnonce = 0;
+                
+                try{
+                        intIdAnnonce = Integer.parseInt(idAnnonceChaine);
+                        annonce = greAnnonce.rechercherAnnonceParId(intIdAnnonce);
+                        
+                        if(annonce!=null)
+                        {
+                            String contextRealPath = getServletContext().getRealPath("/");
+                            String locationFichier = contextRealPath + HelpClass.REPERTOIRE_PHOTOS_ANNONCE;
+                            String remplace = "build"+File.separator;
+                            locationFichier=locationFichier.replace(remplace, "");
+                            
+                            Collection<PhotoAnnonce> listesPhoto = annonce.getPhotos();
+                            for (PhotoAnnonce photo : listesPhoto) {
+                                String cheminCompletFichierSupprimer1 = locationFichier + File.separator + photo.getNomLocalisation();
+                                 HelpClass.supprimerImageSurLeDisque(cheminCompletFichierSupprimer1);
+                            }
+                            
+
+                            greAnnonce.supprimerAnnonce(annonce);
+                        }
+                        
+                }catch(NumberFormatException numberException)
+                {
+                    System.out.println("impossible de caster l'id de l'annonce gestionnaire central mes annonces " + idAnnonceChaine + " " + numberException);
+                }
+                
+                response.sendRedirect("ControllerCentralMesAnnonces?action=MesAnnonces");
+            }
             /**
              * pour cette modification on aurait pu utiliser la page de création de l'annonce mais je craignais de tout faire....
              */

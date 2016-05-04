@@ -109,7 +109,7 @@
 
 
                     <div class="next-section">
-                        <a href="page-accueil.jsp">ENTREZ</a>
+                        <a href="ServletControllerIndex">ENTREZ</a>
                     </div>
 
                 </div>

@@ -84,9 +84,9 @@
                                                                                 <a href="ControllerCentrerGererMesAnnonces?action=freshToAll&keyPlot=${monAnnonce.id}">Modifier cette annonce</a>  <!--product.jsp-->
                                                                             </div>
 
-                                                                            <div class="sidebar_cart inlineBk">
-                                                                                <a href="#" role="button" data-toggle="modal" data-target="#login-modal">Supprimer l'annonce</a>
-                                                                            </div>
+                                                                                <%--<div class="sidebar_cart inlineBk">
+                                                                                <a href="ControllerCentrerGererMesAnnonces?action=supprimerAnnonce&keyPlot=${monAnnonce.id}" role="button" data-toggle="modal" data-target="#login-modal">Supprimer l'annonce</a>
+                                                                            </div>--%>
 
                                                                             <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                                                 <div class="modal-dialog">

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +27,58 @@
             <div class="clr"></div>
             <section class="block">
               <article id="tab1">
+                    <table id="tableUtilisateur" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                 <th>
+                                    <input name="select_all" value="1" type="checkbox">
+                                </th>
 
+                                <th>
+                                    Nom
+                                </th>
+
+                                <th>
+                                    Pr&eacute;nom
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th class="">
+
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <c:forEach var="userAdmin" items="${requestScope['usersGet']}"  varStatus="vsUne">
+                                <tr>
+                                    <td>
+                                    </td>
+                                    
+                                    <td>
+                                        ${userAdmin.nom}
+                                    </td>
+                                    
+                                    <td>
+                                       ${userAdmin.prenom}
+                                    </td>
+
+                                    <td>
+                                       ${userAdmin.email} 
+                                    </td>
+                                    <td class="">
+                                      
+                                    </td>
+
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+
+                    </table>
               </article>
               <article id="tab2">
                   <form class="contact_form" onsubmit="return addCompteUtilisateur();" id="formCompteUtilisateur">

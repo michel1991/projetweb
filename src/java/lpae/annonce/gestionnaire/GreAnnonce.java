@@ -520,6 +520,14 @@ public class GreAnnonce {
        this.em.remove(photoAnnonceG);
        this.em.flush();
    }
+   
+   
+   public void supprimerAnnonce(Annonce annonce)
+   {
+       Annonce ann= em.merge(annonce);
+       this.em.remove(ann);
+       this.em.flush();
+   }
     
    
 }

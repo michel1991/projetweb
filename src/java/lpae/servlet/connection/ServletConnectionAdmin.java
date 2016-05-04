@@ -21,9 +21,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "ServletConnectionAdmin", urlPatterns = {"/ServletConnectionAdmin"})
 public class ServletConnectionAdmin extends HttpServlet {
 
-   private static final String LOGIN="tp2";
+   private static final String LOGIN="trostudent";
     
-    private static final String PASSWORD="tp2";
+    private static final String PASSWORD="trostudent";
     
     private static final int IDENTIFIANT=2015;
     public static String pageIndex = "admin/index.jsp";
