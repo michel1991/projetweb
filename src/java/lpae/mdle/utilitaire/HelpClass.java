@@ -36,8 +36,11 @@ public class HelpClass {
     public static final String MESSAGE_RESULTAT_ACTION="messageResultatAction"; // servira pour clé dans setAttribute pour tous les message à destionation de l'utilisateur
     
     public static final int MAX_DATA_TO_RETRIEVE_ANNONCE=10;
+    public static final String PAGE_ACCUEIL_MES_ANNONCES="ControllerCentralMesAnnonces?action=MesAnnonces";
     
     public static final int DUREE_COOKIE=172800; // DEUX JOURS EN SECONDE
+    
+    public static final int NOMBRE_PHOTO=3;
     
     public static Date getCurrentDate()
     {
@@ -74,6 +77,20 @@ public class HelpClass {
         }
     }
     
+    
+    /**
+     * 
+     * @param filePath chemin vers le fichier
+     * @throws IOException 
+     */
+    public static  void supprimerImageSurLeDisque(String filePath) throws IOException {
+        File file = new File(filePath);
+        if(file!=null && file.exists())
+        {
+           boolean resultat =file.delete();
+        }
+    }
+    
    
     
     public static String getFileName(final Part part) {
@@ -96,6 +113,10 @@ public class HelpClass {
         return nomFichier;
     }
     
+    /**
+     * methode permettant d'ajouter des informations pour différencier les photos
+     * @return 
+     */
     public static String ajoutInformationNomPhoto()
     {
         org.joda.time.format.DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMddHHmmss");
@@ -103,6 +124,11 @@ public class HelpClass {
         return formatter.print(dt3);
     }
     
+    /**
+     * methode calculant la pagination pour le nombre des annonces à afficher par page
+     * @param nombreElement
+     * @return 
+     */
     public static int calculPagination(int nombreElement)
     {
         System.out.println("nombre division help classe " +  Double.parseDouble(String.valueOf(nombreElement))/HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);

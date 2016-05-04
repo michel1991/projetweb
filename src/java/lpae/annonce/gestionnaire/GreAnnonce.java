@@ -72,6 +72,17 @@ public class GreAnnonce {
     }
     
     /**
+     * methode permettant de mettre à jour une annonce
+     * @param annonce
+     * @return 
+     */
+    public Annonce miseAjourAnnonce(Annonce annonce)
+    {
+        return em.merge(annonce);
+    }
+    
+    /**
+     * Methode permettant de supprimer des types d'annonces par leur id
      * supprimer un type d'annonce
      * @param tableauIdTypeAnnonce
      * @return 
@@ -305,7 +316,7 @@ public class GreAnnonce {
     }
     
     /**
-     * 
+     * Methode retournant une annonce par son identifiant
      * @param idAnnonce
      * @return 
      */
@@ -392,12 +403,21 @@ public class GreAnnonce {
     {
         Query query = this.requeteRechercheAnnonce(titre, titreUniquement, etat, categorie, ecole, autres, urgente);
         query.setFirstResult(start*HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
-       // System.out.println("requete " + query.toString());
-       //System.out.println("requete criteria greAnnonce" + query.toString() + " other " + cq.toString());
        query.setMaxResults(HelpClass.MAX_DATA_TO_RETRIEVE_ANNONCE);
       return query.getResultList();
     }
     
+    /**
+     * methode permettant de faire des recherches sur les annonces utilisant l'api criteria
+     * @param titre
+     * @param titreUniquement
+     * @param etat
+     * @param categorie
+     * @param ecole
+     * @param autres
+     * @param urgente
+     * @return 
+     */
    public Query requeteRechercheAnnonce(String titre, boolean titreUniquement ,boolean etat, Categorie categorie, Ecole ecole, String autres, boolean urgente)
     {
         List<Predicate> listPredicate = new ArrayList<>();

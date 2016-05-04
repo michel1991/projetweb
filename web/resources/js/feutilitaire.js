@@ -67,7 +67,9 @@ function getDataCategories()
                         id:datas[i].idTypeCat
                 }));
                 $("#categorieAnnonceR").val($("#cateId").val());// pour cocher l'image de la categorie selectionner
-                console.log(" erreur " + '#'+datas[i].idTypeCat + datas[i].nomTypeCat);
+                
+                
+                //console.log(" erreur " + '#'+datas[i].idTypeCat + datas[i].nomTypeCat + $("#idCategorieModifier").val());
                 
                 var dataCategories = datas[i].categories;
                 if(typeof dataCategories !='undefined')
@@ -82,6 +84,8 @@ function getDataCategories()
                     }
                 }
             }
+            
+           $("#categorieAnnonce").val($("#idCategorieModifier").val());
         }
     };
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');

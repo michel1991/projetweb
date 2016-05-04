@@ -179,7 +179,7 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                     type = request.getParameter("radios");
                     String urgenteAnnonce = request.getParameter("annonceUrgente");
                                 
-                    System.out.println("urgente " + urgenteAnnonce);
+                    //System.out.println("urgente " + urgenteAnnonce);
                     
 
                     /*System.out.println("radios " + type + " " +request.getParameter("prix")
@@ -198,7 +198,7 @@ public class ControllerCentralDepotAnnoceFE extends HttpServlet {
                     textAnnonce = request.getParameter("textAnnonce");
                     titreAnnonce = request.getParameter("titreAnnonce");
                     double prixDouble = 0.0;
-                    System.out.println("categorie " + categorieAnnonce + " type " + type);
+                    //System.out.println("categorie " + categorieAnnonce + " type " + type);
                     if ((categorieAnnonce != null && categorieAnnonce.length() > 0) && (type != null && type.length() > 0)) {
                         //System.out.println("firest entry");
                         try {

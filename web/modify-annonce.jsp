@@ -30,12 +30,12 @@
                     
                     <br/>
                         
-                    <h3><a href="ControllerCentralMesAnnonces"><i class="fa fa-chevron-left" aria-hidden="true"></i>Retour</a></h3> 
+                    <h3><a href="ControllerCentralMesAnnonces?action=MesAnnonces"><i class="fa fa-chevron-left" aria-hidden="true"></i>Retour</a></h3> 
                     <h3>Modification de l'annonce : ${annonce.titre}</h3>
                      
 
                          <!--onsubmit="return deposerAnnoceFrontEnd();"-->
-                         <form class="form-horizontal center ctCAnnonce" method="post" action="ControllerCentralDepotAnnoceFE" enctype="multipart/form-data" id="formDepotAnnonce" name="formAnnonce">
+                         <form class="form-horizontal center ctCAnnonce" method="post" action="ControllerCentrerGererMesAnnonces" enctype="multipart/form-data" id="formDepotAnnonce" name="formAnnonce">
 
 
                             <!-- categorie -->
@@ -48,8 +48,9 @@
                                             <option value=""> Choisissez la catégorie </option> 
                                             
                                         </select>
-                                        <input type="hidden" name="action" value="add"/><!-- je ne me rappelle plus à quoi il me sert celui là-->
-                                        <input type="hidden" name="idCategorie" value="${requestScope.idCategorie}"/>
+                                        <input type="hidden" name="action2" value="updateFull"/><!-- je ne me rappelle plus à quoi il me sert celui là-->
+                                        <input type="hidden" id="idCategorieModifier" name="idCategorieModifier" value="${requestScope.idCategorie}"/>
+                                        <input type="hidden" name="idAnnonce"  id="idAnnonce" value="${requestScope.annonce.id}"/>
                                     </div>
                                 </div>
 
@@ -118,7 +119,7 @@
                                     </label>
                                     
                                     <div class="col-md-4">
-                                        <input  id="urgenteDepotAnnonce" value="1" ${requestScope.urgenteAnnonce==1?'checked="checked"':''} type="checkbox" name="annonceUrgente">  Annonce urgente
+                                        <input  id="urgenteDepotAnnonce" value="1" ${requestScope.urgenteAnnonce==true?'checked="checked"':''} type="checkbox" name="annonceUrgente">  Annonce urgente
                                     </div>
                                 </div>
 
@@ -136,7 +137,20 @@
 
                                         <div class="pictureDA">
                                             <p class="titlePictDA"> - PHOTO PRINCIPALE - </p>
-                                            <img id="blah1" src="images/appartus-photo.png" alt="" class="classBlah"/>
+                                            
+                                            <!-- on teste si la photo existe -->
+                                                <c:choose>
+                                                    <c:when test="${requestScope.photo1!=null}">
+                                                        <img id="blah1" src="resources/imagesAnnonces/${photo1.nomLocalisation}" alt="" class="classBlah"/>
+                                                        <input type="hidden" value="${photo1.nomLocalisation}" name="oldFichier1"/>
+                                                    </c:when>
+
+                                                    <c:otherwise>
+                                                         <img id="blah1" src="images/appartus-photo.png" alt="" class="classBlah"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            <!-- on teste si la photo existe -->
+                                            
                                             <div class="fileUpload btn btn-primary divChoiceFile">
                                                 <span>Choisir un fichier</span>
                                                 <input id="uploadBtn1" type="file" name="fichier1" multiple class="upload uploadBtn1" style="" onchange="readImagesAndPreview(this.files, 'blah1', 'uploadBtn1', 'link1');"/>
@@ -152,7 +166,18 @@
 
                                         <div class="pictureDA">
                                             <p class="titlePictDA"> - PHOTO 2 - </p>
-                                            <img id="blah2" src="images/appartus-photo.png" alt="" class="classBlah"/>
+                                               <!-- TEST SI LA PHOTO EXISTE -->
+                                                <c:choose>
+                                                        <c:when test="${requestScope.photo2!=null}">
+                                                            <img id="blah2" src="resources/imagesAnnonces/${photo2.nomLocalisation}" alt="" class="classBlah"/>
+                                                            <input type="hidden" value="${photo2.nomLocalisation}" name="oldFichier2"/>
+                                                        </c:when>
+
+                                                        <c:otherwise>
+                                                             <img id="blah2" src="images/appartus-photo.png" alt="" class="classBlah"/>
+                                                        </c:otherwise>
+                                                </c:choose>
+                                            
                                             <div class="fileUpload btn btn-primary divChoiceFile">
                                                 <span>Choisir un fichier</span>
                                                 <input id="uploadBtn2" type="file" name="fichier2" class="upload" style="" onchange="readImagesAndPreview(this.files, 'blah2', 'upluoadFile2', 'link2');"/>
@@ -167,7 +192,19 @@
 
                                         <div class="pictureDA">
                                             <p class="titlePictDA"> - PHOTO 3 - </p>
-                                            <img id="blah3" src="images/appartus-photo.png" alt="" class="classBlah"/>
+                                            
+                                            <!-- TEST SI LA PHOTO EXISTE -->
+                                                <c:choose>
+                                                        <c:when test="${requestScope.photo3!=null}">
+                                                            <img id="blah3" src="resources/imagesAnnonces/${photo3.nomLocalisation}" alt="" class="classBlah"/>
+                                                            <input type="hidden" value="${photo3.nomLocalisation}" name="oldFichier3"/>
+                                                        </c:when>
+
+                                                        <c:otherwise>
+                                                             <img id="blah3" src="images/appartus-photo.png" alt="" class="classBlah"/>
+                                                        </c:otherwise>
+                                                </c:choose>
+                                            
                                             <div class="fileUpload btn btn-primary divChoiceFile">
                                                 <span>Choisir un fichier</span>
                                                 <input id="uploadBtn3" type="file" name="fichier3" class="upload" style="" onchange="readImagesAndPreview(this.files, 'blah3', 'upluoadFile3', 'link3');"/>
@@ -218,6 +255,10 @@
     
     <script>
              var path = '${pageContext.servletContext.contextPath}';//context de l'application
+             $(function(){
+                 //$("#categorieAnnonce").val($("#idCategorieModifier").val());
+                 console.log("cocher " + $("#idCategorieModifier").val());
+             });
     </script>
 </body>
 
