@@ -1,0 +1,409 @@
+[
+ {
+   "nom":"Huet",
+   "prenom":"Fabrice",
+   "email":"fabrice.huet@inria.fr",
+   "statut":"Enseignement: programmation avancée",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Akiyama",
+   "prenom":"Namiko",
+   "email":"naimeizi@gmail.com",
+   "statut":"Enseignement: Japonais",
+   "civilite": "Mme"
+   
+ },
+ {
+   "nom":"Cavé",
+   "prenom":"Philippe",
+   "email":"",
+   "statut":"Enseignement: Anglais",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Crescenzo",
+   "prenom":"Pierre ",
+   "email":"pierre.crescenzo@unice.fr",
+   "statut":"Enseignement: Systèmes de gestion de bases de données",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Dimaggio",
+   "prenom":"Lionel",
+   "email":"LDMNCE@yahoo.fr",
+   "statut":"Enseignement: Communication",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Donato",
+   "prenom":"Francesco",
+   "email":"donato.francesco@aliceadsl.fr",
+   "statut":"Enseignement: Italien",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Hammani-Abid",
+   "prenom":"Inès",
+   "email":"ines.abid@unice.fr",
+   "statut":"Enseignement: Systèmes d'Information",
+   "civilite": "Mme"
+ },
+ {
+   "nom":"Kitching",
+   "prenom":"Anna",
+   "email":"annakitching@orange.fr",
+   "statut":"Enseignement: Espagnol",
+   "civilite": "Mme"
+ },
+ {
+   "nom":"Mallet",
+   "prenom":"Fréderic",
+   "email":"Frederic.Mallet@unice.fr",
+   "statut":"Enseignement: Patrons de conception",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Mirbel",
+   "prenom":"Isabelle",
+   "email":"Isabelle.Mirbel@unice.fr",
+   "statut":"Enseignement: Systèmes de gestion de bases de données",
+   "civilite": "Mme"
+ },
+ {
+   "nom":"Papadacci ",
+   "prenom":"Rose-Marie",
+   "email":"rm@papadacci.com",
+   "statut":"Enseignement: Comptabilité",
+   "civilite": "Mme"
+ },
+ {
+   "nom":"Poulard",
+   "prenom":"Philippe",
+   "email":"Philippe.Poulard@sophia.inria.fr",
+   "statut":"Enseignement: XML",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Rochas",
+   "prenom":"Justine",
+   "email":"justine.rochas@inria.fr",
+   "statut":"Enseignement: Systèmes Distribués, XML",
+   "civilite": "Mme"
+ },
+ {
+   "nom":"Tounsi",
+   "prenom":"Stéphane",
+   "email":"prof.tounsi@gmail.com",
+   "statut":"Enseignement: Simulation de gestion d'entreprise",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Tettamanzi",
+   "prenom":"Andrea",
+   "email":"andrea.tettamanzi@unice.fr",
+   "statut":"Enseignement: Systèmes Distribués",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Abid ",
+   "prenom":"Anna-Maria",
+   "email":"annamariaabid@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Aglif",
+   "prenom":"Fatima-Zahra",
+   "email":"fatiz.aglif@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Aydogan ",
+   "prenom":"Mehmet",
+   "email":"mehmet.aydogan@outlook.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Azzaoui ",
+   "prenom":"Reda",
+   "email":"azzaoui10201@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Bajaar ",
+   "prenom":"Hamza",
+   "email":"bajaar.hamza@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Barbe ",
+   "prenom":"Brenda",
+   "email":"brenda.barbe.83@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Begyn",
+   "prenom":"Mélissa",
+   "email":"Mel.begyn@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Bellaïche",
+   "prenom":"Julian",
+   "email":"julianbellaiche@outlook.fr",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Ben Boubaker ",
+   "prenom":"Donia",
+   "email":"Benboubaker.donia@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Benhamou ",
+   "prenom":"Thomas",
+   "email":"thomas.benhamou@hotmail.fr",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Benyas ",
+   "prenom":"Nour elhouda",
+   "email":"benyas.nour@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Bernard",
+   "prenom":"Alexandre",
+   "email":"alexandre.bernard13@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Boccara",
+   "prenom":"David",
+   "email":"davidboccara333@yahoo.fr",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Chauvet ",
+   "prenom":"Clémence",
+   "email":"cle.chauvet@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Cochin",
+   "prenom":"Sacha",
+   "email":"sacha.cochin@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Cojocaru ",
+   "prenom":"Dragos",
+   "email":"cojocaru.dragos14@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Constantin ",
+   "prenom":"Yannis",
+   "email":"constantin.yannis@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Dechamps ",
+   "prenom":"Aurore",
+   "email":"dechamps.aurore@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Delas ",
+   "prenom":"Romain",
+   "email":"r.delas01@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Dupont ",
+   "prenom":"Kenzo",
+   "email":"kenzo.dupont@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Elouahabi ",
+   "prenom":"Hajar",
+   "email":"hajarelouahabi8@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Elsaesser",
+   "prenom":"Luke",
+   "email":"e.luc13@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Guery ",
+   "prenom":"Steven",
+   "email":"stevenguery06@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Houara ",
+   "prenom":"Inès",
+   "email":"Ines.houara@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Kaeffer",
+   "prenom":"Rémi",
+   "email":"remi.kaeffer@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Lamrani ",
+   "prenom":"Rime",
+   "email":"rim.lamrani@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Lantier",
+   "prenom":"Sébastien",
+   "email":"sebastien.lantier83@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Manaï ",
+   "prenom":"Oualid",
+   "email":"oualid.manai@hotmail.Fr",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Martin ",
+   "prenom":"Léo-Paul",
+   "email":"leopaulmartin@hotmail.fr",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Micallef ",
+   "prenom":"David",
+   "email":"davidmicallef06@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Mimouna",
+   "prenom":"Amira",
+   "email":"amira.mimouna@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Mota dos Santos ",
+   "prenom":"Thaís",
+   "email":"thais.motasantos@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mlle"
+ },
+ {
+   "nom":"Mvouma Mvouma ",
+   "prenom":"Michel",
+   "email":"michelmvouma@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Nagy ",
+   "prenom":"Nicolas",
+   "email":"nicolas.nagy1@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Nicoletti ",
+   "prenom":"Sébastien",
+   "email":"s.nico@live.fr",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Outamha ",
+   "prenom":"Salwa",
+   "email":"salwaoutamha48@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Pinet ",
+   "prenom":"Jérémy ",
+   "email":"jeremp06@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Puybonnieux",
+   "prenom":"Pierre",
+   "email":"p.puybonnieux@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Rabadan",
+   "prenom":"Andy",
+   "email":"andy.rabadan@hotmail.fr",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Rhazadi  ",
+   "prenom":"Walid",
+   "email":"Walid.RHAZADI@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Rouis",
+   "prenom":"Myriam",
+   "email":"myriamrouis@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Silvestro ",
+   "prenom":"Benoit",
+   "email":"benoit.silvestro@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ },
+ {
+   "nom":"Spugna ",
+   "prenom":"Lorris",
+   "email":"spugna.lorris@gmail.com",
+   "statut":"Etudiant M1",
+   "civilite": "Mr"
+ }
+]

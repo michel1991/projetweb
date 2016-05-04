@@ -105,7 +105,7 @@ public class FullDataIntoDatabase {
          
         System.out.println("fin insertion datas biz glassfish works!! gooooooooo");
         
-        
+        saveM1Annuaire();
     }
 
     @PreDestroy
@@ -398,6 +398,10 @@ public class FullDataIntoDatabase {
        return r.nextInt((max - min) + 1) + min; 
     }
    
+   /**
+    * Permettant permettant de generer une liste de données basées sur les etudiants
+    * @param list 
+    */
    public void saveDataStudent(List<Ecole> list)
    {
        URL url = this.getClass().getResource("dataStudent.json");
@@ -408,7 +412,7 @@ public class FullDataIntoDatabase {
         
         if(file!=null && file.exists())
         {
-            System.out.println(" existe " + file.getPath());
+            //System.out.println(" existe " + file.getPath());
             
             try {
                 BufferedReader inB = new BufferedReader(new FileReader(file));
@@ -471,6 +475,74 @@ public class FullDataIntoDatabase {
                     
                 }
                 System.out.println("la taille est : " + json.size() + " fin insertion ");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FullDataIntoDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FullDataIntoDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(FullDataIntoDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }// fin du if
+   }
+   
+   
+   /**
+    * ANNUAIRE DE M1
+    */
+   public void saveM1Annuaire()
+   {
+       URL url = this.getClass().getResource("m1annuaire.json");
+        System.out.println("file " + url.getHost() + " autre " + url.getFile());
+        File file = new File(url.getFile());
+        JSONArray json = new JSONArray();
+        JSONParser parser = new JSONParser();
+        List<Ecole> listEcole = greEcole.obtenirEcoleParNom("Universite de Nice");
+        Ecole universiteNice = null;
+        
+        if(listEcole!=null && listEcole.size()>0)
+        {
+            universiteNice = listEcole.get(0);
+        }
+        
+        if(file!=null && file.exists() && universiteNice!=null)
+        {
+            //System.out.println(" existe " + file.getPath());
+            //Universite de Nice
+            try {
+                BufferedReader inB = new BufferedReader(new FileReader(file));
+                json = (JSONArray) parser.parse(inB);
+                System.out.println("debut insertion annuaire M1");
+                for (Iterator it = json.iterator(); it.hasNext();) 
+                {
+                    JSONObject json1 = (JSONObject) it.next();
+                    Utilisateur utilisateur = new Utilisateur();
+                    EcoleUtilisateur ecoleUtilisateur = new EcoleUtilisateur();
+                    ecoleUtilisateur.setUtilisateur(utilisateur);
+                    ecoleUtilisateur.setEcole(universiteNice);
+                    utilisateur.addEcoleUtilisateur(ecoleUtilisateur);
+                    
+                    String civilite = (String) json1.get("civilite");
+                    String nom = (String) json1.get("nom");
+                    String prenom = (String) json1.get("prenom");
+                    String email = (String) json1.get("email");
+                    String statut = (String) json1.get("statut");
+                    
+                    utilisateur.setNom(nom);
+                    utilisateur.setPrenom(prenom);
+                    utilisateur.setLogin(nom+"@"+prenom);
+                    utilisateur.setEmail(email);
+                    utilisateur.setAcceptCondi(true);
+                    utilisateur.setSexe(civilite);
+                    if(statut!=null && statut.contains("Enseignement"))
+                    {
+                       utilisateur.setProfession("en");
+                    }else if(statut!=null && statut.contains("Etudiant")){
+                        utilisateur.setProfession("etu");
+                    }
+                    utilisateur.setDateCreation(HelpClass.getCurrentDate());
+                    em.persist(utilisateur);
+                }
+                System.out.println("la taille est : " + json.size() + " fin insertion M1 MIAGE");
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(FullDataIntoDatabase.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
